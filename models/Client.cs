@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace iCantine.models
 {
-    internal class Client:User
+    public class Client:User
     {
         public double balance { get; set; }
 

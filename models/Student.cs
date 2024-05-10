@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace iCantine.models
 {
-    internal class Student:Client
+    public class Student:Client
     {
         public int studentNumber { get; set; }
 

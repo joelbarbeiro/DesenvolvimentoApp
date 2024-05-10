@@ -7,21 +7,18 @@ using System.Threading.Tasks;
 
 namespace iCantine.models
 {
-    public class Ticket
+    public class Reservation
     {
         [Key]
-        public int idTicket { get; set; }
-        public double Value { get; set; }
-        public int NumHours { get; set; }
+        public int idReservation { get; set; }
+        public List<Client> Clients;
+        public List<Ticket> Tickets;
+        public List<Plate> Plates;
+        public List<Menu> Menus;
+        public List<Extra> Extras;
 
-        public Ticket()
+        public Reservation()
         {
-        }
-
-        public Ticket(double value, int numHours)
-        {
-            Value = value;
-            NumHours = numHours;
         }
 
         public override string ToString()

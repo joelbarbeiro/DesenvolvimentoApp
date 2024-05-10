@@ -7,8 +7,22 @@ using System.Threading.Tasks;
 
 namespace iCantine.models
 {
-    internal class Professor:Client
+    public class Professor:Client
     {
         public string email { get; set; }
+
+        public Professor()
+        {
+        }
+
+        public Professor(string email)
+        {
+            this.email = email;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

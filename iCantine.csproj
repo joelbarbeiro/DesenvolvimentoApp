@@ -62,12 +62,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="models\Client.cs" />
+    <Compile Include="models\Context.cs" />
     <Compile Include="models\Employee.cs" />
+    <Compile Include="models\Extra.cs" />
     <Compile Include="models\ItemReceipt.cs" />
+    <Compile Include="models\Menu.cs" />
     <Compile Include="models\Plate.cs" />
     <Compile Include="models\Professor.cs" />
     <Compile Include="models\Receipt.cs" />
+    <Compile Include="models\Reservation.cs" />
     <Compile Include="models\Student.cs" />
     <Compile Include="models\Ticket.cs" />
     <Compile Include="models\User.cs" />
