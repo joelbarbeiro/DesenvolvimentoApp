@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace iCantine.models
 {
-    internal class Employee:User
+    public class Employee:User
     {
         public string username { get; set; }
 
