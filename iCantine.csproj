@@ -56,7 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\CRUDController.cs" />
+    <Compile Include="models\CRUDController.cs" />
     <Compile Include="Controllers\FormController.cs" />
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>

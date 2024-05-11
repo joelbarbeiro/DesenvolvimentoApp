@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using iCantine.Controllers;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace iCantine.Views
 {
@@ -22,29 +23,38 @@ namespace iCantine.Views
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             string username = textBoxUsername.Text;
-            if (string.IsNullOrEmpty(username))
+            if (CRUDController.verifyUser(username))
             {
-                MessageBox.Show("Preencha Username");
+                Employee employee = new Employee(username);
+                Context context = new Context();
+                context.Employees.Add(employee);
+                try
+                {
+                    context.SaveChanges();
+                    this.Close();
+                    FormLogin formLogin = new FormLogin();
+                    FormController.changeForm(formLogin, this);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Registo Não Concluido");
+                    return;
+                }
             }
-            Employee employee = new Employee(username);
-            Context context = new Context();
-            context.Employees.Add(employee);
-            try
+            else
             {
-                context.SaveChanges();
-                this.Close();
-                FormController.openFormLogin();
-            }catch (Exception )
-            {
-                MessageBox.Show("Registo Não Concluido");
+                MessageBox.Show("Registo Falhado!");
                 return;
             }
         }
 
+
+
         private void buttonBack_Click(object sender, EventArgs e)
         {
             this.Close();
-            FormController.openFormLogin();
+            FormLogin formLogin = new FormLogin();
+            FormController.changeForm(formLogin,this);
         }
     }
 }

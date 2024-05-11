@@ -34,6 +34,11 @@ namespace iCantine.Controllers
             loginForm.Show();
             mainForm.Close();
         }
+        public static void changeForm(Form newForm, Form oldForm, string[] argS=null)
+        {
+            newForm.Show();
+            oldForm.Hide();
+        }
 
     }
 }
