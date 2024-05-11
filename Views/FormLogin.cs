@@ -21,7 +21,8 @@ namespace iCantine.Views
 
         private void buttonRegister_Click(object sender, EventArgs e)
         {
-            FormController.openFormRegister(this);
+            FormRegister formRegister = new FormRegister();
+            FormController.changeForm(formRegister,this); 
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -42,8 +43,8 @@ namespace iCantine.Views
                 return;
             }
             Employee user = query_result.First();
-            FormController.openForm1(this,user);
-
+            MainForm mainForm = new MainForm(user);
+            FormController.changeForm(mainForm, this);
         }
     }
 }

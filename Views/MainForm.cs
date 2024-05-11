@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using iCantine.Controllers;
+using iCantine.Views;
 
 namespace iCantine
 {
@@ -19,14 +20,16 @@ namespace iCantine
             InitializeComponent();
             changeUserLabel(user);
         }
-        public void changeUserLabel(Employee user)
+        private void changeUserLabel(Employee user)
         {
-            labelUsername.Text = user.username.ToString();
+            labelUsername.Text=user.username.ToString();
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-            FormController.logoutForm(this);
+            //FormController.logoutForm(this);
+            FormLogin loginForm = new FormLogin();
+            FormController.changeForm(loginForm, this);
         }
     }
 }
