@@ -14,6 +14,11 @@ namespace iCantine.models
         {
         }
 
+        public Employee(string username)
+        {
+            this.username = username;
+        }
+
         public override string ToString()
         {
             return base.ToString();

@@ -1,6 +1,6 @@
 ﻿namespace iCantine
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -67,6 +67,7 @@
             this.buttonLogout.TabIndex = 1;
             this.buttonLogout.Text = "Logout";
             this.buttonLogout.UseVisualStyleBackColor = true;
+            this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
             // 
             // buttonPlates
             // 
@@ -218,7 +219,7 @@
             this.listBoxFriday.Size = new System.Drawing.Size(127, 212);
             this.listBoxFriday.TabIndex = 24;
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -241,7 +242,7 @@
             this.Controls.Add(this.buttonPlates);
             this.Controls.Add(this.buttonLogout);
             this.Controls.Add(this.labelUsername);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
