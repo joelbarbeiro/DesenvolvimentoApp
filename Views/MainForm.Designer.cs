@@ -46,13 +46,14 @@
             this.listBoxWednesday = new System.Windows.Forms.ListBox();
             this.listBoxThursday = new System.Windows.Forms.ListBox();
             this.listBoxFriday = new System.Windows.Forms.ListBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelUsername
             // 
             this.labelUsername.AutoSize = true;
             this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUsername.Location = new System.Drawing.Point(711, 16);
+            this.labelUsername.Location = new System.Drawing.Point(750, 16);
             this.labelUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(105, 24);
@@ -245,11 +246,22 @@
             this.listBoxFriday.Size = new System.Drawing.Size(168, 260);
             this.listBoxFriday.TabIndex = 24;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(584, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(128, 24);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "Funcionario:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.listBoxFriday);
             this.Controls.Add(this.listBoxThursday);
             this.Controls.Add(this.listBoxWednesday);
@@ -296,6 +308,7 @@
         private System.Windows.Forms.ListBox listBoxWednesday;
         private System.Windows.Forms.ListBox listBoxThursday;
         private System.Windows.Forms.ListBox listBoxFriday;
+        private System.Windows.Forms.Label label6;
     }
 }
 
