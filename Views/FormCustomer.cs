@@ -41,7 +41,7 @@ namespace iCantine.Views
             string email = textBoxEmail.Text;
             int.TryParse(textBoxNumStudent.Text, out numStudent);
             textBoxChange();
-            buttonRegister.Text = "Gravar";
+            
             if (buttonRegister.Text == "Gravar")
             {
                 if (CRUDController.verifyUser(nif))
@@ -59,6 +59,7 @@ namespace iCantine.Views
                             listBoxClientsUpdate();
                             buttonRegister.Text = "Registar";
                             textBoxClear();
+                            return;
                         }
                         catch (Exception)
                         {
@@ -81,6 +82,7 @@ namespace iCantine.Views
                             listBoxClientsUpdate();
                             buttonRegister.Text = "Registar";
                             textBoxClear();
+                            return;
                         }
                         catch (Exception)
                         {
@@ -101,7 +103,7 @@ namespace iCantine.Views
             }
             else
             {
-                if (buttonRegister.Text == "Editar") // If the button text is "Save", it indicates editing mode
+                if (buttonRegister.Text == "Editar") 
                 {
                     models.Context context = new models.Context();
                     var userToUpdate = context.Users.OfType<Client>().SingleOrDefault(u => u.nif == nif);
@@ -124,6 +126,7 @@ namespace iCantine.Views
                             listBoxClientsUpdate();
                             buttonRegister.Text = "Registar";
                             textBoxClear();
+                            return;
                         }
                         catch (Exception ex)
                         {
@@ -133,6 +136,8 @@ namespace iCantine.Views
                 }
                 
             }
+            
+            buttonRegister.Text = "Gravar";
         }
         public void textBoxChange()
         {
@@ -271,6 +276,14 @@ namespace iCantine.Views
             textBoxChange();
             buttonRegister.Text = "Editar";
             
+        }
+
+        private void buttonBalance_Click(object sender, EventArgs e)
+        {
+            Client user = listBoxCustomers.SelectedItem as Client;
+            string employee = labelEmployee.Text;
+            FormBalance balanceForm = new FormBalance(user,employee);
+            FormController.changeForm(balanceForm, this);
         }
     }
 }
