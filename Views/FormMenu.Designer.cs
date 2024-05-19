@@ -153,7 +153,7 @@
             this.buttonDeleteMenu.Name = "buttonDeleteMenu";
             this.buttonDeleteMenu.Size = new System.Drawing.Size(125, 36);
             this.buttonDeleteMenu.TabIndex = 11;
-            this.buttonDeleteMenu.Text = "Eleminar";
+            this.buttonDeleteMenu.Text = "Eliminar";
             this.buttonDeleteMenu.UseVisualStyleBackColor = true;
             // 
             // comboBoxPlateType
