@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="Views\FormMenu.Designer.cs">
       <DependentUpon>FormMenu.cs</DependentUpon>
+
     </Compile>
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
@@ -123,6 +124,10 @@
     <Compile Include="Views\FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
+    
+    <EmbeddedResource Include="Views\FormCustomer.resx">
+      <DependentUpon>FormCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\FormCreateExtras.resx">
       <DependentUpon>FormCreateExtras.cs</DependentUpon>
     </EmbeddedResource>

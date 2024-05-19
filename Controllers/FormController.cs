@@ -22,7 +22,7 @@ namespace iCantine.Controllers
             FormLogin loginForm = new FormLogin();
             loginForm.Show();
         }
-        public static void openForm1(Form formLogin, Employee user)
+        public static void openForm1(Form formLogin, string user)
         {
             MainForm mainForm = new MainForm(user);
             mainForm.Show();

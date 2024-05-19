@@ -15,7 +15,7 @@ namespace iCantine.models
         {
         }
 
-        public Professor(string email)
+        public Professor(string email, string name, int nif) : base(name, nif)
         {
             this.email = email;
         }

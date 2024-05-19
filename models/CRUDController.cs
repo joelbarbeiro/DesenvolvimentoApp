@@ -14,7 +14,7 @@ namespace iCantine.Controllers
 {
     public class CRUDController
     {
-        public static bool verifyUser(string user,int nif=0,string email=null,int numEstudante=0)
+        public static bool verifyEmployee(string user)
         {
             Context context = new Context();
 
@@ -23,11 +23,28 @@ namespace iCantine.Controllers
                 employee.username == user);
             if (query_result.Count() == 0)
             {
-                Console.WriteLine("Register Successful");
+                Console.WriteLine("Registado com successo");
                 return true;
             }
-            Console.WriteLine("Register Failed");
+            Console.WriteLine("Registo Falhado");
             return false;
         }
+        
+        public static bool verifyUser(int nif)
+        {
+            Context context = new Context();
+
+            var query_result = context.Users.Where(
+                user =>
+                user.nif == nif) ;
+            if (query_result.Count() == 0)
+            {
+                Console.WriteLine("Registado com sucesso");
+                return true;
+            }
+            Console.WriteLine("Registo Falhado");
+            return false;
+        }
+        
     }
 }
