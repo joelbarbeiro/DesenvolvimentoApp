@@ -206,6 +206,7 @@
             this.buttonBalance.TabIndex = 12;
             this.buttonBalance.Text = "Carregar";
             this.buttonBalance.UseVisualStyleBackColor = true;
+            this.buttonBalance.Click += new System.EventHandler(this.buttonBalance_Click);
             // 
             // buttonEdit
             // 
