@@ -43,7 +43,7 @@ namespace iCantine.Views
                 return;
             }
             Employee user = query_result.First();
-            MainForm mainForm = new MainForm(user);
+            MainForm mainForm = new MainForm(username);
             FormController.changeForm(mainForm, this);
         }
     }

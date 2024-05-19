@@ -23,7 +23,7 @@ namespace iCantine.Views
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             string username = textBoxUsername.Text;
-            if (CRUDController.verifyUser(username))
+            if (CRUDController.verifyEmployee(username))
             {
                 Employee employee = new Employee(username);
                 Context context = new Context();

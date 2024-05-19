@@ -8,10 +8,15 @@ namespace iCantine.models
 {
     public class Client:User
     {
-        public double balance { get; set; }
+        public double Balance { get; set; }
 
         public Client()
         {
+        }
+
+        public Client( string name, int nif): base(name, nif) 
+        {
+            
         }
 
         public override string ToString()

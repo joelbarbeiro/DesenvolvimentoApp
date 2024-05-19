@@ -16,11 +16,11 @@ namespace iCantine.models
 
         public User()
         {
+            
         }
 
-        public User(int idUser, string name, int nif)
+        public User( string name, int nif)
         {
-            this.idUser = idUser;
             this.name = name;
             this.nif = nif;
         }
