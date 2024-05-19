@@ -15,5 +15,6 @@ namespace iCantine.models
         public enum Type {Carne,Peixe,Vegetariano}
         public bool Active { get; set; }
 
+
     }
 }

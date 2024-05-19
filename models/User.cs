@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace iCantine.models
 {
@@ -13,6 +14,7 @@ namespace iCantine.models
         public int idUser{get; set;}
         public string name { get; set; }
         public int nif { get; set; }
+    
 
         public User()
         {
@@ -27,7 +29,7 @@ namespace iCantine.models
 
         public override string ToString()
         {
-            return base.ToString();
+            return name;
         }
     }
 }
