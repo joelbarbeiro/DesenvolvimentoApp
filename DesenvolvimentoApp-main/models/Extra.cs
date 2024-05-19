@@ -7,26 +7,29 @@ using System.Threading.Tasks;
 
 namespace iCantine.models
 {
-    public class Plate
+    public class Extra
     {
         [Key]
-        public int idPlate { get; set; }
+        public int idExtra { get; set; }
         public string Description { get; set; }
-        public PlateType Type { get; set; }
+        public double Price { get; set; }
         public bool Active { get; set; }
 
-        public Plate(int idPlate, string description, PlateType type, bool active)
+        public Extra()
         {
-            this.idPlate = idPlate;
-            this.Description = description;
-            this.Type = type;
-            this.Active = active;
+        }
+
+        public Extra(string description, double price, bool active)
+        {
+            Description = description;
+            Price = price;
+            Active = active;
         }
 
         public override string ToString()
         {
-            return Type + " - " + Description;
+            return Description+" "+Price;
         }
     }
-    
+
 }
