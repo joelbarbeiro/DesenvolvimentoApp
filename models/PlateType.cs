@@ -8,11 +8,16 @@ namespace iCantine.models
 {
     public class PlateType
     {
+        public PlateType()
+        {
+        }
+
         public enum plateType
         {
             Carne,
             Peixe,
             Vegetariano
         }
+
     }
 }

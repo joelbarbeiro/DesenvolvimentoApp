@@ -12,10 +12,10 @@ namespace iCantine.models
         [Key]
         public int idPlate { get; set; }
         public string Description { get; set; }
-        public PlateType Type { get; set; }
+        public string Type { get; set; }
         public bool Active { get; set; }
 
-        public Plate(int idPlate, string description, PlateType type, bool active)
+        public Plate(int idPlate, string description, string type, bool active)
         {
             this.idPlate = idPlate;
             this.Description = description;
