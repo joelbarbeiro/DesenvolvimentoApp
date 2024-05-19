@@ -15,18 +15,14 @@ namespace iCantine
 {
     public partial class MainForm : Form
     {
-
-        public MainForm(string user)
-
-
+        public MainForm(Employee user)
         {
             InitializeComponent();
-            this.user = user;
             changeUserLabel(user);
         }
-        private void changeUserLabel(string user)
+        private void changeUserLabel(Employee user)
         {
-            labelUsername.Text=user;
+            labelUsername.Text=user.username.ToString();
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
@@ -34,16 +30,6 @@ namespace iCantine
             //FormController.logoutForm(this);
             FormLogin loginForm = new FormLogin();
             FormController.changeForm(loginForm, this);
-        }
-
-
-        private void buttonCustomers_Click(object sender, EventArgs e)
-        {
-            string user = labelUsername.Text;
-            FormCustomer customerForm = new FormCustomer(user);
-            FormController.changeForm(customerForm, this);
-
-
         }
     }
 }
