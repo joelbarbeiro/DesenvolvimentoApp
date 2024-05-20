@@ -24,12 +24,12 @@ namespace iCantine
         }
         private void changeUserLabel(string user)
         {
-            labelUsername.Text=user;
+            labelUsername.Text=user.ToUpper();
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-            //FormController.logoutForm(this);
+          
             FormLogin loginForm = new FormLogin();
             FormController.changeForm(loginForm, this);
         }
@@ -52,6 +52,13 @@ namespace iCantine
         {
             FormCreateExtras formExtras = new FormCreateExtras(user);
             FormController.changeForm(formExtras, this);
+        }
+
+        private void buttonMenus_Click(object sender, EventArgs e)
+        {
+            string user = labelUsername.Text;
+            FormMenu FormMenu = new FormMenu(user);
+            FormController.changeForm(FormMenu, this);
         }
     }
 }

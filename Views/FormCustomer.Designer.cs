@@ -67,7 +67,7 @@
             this.listBoxCustomers.ItemHeight = 16;
             this.listBoxCustomers.Location = new System.Drawing.Point(17, 50);
             this.listBoxCustomers.Name = "listBoxCustomers";
-            this.listBoxCustomers.Size = new System.Drawing.Size(220, 292);
+            this.listBoxCustomers.Size = new System.Drawing.Size(323, 292);
             this.listBoxCustomers.TabIndex = 1;
             // 
             // groupBox1
@@ -87,7 +87,6 @@
             this.groupBox1.Size = new System.Drawing.Size(370, 250);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
             // 
             // radioButtonProfessor
             // 
@@ -207,6 +206,7 @@
             this.buttonBalance.TabIndex = 12;
             this.buttonBalance.Text = "Carregar";
             this.buttonBalance.UseVisualStyleBackColor = true;
+            this.buttonBalance.Click += new System.EventHandler(this.buttonBalance_Click);
             // 
             // buttonEdit
             // 
@@ -217,6 +217,7 @@
             this.buttonEdit.TabIndex = 13;
             this.buttonEdit.Text = "Editar";
             this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // buttonDelete
             // 
@@ -227,6 +228,7 @@
             this.buttonDelete.TabIndex = 14;
             this.buttonDelete.Text = "Apagar";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonRegister
             // 
@@ -242,9 +244,10 @@
             // labelEmployee
             // 
             this.labelEmployee.AutoSize = true;
-            this.labelEmployee.Location = new System.Drawing.Point(639, 23);
+            this.labelEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEmployee.Location = new System.Drawing.Point(656, 20);
             this.labelEmployee.Name = "labelEmployee";
-            this.labelEmployee.Size = new System.Drawing.Size(37, 16);
+            this.labelEmployee.Size = new System.Drawing.Size(42, 16);
             this.labelEmployee.TabIndex = 17;
             this.labelEmployee.Text = "label";
             // 
@@ -252,7 +255,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(508, 18);
+            this.label5.Location = new System.Drawing.Point(485, 15);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(128, 24);
             this.label5.TabIndex = 18;

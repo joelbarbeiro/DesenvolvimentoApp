@@ -36,9 +36,9 @@ namespace iCantine.Views
                     FormLogin formLogin = new FormLogin();
                     FormController.changeForm(formLogin, this);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Registo Não Concluido");
+                    MessageBox.Show("Registo Não Concluido: " + ex);
                     return;
                 }
             }

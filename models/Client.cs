@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace iCantine.models
 {
     public class Client:User
     {
-        public double Balance { get; set; }
+        public decimal Balance { get; set; }
+        public virtual string DisplayName => $"{name} (Balance: {Balance:C})";
 
         public Client()
         {

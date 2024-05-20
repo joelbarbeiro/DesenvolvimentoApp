@@ -46,6 +46,7 @@
             this.listBoxWednesday = new System.Windows.Forms.ListBox();
             this.listBoxThursday = new System.Windows.Forms.ListBox();
             this.listBoxFriday = new System.Windows.Forms.ListBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelUsername
@@ -53,6 +54,7 @@
             this.labelUsername.AutoSize = true;
             this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelUsername.Location = new System.Drawing.Point(533, 13);
+
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(105, 24);
             this.labelUsername.TabIndex = 0;
@@ -88,6 +90,8 @@
             this.buttonMenus.TabIndex = 5;
             this.buttonMenus.Text = "Menus";
             this.buttonMenus.UseVisualStyleBackColor = true;
+
+            this.buttonMenus.Click += new System.EventHandler(this.buttonMenus_Click);
             // 
             // buttonReservations
             // 
@@ -222,11 +226,23 @@
             this.listBoxFriday.Size = new System.Drawing.Size(127, 212);
             this.listBoxFriday.TabIndex = 24;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(584, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(128, 24);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "Funcionario:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+
             this.ClientSize = new System.Drawing.Size(800, 450);
+
             this.Controls.Add(this.listBoxFriday);
             this.Controls.Add(this.listBoxThursday);
             this.Controls.Add(this.listBoxWednesday);
@@ -272,6 +288,7 @@
         private System.Windows.Forms.ListBox listBoxWednesday;
         private System.Windows.Forms.ListBox listBoxThursday;
         private System.Windows.Forms.ListBox listBoxFriday;
+        private System.Windows.Forms.Label label6;
     }
 }
 
