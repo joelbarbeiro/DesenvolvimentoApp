@@ -34,13 +34,12 @@ namespace iCantine.Views
         private void updateClientBalance(Client client)
         {
             string user = labelEmployee.Text;
-            double balance = 0;
-            double.TryParse(numericBalance.Text, out balance);
+            decimal balance = numericBalance.Value;
             client.Balance += balance;
             Context context = new Context();
             try
             {
-                var userToUpdate = context.Users.OfType<Client>().SingleOrDefault(u => u.name == client.name);
+                var userToUpdate = context.Users.OfType<Client>().SingleOrDefault(u => u.nif == client.nif);
                 if (userToUpdate != null)
                 {
                     if (userToUpdate is Student student)

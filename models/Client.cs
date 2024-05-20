@@ -9,7 +9,7 @@ namespace iCantine.models
 {
     public class Client:User
     {
-        public double Balance { get; set; }
+        public decimal Balance { get; set; }
         public virtual string DisplayName => $"{name} (Balance: {Balance:C})";
 
         public Client()
