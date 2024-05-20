@@ -7,13 +7,13 @@ namespace iCantine.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class UpdatePlateType : IMigrationMetadata
+    public sealed partial class rebase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdatePlateType));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(rebase));
         
         string IMigrationMetadata.Id
         {
-            get { return "202405191651398_UpdatePlateType"; }
+            get { return "202405201937588_rebase"; }
         }
         
         string IMigrationMetadata.Source

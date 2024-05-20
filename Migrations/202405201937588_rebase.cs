@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class firstMigration : DbMigration
+    public partial class rebase : DbMigration
     {
         public override void Up()
         {
@@ -42,6 +42,7 @@
                     {
                         idMenu = c.Int(nullable: false, identity: true),
                         Data = c.DateTime(nullable: false),
+                        Hour = c.DateTime(nullable: false),
                         QuantAvailable = c.Int(nullable: false),
                         PriceStudent = c.Double(nullable: false),
                         PriceProf = c.Double(nullable: false),
@@ -57,6 +58,7 @@
                     {
                         idPlate = c.Int(nullable: false, identity: true),
                         Description = c.String(),
+                        Type = c.String(),
                         Active = c.Boolean(nullable: false),
                         Menu_idMenu = c.Int(),
                     })

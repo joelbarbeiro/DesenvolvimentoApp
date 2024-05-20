@@ -56,42 +56,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202405191607044_firstMigration.cs" />
-    <Compile Include="Migrations\202405191607044_firstMigration.Designer.cs">
-      <DependentUpon>202405191607044_firstMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202405191642003_UpdateDatabaseSchema.cs" />
-    <Compile Include="Migrations\202405191642003_UpdateDatabaseSchema.Designer.cs">
-      <DependentUpon>202405191642003_UpdateDatabaseSchema.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202405191643114_UpdateDatabaseSchema1.cs" />
-    <Compile Include="Migrations\202405191643114_UpdateDatabaseSchema1.Designer.cs">
-      <DependentUpon>202405191643114_UpdateDatabaseSchema1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202405191646095_UpdateDatabaseSchema2.cs" />
-    <Compile Include="Migrations\202405191646095_UpdateDatabaseSchema2.Designer.cs">
-      <DependentUpon>202405191646095_UpdateDatabaseSchema2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202405191651398_UpdatePlateType.cs" />
-    <Compile Include="Migrations\202405191651398_UpdatePlateType.Designer.cs">
-      <DependentUpon>202405191651398_UpdatePlateType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202405191701269_UpdatePlateType1.cs" />
-    <Compile Include="Migrations\202405191701269_UpdatePlateType1.Designer.cs">
-      <DependentUpon>202405191701269_UpdatePlateType1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202405192143412_addHourMenu.cs" />
-    <Compile Include="Migrations\202405192143412_addHourMenu.Designer.cs">
-      <DependentUpon>202405192143412_addHourMenu.cs</DependentUpon>
+    <Compile Include="Migrations\202405201937588_rebase.cs" />
+    <Compile Include="Migrations\202405201937588_rebase.Designer.cs">
+      <DependentUpon>202405201937588_rebase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Migrations\202405191619126_initial migration.cs" />
-    <Compile Include="Migrations\202405191619126_initial migration.Designer.cs">
-      <DependentUpon>202405191619126_initial migration.cs</DependentUpon>
-    </Compile>
     <Compile Include="models\CRUDController.cs" />
     <Compile Include="Controllers\FormController.cs" />
-
     <Compile Include="Views\FormBalance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,9 +70,9 @@
       <DependentUpon>FormBalance.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\FormCustomer.cs">
-
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\FormCreatePlates.cs">
-
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\FormCreatePlates.Designer.cs">
@@ -171,29 +142,8 @@
     <Compile Include="Views\FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\202405191607044_firstMigration.resx">
-      <DependentUpon>202405191607044_firstMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202405191642003_UpdateDatabaseSchema.resx">
-      <DependentUpon>202405191642003_UpdateDatabaseSchema.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202405191643114_UpdateDatabaseSchema1.resx">
-      <DependentUpon>202405191643114_UpdateDatabaseSchema1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202405191646095_UpdateDatabaseSchema2.resx">
-      <DependentUpon>202405191646095_UpdateDatabaseSchema2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202405191651398_UpdatePlateType.resx">
-      <DependentUpon>202405191651398_UpdatePlateType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202405191701269_UpdatePlateType1.resx">
-      <DependentUpon>202405191701269_UpdatePlateType1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202405192143412_addHourMenu.resx">
-      <DependentUpon>202405192143412_addHourMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202405191619126_initial migration.resx">
-      <DependentUpon>202405191619126_initial migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202405201937588_rebase.resx">
+      <DependentUpon>202405201937588_rebase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormBalance.resx">
       <DependentUpon>FormBalance.cs</DependentUpon>
