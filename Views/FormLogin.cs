@@ -17,6 +17,7 @@ namespace iCantine.Views
         public FormLogin()
         {
             InitializeComponent();
+            AcceptButton = buttonLogin;
         }
 
         private void buttonRegister_Click(object sender, EventArgs e)
@@ -27,6 +28,7 @@ namespace iCantine.Views
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
+            
             string username = textBoxUsername.Text;
             if(string.IsNullOrEmpty(username) )
             {
@@ -46,5 +48,7 @@ namespace iCantine.Views
             MainForm mainForm = new MainForm(username);
             FormController.changeForm(mainForm, this);
         }
+
+        
     }
 }

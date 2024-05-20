@@ -15,8 +15,8 @@ namespace iCantine.Views
 {
     public partial class FormMenu : Form
     {
-        public Employee user;
-        public FormMenu(Employee user)
+        public string user;
+        public FormMenu(string user)
         {
             InitializeComponent();
             this.user = user;
@@ -35,6 +35,11 @@ namespace iCantine.Views
             {
                 comboBoxPlateType.Items.Add(type);
             }
+        }
+
+        private void FormMenu_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

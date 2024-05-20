@@ -15,10 +15,8 @@ namespace iCantine
 {
     public partial class MainForm : Form
     {
-
+        public string user;
         public MainForm(string user)
-
-
         {
             InitializeComponent();
             this.user = user;
@@ -42,8 +40,18 @@ namespace iCantine
             string user = labelUsername.Text;
             FormCustomer customerForm = new FormCustomer(user);
             FormController.changeForm(customerForm, this);
+        }
 
+        private void buttonReservations_Click(object sender, EventArgs e)
+        {
+            FormEfetuarReservas formReservations = new FormEfetuarReservas(user);
+            FormController.changeForm(formReservations, this);
+        }
 
+        private void buttonExtras_Click(object sender, EventArgs e)
+        {
+            FormCreateExtras formExtras = new FormCreateExtras(user);
+            FormController.changeForm(formExtras, this);
         }
     }
 }
