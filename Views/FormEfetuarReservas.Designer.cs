@@ -105,6 +105,7 @@
             this.buttonBack.TabIndex = 7;
             this.buttonBack.Text = "Voltar";
             this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
             // label4
             // 
@@ -132,6 +133,7 @@
             this.buttonReserve.TabIndex = 10;
             this.buttonReserve.Text = "Reservar";
             this.buttonReserve.UseVisualStyleBackColor = true;
+            this.buttonReserve.Click += new System.EventHandler(this.buttonReserve_Click);
             // 
             // FormEfetuarReservas
             // 
@@ -150,6 +152,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormEfetuarReservas";
             this.Text = "FormEfetuarReservas";
+            this.Load += new System.EventHandler(this.FormEfetuarReservas_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

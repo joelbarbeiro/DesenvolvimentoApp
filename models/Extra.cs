@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace iCantine.models
 {
@@ -14,16 +15,15 @@ namespace iCantine.models
         public string Description { get; set; }
         public double Price { get; set; }
         public bool Active { get; set; }
-
+        public virtual string DisplayName => $"{Description} - Preço: {Price}€";
         public Extra()
         {
         }
 
-        public Extra(string description, double price, bool active)
+        public Extra(string description, double price)
         {
             Description = description;
             Price = price;
-            Active = active;
         }
 
         public override string ToString()

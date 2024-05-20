@@ -53,8 +53,8 @@
             // 
             this.labelUsername.AutoSize = true;
             this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUsername.Location = new System.Drawing.Point(750, 16);
-            this.labelUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelUsername.Location = new System.Drawing.Point(533, 13);
+
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(105, 24);
             this.labelUsername.TabIndex = 0;
@@ -90,6 +90,7 @@
             this.buttonMenus.TabIndex = 5;
             this.buttonMenus.Text = "Menus";
             this.buttonMenus.UseVisualStyleBackColor = true;
+
             this.buttonMenus.Click += new System.EventHandler(this.buttonMenus_Click);
             // 
             // buttonReservations
@@ -101,6 +102,7 @@
             this.buttonReservations.TabIndex = 6;
             this.buttonReservations.Text = "Reservas";
             this.buttonReservations.UseVisualStyleBackColor = true;
+            this.buttonReservations.Click += new System.EventHandler(this.buttonReservations_Click);
             // 
             // buttonCustomers
             // 
@@ -132,6 +134,7 @@
             this.buttonExtras.TabIndex = 9;
             this.buttonExtras.Text = "Extras";
             this.buttonExtras.UseVisualStyleBackColor = true;
+            this.buttonExtras.Click += new System.EventHandler(this.buttonExtras_Click);
             // 
             // label5
             // 
@@ -237,8 +240,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.label6);
+
+            this.ClientSize = new System.Drawing.Size(800, 450);
+
             this.Controls.Add(this.listBoxFriday);
             this.Controls.Add(this.listBoxThursday);
             this.Controls.Add(this.listBoxWednesday);

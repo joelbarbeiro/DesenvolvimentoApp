@@ -18,6 +18,7 @@ namespace iCantine.Views
         public FormRegister()
         {
             InitializeComponent();
+            AcceptButton = buttonRegister;
         }
 
         private void buttonRegister_Click(object sender, EventArgs e)

@@ -56,6 +56,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\202405191630280_InitialMigration.cs" />
+    <Compile Include="Migrations\202405191630280_InitialMigration.Designer.cs">
+      <DependentUpon>202405191630280_InitialMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202405201937588_rebase.cs" />
     <Compile Include="Migrations\202405201937588_rebase.Designer.cs">
       <DependentUpon>202405201937588_rebase.cs</DependentUpon>
@@ -146,6 +150,9 @@
     <Compile Include="Views\FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Migrations\202405191630280_InitialMigration.resx">
+      <DependentUpon>202405191630280_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405201937588_rebase.resx">
       <DependentUpon>202405201937588_rebase.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,6 +161,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormBalance.resx">
       <DependentUpon>FormBalance.cs</DependentUpon>
+
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormCustomer.resx">
       <DependentUpon>FormCustomer.cs</DependentUpon>
