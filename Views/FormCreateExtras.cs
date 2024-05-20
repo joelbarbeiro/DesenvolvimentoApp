@@ -83,7 +83,7 @@ namespace iCantine.Views
         {
             labelUsername.Text = CapitalizeFirstLetter(user);
         }
-        private string CapitalizeFirstLetter(string input)
+        public string CapitalizeFirstLetter(string input)
         {
             if (string.IsNullOrEmpty(input))
                 return input;

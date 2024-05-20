@@ -56,17 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202405191630280_InitialMigration.cs" />
-    <Compile Include="Migrations\202405191630280_InitialMigration.Designer.cs">
-      <DependentUpon>202405191630280_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202405201937588_rebase.cs" />
-    <Compile Include="Migrations\202405201937588_rebase.Designer.cs">
-      <DependentUpon>202405201937588_rebase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202405201912265_balancetodecimal.cs" />
-    <Compile Include="Migrations\202405201912265_balancetodecimal.Designer.cs">
-      <DependentUpon>202405201912265_balancetodecimal.cs</DependentUpon>
+    <Compile Include="Migrations\202405202033324_InitialMigration.cs" />
+    <Compile Include="Migrations\202405202033324_InitialMigration.Designer.cs">
+      <DependentUpon>202405202033324_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="models\CRUDController.cs" />
@@ -77,9 +69,6 @@
     <Compile Include="Views\FormBalance.Designer.cs">
       <DependentUpon>FormBalance.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\FormCustomer.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Views\FormCreatePlates.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,9 +78,7 @@
     <Compile Include="Views\FormCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\FormCustomer.Designer.cs">
-      <DependentUpon>FormCustomer.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Views\FormCustomer.Designer.cs" />
     <Compile Include="Views\FormEfetuarReservas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,21 +137,11 @@
     <Compile Include="Views\FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\202405191630280_InitialMigration.resx">
-      <DependentUpon>202405191630280_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202405201937588_rebase.resx">
-      <DependentUpon>202405201937588_rebase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202405201912265_balancetodecimal.resx">
-      <DependentUpon>202405201912265_balancetodecimal.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202405202033324_InitialMigration.resx">
+      <DependentUpon>202405202033324_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormBalance.resx">
       <DependentUpon>FormBalance.cs</DependentUpon>
-
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\FormCustomer.resx">
-      <DependentUpon>FormCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormCreateExtras.resx">
       <DependentUpon>FormCreateExtras.cs</DependentUpon>
@@ -172,6 +149,7 @@
     <EmbeddedResource Include="Views\FormCreatePlates.resx">
       <DependentUpon>FormCreatePlates.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormCustomer.resx" />
     <EmbeddedResource Include="Views\FormEfetuarReservas.resx">
       <DependentUpon>FormEfetuarReservas.cs</DependentUpon>
     </EmbeddedResource>

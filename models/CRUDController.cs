@@ -99,7 +99,7 @@ namespace iCantine.Controllers
 
                 foreach (var extra in query)
                 {
-                    Extra item = new Extra(extra.Description, extra.Price, extra.Active);
+                    Extra item = new Extra(extra.Description, extra.Price);
                     extras.Add(item);
                 }
                 return extras;
@@ -123,6 +123,14 @@ namespace iCantine.Controllers
             MessageBox.Show("Menu gravado com sucesso");
             return true;
         }
-        
+
+        public string CapitalizeFirstLetter(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return input;
+
+            return char.ToUpper(input[0]) + input.Substring(1);
+        }
+
     }
 }
