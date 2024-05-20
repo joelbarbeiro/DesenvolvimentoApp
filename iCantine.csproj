@@ -60,6 +60,10 @@
     <Compile Include="Migrations\202405201937588_rebase.Designer.cs">
       <DependentUpon>202405201937588_rebase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405201912265_balancetodecimal.cs" />
+    <Compile Include="Migrations\202405201912265_balancetodecimal.Designer.cs">
+      <DependentUpon>202405201912265_balancetodecimal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="models\CRUDController.cs" />
     <Compile Include="Controllers\FormController.cs" />
@@ -144,6 +148,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\202405201937588_rebase.resx">
       <DependentUpon>202405201937588_rebase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405201912265_balancetodecimal.resx">
+      <DependentUpon>202405201912265_balancetodecimal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormBalance.resx">
       <DependentUpon>FormBalance.cs</DependentUpon>
