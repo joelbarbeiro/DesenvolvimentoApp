@@ -24,12 +24,12 @@ namespace iCantine
         }
         private void changeUserLabel(string user)
         {
-            labelUsername.Text=user;
+            labelUsername.Text=user.ToUpper();
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-            //FormController.logoutForm(this);
+          
             FormLogin loginForm = new FormLogin();
             FormController.changeForm(loginForm, this);
         }

@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,14 +17,18 @@ namespace iCantine.Views
 {
     public partial class FormCustomer : Form
     {
-        public FormCustomer(string user)
+        
+        
+        public FormCustomer(string user) 
         {
-            InitializeComponent();
+            InitializeComponent();  
             changeUserLabel(user);
+            listBoxClientsUpdate();
+
         }
         private void changeUserLabel(string user)
         {
-            labelEmployee.Text = user;
+            labelEmployee.Text = user.ToUpper();
         }
 
 
@@ -45,15 +50,16 @@ namespace iCantine.Views
                     {
 
                         Student student = new Student(numStudent, name, nif);
-                        Context context = new Context();
+                        models.Context context = new models.Context();
                         context.Users.Add(student);
                         try
                         {
                             context.SaveChanges();
                             MessageBox.Show("Estudante Registado");
-
+                            listBoxClientsUpdate();
                             buttonRegister.Text = "Registar";
                             textBoxClear();
+                            return;
                         }
                         catch (Exception)
                         {
@@ -66,15 +72,17 @@ namespace iCantine.Views
                     else
                     {
                         Professor professor = new Professor(email, name, nif);
-                        Context context = new Context();
+                        models.Context context = new models.Context();
                         context.Users.Add(professor);
                         try
                         {
 
                             context.SaveChanges();
                             MessageBox.Show("Docente Registado");
+                            listBoxClientsUpdate();
                             buttonRegister.Text = "Registar";
                             textBoxClear();
+                            return;
                         }
                         catch (Exception)
                         {
@@ -92,11 +100,44 @@ namespace iCantine.Views
                     textBoxClear();
                     return;
                 }
-                
-
             }
-            buttonRegister.Text = "Gravar";
+            else
+            {
+                if (buttonRegister.Text == "Editar") 
+                {
+                    models.Context context = new models.Context();
+                    var userToUpdate = context.Users.OfType<Client>().SingleOrDefault(u => u.nif == nif);
+                    if (userToUpdate != null)
+                    {
+                        userToUpdate.name = name;
 
+                        if (userToUpdate is Student student)
+                        {
+                            student.studentNumber = numStudent;
+                        }
+                        else if (userToUpdate is Professor professor)
+                        {
+                            professor.email = email;
+                        }
+                        try
+                        {
+                            context.SaveChanges();
+                            MessageBox.Show("Cliente editado com sucesso");
+                            listBoxClientsUpdate();
+                            buttonRegister.Text = "Registar";
+                            textBoxClear();
+                            return;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Erro ao editar cliente: {ex.Message}");
+                        }
+                    }
+                }
+                
+            }
+            
+            buttonRegister.Text = "Gravar";
         }
         public void textBoxChange()
         {
@@ -118,9 +159,16 @@ namespace iCantine.Views
         }
         public void listBoxClientsUpdate()
         {
-            listBoxCustomers.DataSource = null;
-            //listBoxCustomers.DataSource = Users; 
+            using (var context = new models.Context())
+            {
+                var users = context.Users
+                    .OfType<Client>()
+                    .ToList();
+                listBoxCustomers.DataSource = users;
+                listBoxCustomers.DisplayMember = "DisplayName";
+            }
         }
+
         public void textBoxClear()
         {
             textBoxName.Text = "";
@@ -162,6 +210,80 @@ namespace iCantine.Views
             string user = labelEmployee.Text;
             MainForm mainForm = new MainForm(user);
             FormController.changeForm(mainForm, this);
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (listBoxCustomers.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um cliente para eliminar");
+                return;
+            }
+
+            var selectedUser = (Client)listBoxCustomers.SelectedItem;
+
+            var confirmResult = MessageBox.Show
+                ($"Tem a certeza que quer apagar {selectedUser.name}?",
+                "Confirmação",
+                MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                using (var context = new models.Context())
+                {
+                    var userToDelete = context.Users.OfType<Client>().SingleOrDefault(u => u.idUser == selectedUser.idUser);
+                    if (userToDelete != null)
+                    {
+                        context.Users.Remove(userToDelete);
+                        try
+                        {
+                            context.SaveChanges();
+                            MessageBox.Show("Cliente apagado com sucesso.");
+                            listBoxClientsUpdate();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Erro ao apagar Cliente: {ex.Message}");
+                        }
+                    }
+                }
+            }
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            if (listBoxCustomers.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um cliente para editar informação");
+                return;
+            }
+
+            var selectedUser = (Client)listBoxCustomers.SelectedItem;
+            textBoxName.Text = selectedUser.name;
+            textBoxNIF.Text = selectedUser.nif.ToString();
+
+            if (selectedUser is Student student)
+            {
+                radioButtonStudent.Checked = true;
+                textBoxNumStudent.Text = student.studentNumber.ToString();
+                textBoxEmail.Text = "";
+            }
+            else if (selectedUser is Professor professor)
+            {
+                radioButtonProfessor.Checked = true;
+                textBoxEmail.Text = professor.email;
+                textBoxNumStudent.Text = "";
+            }
+            textBoxChange();
+            buttonRegister.Text = "Editar";
+            
+        }
+
+        private void buttonBalance_Click(object sender, EventArgs e)
+        {
+            Client user = listBoxCustomers.SelectedItem as Client;
+            string employee = labelEmployee.Text;
+            FormBalance balanceForm = new FormBalance(user,employee);
+            FormController.changeForm(balanceForm, this);
         }
     }
 }

@@ -27,6 +27,7 @@ namespace iCantine.models
         {
             return Type + " - " + Description;
         }
+
     }
     
 }

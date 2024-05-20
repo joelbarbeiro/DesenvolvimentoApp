@@ -85,9 +85,23 @@
       <DependentUpon>202405192143412_addHourMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\202405191619126_initial migration.cs" />
+    <Compile Include="Migrations\202405191619126_initial migration.Designer.cs">
+      <DependentUpon>202405191619126_initial migration.cs</DependentUpon>
+    </Compile>
     <Compile Include="models\CRUDController.cs" />
     <Compile Include="Controllers\FormController.cs" />
+
+    <Compile Include="Views\FormBalance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormBalance.Designer.cs">
+      <DependentUpon>FormBalance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormCustomer.cs">
+
     <Compile Include="Views\FormCreatePlates.cs">
+
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\FormCreatePlates.Designer.cs">
@@ -177,6 +191,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405192143412_addHourMenu.resx">
       <DependentUpon>202405192143412_addHourMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405191619126_initial migration.resx">
+      <DependentUpon>202405191619126_initial migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormBalance.resx">
+      <DependentUpon>FormBalance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormCustomer.resx">
       <DependentUpon>FormCustomer.cs</DependentUpon>
