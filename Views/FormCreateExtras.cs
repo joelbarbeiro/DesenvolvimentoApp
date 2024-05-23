@@ -15,6 +15,7 @@ namespace iCantine.Views
 {
     public partial class FormCreateExtras : Form
     {
+        private bool isEditMode = false;
         public string user;
         public FormCreateExtras(string user)
         {
@@ -28,28 +29,20 @@ namespace iCantine.Views
         {
             string description = textBoxDescription.Text;
             double price = (double)priceUpDown.Value;
-
-            if(string.IsNullOrEmpty(description))
-            {
-                MessageBox.Show("A descrição não pode estar vazia.");
-                return;
-            }
-
-            if(price <= 0)
-            {
-                MessageBox.Show("O preço deve ser maior que zero.");
-                return;
-            }
-
-            Extra extra = new Extra(description, price);
+            int stock = (int)stockUpDown.Value;
+            validationControl(price, description);
+            Extra extra = new Extra(description, price, stock);
             Context context = new Context();
             try
             {
+                extra.Active = stockControl(stock);
                 context.Extras.Add(extra);
                 context.SaveChanges();
                 MessageBox.Show("Extra guardado com sucesso");
                 updateListBoxExtra();
                 clearTextBox();
+                
+                
             }
             catch(Exception ex)
             {
@@ -126,14 +119,106 @@ namespace iCantine.Views
 
         private void buttonEdit_Click(object sender, EventArgs e)
         {
-            if(listBoxExtras.SelectedItem == null)
+            if(!isEditMode) { 
+                if(listBoxExtras.SelectedItem == null)
+                {
+                    MessageBox.Show("Selecione um extra para editar");
+                    return;
+                }
+                buttonEdit.Text = "Guardar";
+                isEditMode = true;
+
+                var selectedExtra = (Extra)listBoxExtras.SelectedItem;
+
+                textBoxDescription.Text = selectedExtra.Description;
+                priceUpDown.Value = (decimal)selectedExtra.Price;
+                stockUpDown.Value = selectedExtra.Stock;
+
+                using ( var context = new models.Context())
+                {
+                    var dbExtra = context.Extras.SingleOrDefault(b => b.idExtra == selectedExtra.idExtra);
+                    if (dbExtra != null)
+                    {
+                        dbExtra.Description = selectedExtra.Description;
+                        dbExtra.Price = selectedExtra.Price;
+                        dbExtra.Stock = selectedExtra.Stock;
+                        context.SaveChanges();
+                    }
+                }
+                addControl();
+            } 
+            else
             {
-                MessageBox.Show("Selecione um extra para editar");
+                if (listBoxExtras.SelectedItem == null)
+                {
+                    MessageBox.Show("Selecione um extra para salvar");
+                    return;
+                }
+
+                var selectedExtra = (Extra)listBoxExtras.SelectedItem;
+
+                selectedExtra.Description = textBoxDescription.Text;
+                selectedExtra.Price = (float)priceUpDown.Value;
+                selectedExtra.Stock = (int)stockUpDown.Value;
+
+                using (var context = new models.Context())
+                {
+                    var dbExtra = context.Extras.SingleOrDefault(b => b.idExtra == selectedExtra.idExtra);
+                    if (dbExtra != null)
+                    {
+                        dbExtra.Description = selectedExtra.Description;
+                        dbExtra.Price = selectedExtra.Price;
+                        dbExtra.Stock = selectedExtra.Stock;
+
+                       
+                        context.SaveChanges();
+                    }
+                }
+                updateListBoxExtra();
+                MessageBox.Show("As alterações foram salvas com sucesso");
+                
+                buttonEdit.Text = "Editar";
+                isEditMode = false;
+                addControl();
+            }
+        }
+
+        private void validationControl(double price, string description)
+        {
+            if (string.IsNullOrEmpty(description))
+            {
+                MessageBox.Show("A descrição não pode estar vazia.");
                 return;
             }
-            var selectedExtra = (Extra)listBoxExtras.SelectedItem;
-            textBoxDescription.Text = selectedExtra.Description;
-            priceUpDown.Value = (decimal)selectedExtra.Price;
+
+            if (price <= 0)
+            {
+                MessageBox.Show("O preço deve ser maior que zero.");
+                return;
+            }
         }
+
+        private bool stockControl(int stock)
+        {
+            if (stock > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        private void addControl()
+        {
+            if (!isEditMode)
+            {
+                buttonAddExtra.Enabled = true;
+                return;
+            }
+            else
+            {
+                buttonAddExtra.Enabled = false;
+                return;
+            }
+        }
+       
     }
 }

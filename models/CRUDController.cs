@@ -99,7 +99,7 @@ namespace iCantine.Controllers
 
                 foreach (var extra in query)
                 {
-                    Extra item = new Extra(extra.Description, extra.Price);
+                    Extra item = new Extra(extra.Description, extra.Price, extra.Stock);
                     extras.Add(item);
                 }
                 return extras;
