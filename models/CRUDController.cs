@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using iCantine.Views;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Xml.Linq;
+using System.Net.Mail;
 
 
 namespace iCantine.Controllers
@@ -54,7 +56,7 @@ namespace iCantine.Controllers
             if (query.Count() > 0)
             {
                 List<models.Menu> items = new List<models.Menu>();
-                
+
                 foreach (var menu in query)
                 {
                     models.Menu item = new models.Menu(menu.Data, menu.Hour, menu.QuantAvailable, menu.PriceStudent, menu.PriceProf);
@@ -93,18 +95,8 @@ namespace iCantine.Controllers
             var query = context.Extras.Where(
                 extra =>
                 extra.Active == true);
-            if (query.Count() > 0)
-            {
-                List<Extra> extras = new List<Extra>();
 
-                foreach (var extra in query)
-                {
-                    Extra item = new Extra(extra.Description, extra.Price, extra.Stock);
-                    extras.Add(item);
-                }
-                return extras;
-            }
-            return null;
+            return query.ToList();
         }
 
         public static bool saveMenu(models.Menu items)
@@ -132,5 +124,130 @@ namespace iCantine.Controllers
             return char.ToUpper(input[0]) + input.Substring(1);
         }
 
+        public static bool saveStudent(Student student)
+        {
+
+            Context context = new Context();
+            context.Users.Add(student);
+            try
+            {
+                context.SaveChanges();
+                MessageBox.Show("Estudante Registado");
+                //listBoxClientsUpdate();
+                //buttonRegister.Text = "Registar";
+                //textBoxClear();
+                return true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Registo Não Concluido");
+                //buttonRegister.Text = "Registar";
+                //textBoxClear();
+                return false;
+            }
+        }
+        public static bool saveProfessor(Professor professor)
+        {
+            Context context = new Context();
+            context.Users.Add(professor);
+            try
+            {
+                context.SaveChanges();
+                MessageBox.Show("Docente Registado");
+                return true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Registo Não Concluido");
+                return false;
+            }
+        }
+        public static bool editClient(Client userToUpdate, string name, int nif, string email, int numStudent)
+        {
+            Context context = new Context();
+            userToUpdate = context.Users.OfType<Client>().SingleOrDefault(u => u.nif == nif);
+            if (userToUpdate != null)
+            {
+                userToUpdate.name = name;
+
+                if (userToUpdate is Student student)
+                {
+                    if (numStudent.ToString().Count() != 7)
+                    {
+                        MessageBox.Show("Numero de estudante não tem 7 digitos");
+                        return false;
+                    }
+                    student.studentNumber = numStudent;
+                }
+                else if (userToUpdate is Professor professor)
+                {
+                    try
+                    {
+                        MailAddress adress = new MailAddress(email);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Email Inválido");
+                        return false;
+                    }
+                    professor.email = email;
+                }
+                try
+                {
+                    context.SaveChanges();
+                    MessageBox.Show("Cliente editado com sucesso");
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao editar cliente:" + ex);
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhum cliente selecionado");
+                return false;
+            }
+        }
+        public static void listBoxClientsUpdate()
+        {
+            using (var context = new Context())
+            {
+                var users = context.Users
+                    .OfType<Client>()
+                    .ToList();
+                FormCustomer.listBoxCustomers.DataSource = users;
+                FormCustomer.listBoxCustomers.DisplayMember = "DisplayName";
+            }
+        }
+        public static bool deleteClient(Client client)
+        {
+            using (var context = new Context())
+            {
+                var userToDelete = context.Users.OfType<Client>().SingleOrDefault(u => u.idUser == client.idUser);
+                if (userToDelete != null)
+                {
+                    context.Users.Remove(userToDelete);
+                    try
+                    {
+                        context.SaveChanges();
+                        MessageBox.Show("Cliente apagado com sucesso.");
+                        CRUDController.listBoxClientsUpdate();
+                        return true;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao apagar Cliente: " + ex);
+                        return false;
+                    }
+                }
+                return false;
+
+            }
+        }
     }
 }
+
+
