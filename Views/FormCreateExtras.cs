@@ -138,17 +138,7 @@ namespace iCantine.Views
                 stockUpDown.Value = selectedExtra.Stock;
                 if(negativeStockControl(selectedExtra.Stock))
                 {
-                    using (var context = new models.Context())
-                    {
-                        var dbExtra = context.Extras.SingleOrDefault(b => b.idExtra == selectedExtra.idExtra);
-                        if (dbExtra != null)
-                        {
-                            dbExtra.Description = selectedExtra.Description;
-                            dbExtra.Price = selectedExtra.Price;
-                            dbExtra.Stock = selectedExtra.Stock;
-                            context.SaveChanges();
-                        }
-                    }
+                    saveData(selectedExtra);
                     addControl();
                 }
                 
@@ -169,19 +159,7 @@ namespace iCantine.Views
 
                 if (negativeStockControl(selectedExtra.Stock))
                 {
-                    using (var context = new models.Context())
-                    {
-                        var dbExtra = context.Extras.SingleOrDefault(b => b.idExtra == selectedExtra.idExtra);
-                        if (dbExtra != null)
-                        {
-                            dbExtra.Description = selectedExtra.Description;
-                            dbExtra.Price = selectedExtra.Price;
-                            dbExtra.Stock = selectedExtra.Stock;
-
-
-                            context.SaveChanges();
-                        }
-                    }
+                    saveData(selectedExtra);
                     updateListBoxExtra();
                     clearTextBox();
                     MessageBox.Show("As alterações foram salvas com sucesso");
@@ -243,6 +221,21 @@ namespace iCantine.Views
             return true;  
         }
         
-       
+       private void saveData(Extra selectedExtra)
+        {
+            using (var context = new models.Context())
+            {
+                var dbExtra = context.Extras.SingleOrDefault(b => b.idExtra == selectedExtra.idExtra);
+                if (dbExtra != null)
+                {
+                    dbExtra.Description = selectedExtra.Description;
+                    dbExtra.Price = selectedExtra.Price;
+                    dbExtra.Stock = selectedExtra.Stock;
+
+
+                    context.SaveChanges();
+                }
+            }
+        }
     }
 }
