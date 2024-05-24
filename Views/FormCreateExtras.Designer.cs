@@ -170,7 +170,7 @@
             // 
             // stockUpDown
             // 
-            this.stockUpDown.DecimalPlaces = 2;
+            this.stockUpDown.InterceptArrowKeys = false;
             this.stockUpDown.Location = new System.Drawing.Point(49, 225);
             this.stockUpDown.Maximum = new decimal(new int[] {
             1000,

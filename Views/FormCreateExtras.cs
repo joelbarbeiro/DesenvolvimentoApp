@@ -30,24 +30,26 @@ namespace iCantine.Views
             string description = textBoxDescription.Text;
             double price = (double)priceUpDown.Value;
             int stock = (int)stockUpDown.Value;
-            validationControl(price, description);
-            Extra extra = new Extra(description, price, stock);
-            Context context = new Context();
-            try
+
+            if(validationControl(price, description))
             {
-                extra.Active = stockControl(stock);
-                context.Extras.Add(extra);
-                context.SaveChanges();
-                MessageBox.Show("Extra guardado com sucesso");
-                updateListBoxExtra();
-                clearTextBox();
-                
-                
+                Extra extra = new Extra(description, price, stock);
+                Context context = new Context();
+                try
+                {
+                    extra.Active = stockControl(stock);
+                    context.Extras.Add(extra);
+                    context.SaveChanges();
+                    MessageBox.Show("Extra guardado com sucesso");
+                    updateListBoxExtra();
+                    clearTextBox();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex);
+                }
             }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Error: " + ex);
-            } 
+           
         }
         public void updateListBoxExtra()
         {
@@ -64,6 +66,7 @@ namespace iCantine.Views
         {
             textBoxDescription.Text = "";
             priceUpDown.Value = 0;
+            stockUpDown.Value = 0;
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -133,19 +136,22 @@ namespace iCantine.Views
                 textBoxDescription.Text = selectedExtra.Description;
                 priceUpDown.Value = (decimal)selectedExtra.Price;
                 stockUpDown.Value = selectedExtra.Stock;
-
-                using ( var context = new models.Context())
+                if(negativeStockControl(selectedExtra.Stock))
                 {
-                    var dbExtra = context.Extras.SingleOrDefault(b => b.idExtra == selectedExtra.idExtra);
-                    if (dbExtra != null)
+                    using (var context = new models.Context())
                     {
-                        dbExtra.Description = selectedExtra.Description;
-                        dbExtra.Price = selectedExtra.Price;
-                        dbExtra.Stock = selectedExtra.Stock;
-                        context.SaveChanges();
+                        var dbExtra = context.Extras.SingleOrDefault(b => b.idExtra == selectedExtra.idExtra);
+                        if (dbExtra != null)
+                        {
+                            dbExtra.Description = selectedExtra.Description;
+                            dbExtra.Price = selectedExtra.Price;
+                            dbExtra.Stock = selectedExtra.Stock;
+                            context.SaveChanges();
+                        }
                     }
+                    addControl();
                 }
-                addControl();
+                
             } 
             else
             {
@@ -161,41 +167,47 @@ namespace iCantine.Views
                 selectedExtra.Price = (float)priceUpDown.Value;
                 selectedExtra.Stock = (int)stockUpDown.Value;
 
-                using (var context = new models.Context())
+                if (negativeStockControl(selectedExtra.Stock))
                 {
-                    var dbExtra = context.Extras.SingleOrDefault(b => b.idExtra == selectedExtra.idExtra);
-                    if (dbExtra != null)
+                    using (var context = new models.Context())
                     {
-                        dbExtra.Description = selectedExtra.Description;
-                        dbExtra.Price = selectedExtra.Price;
-                        dbExtra.Stock = selectedExtra.Stock;
+                        var dbExtra = context.Extras.SingleOrDefault(b => b.idExtra == selectedExtra.idExtra);
+                        if (dbExtra != null)
+                        {
+                            dbExtra.Description = selectedExtra.Description;
+                            dbExtra.Price = selectedExtra.Price;
+                            dbExtra.Stock = selectedExtra.Stock;
 
-                       
-                        context.SaveChanges();
+
+                            context.SaveChanges();
+                        }
                     }
+                    updateListBoxExtra();
+                    clearTextBox();
+                    MessageBox.Show("As alterações foram salvas com sucesso");
+
+                    buttonEdit.Text = "Editar";
+                    isEditMode = false;
+                    addControl();
                 }
-                updateListBoxExtra();
-                MessageBox.Show("As alterações foram salvas com sucesso");
+               
                 
-                buttonEdit.Text = "Editar";
-                isEditMode = false;
-                addControl();
             }
         }
 
-        private void validationControl(double price, string description)
+        private bool validationControl(double price, string description)
         {
             if (string.IsNullOrEmpty(description))
             {
                 MessageBox.Show("A descrição não pode estar vazia.");
-                return;
+                return false;
             }
-
             if (price <= 0)
             {
                 MessageBox.Show("O preço deve ser maior que zero.");
-                return;
+                return false;
             }
+            return true;
         }
 
         private bool stockControl(int stock)
@@ -206,6 +218,7 @@ namespace iCantine.Views
             }
             return false;
         }
+
         private void addControl()
         {
             if (!isEditMode)
@@ -219,6 +232,17 @@ namespace iCantine.Views
                 return;
             }
         }
+
+        private bool negativeStockControl(int stock)
+        {
+            if (stock < 1)
+            {
+                MessageBox.Show("Quantidade em stock têm de ser um numero inteiro");
+                return false;
+            }
+            return true;  
+        }
+        
        
     }
 }
