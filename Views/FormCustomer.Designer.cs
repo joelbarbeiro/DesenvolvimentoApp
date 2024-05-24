@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.listBoxCustomers = new System.Windows.Forms.ListBox();
+            FormCustomer.listBoxCustomers = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButtonProfessor = new System.Windows.Forms.RadioButton();
             this.radioButtonStudent = new System.Windows.Forms.RadioButton();
@@ -63,12 +63,12 @@
             // 
             // listBoxCustomers
             // 
-            this.listBoxCustomers.FormattingEnabled = true;
-            this.listBoxCustomers.ItemHeight = 16;
-            this.listBoxCustomers.Location = new System.Drawing.Point(17, 50);
-            this.listBoxCustomers.Name = "listBoxCustomers";
-            this.listBoxCustomers.Size = new System.Drawing.Size(323, 292);
-            this.listBoxCustomers.TabIndex = 1;
+            FormCustomer.listBoxCustomers.FormattingEnabled = true;
+            FormCustomer.listBoxCustomers.ItemHeight = 16;
+            FormCustomer.listBoxCustomers.Location = new System.Drawing.Point(17, 50);
+            FormCustomer.listBoxCustomers.Name = "listBoxCustomers";
+            FormCustomer.listBoxCustomers.Size = new System.Drawing.Size(323, 292);
+            FormCustomer.listBoxCustomers.TabIndex = 1;
             // 
             // groupBox1
             // 
@@ -274,7 +274,7 @@
             this.Controls.Add(this.buttonBalance);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.listBoxCustomers);
+            this.Controls.Add(FormCustomer.listBoxCustomers);
             this.Controls.Add(this.label1);
             this.Name = "FormCustomer";
             this.Text = "FormCustomer";
@@ -288,7 +288,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBoxCustomers;
+        public static System.Windows.Forms.ListBox listBoxCustomers;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button buttonBalance;

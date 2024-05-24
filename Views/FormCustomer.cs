@@ -17,13 +17,13 @@ namespace iCantine.Views
 {
     public partial class FormCustomer : Form
     {
-        
-        
-        public FormCustomer(string user) 
+
+
+        public FormCustomer(string user)
         {
-            InitializeComponent();  
+            InitializeComponent();
             changeUserLabel(user);
-            listBoxClientsUpdate();
+            CRUDController.listBoxClientsUpdate();
 
         }
         private void changeUserLabel(string user)
@@ -34,116 +34,102 @@ namespace iCantine.Views
 
         private void buttonRegister_Click(object sender, EventArgs e)
         {
-            int nif = 0;
-            int numStudent = 0;
+            int nif;
+            int numStudent;
             string name = textBoxName.Text;
-            int.TryParse(textBoxNIF.Text, out nif);
             string email = textBoxEmail.Text;
+            int.TryParse(textBoxNIF.Text, out nif);
             int.TryParse(textBoxNumStudent.Text, out numStudent);
-            textBoxChange();
             
+            textBoxChange();
             if (buttonRegister.Text == "Gravar")
             {
+
                 if (CRUDController.verifyUser(nif))
                 {
                     if (radioButtonStudent.Checked)
                     {
-
-                        Student student = new Student(numStudent, name, nif);
-                        models.Context context = new models.Context();
-                        context.Users.Add(student);
-                        try
+                        if(verifyNIF() && verifyNumStudent())
                         {
-                            context.SaveChanges();
-                            MessageBox.Show("Estudante Registado");
-                            listBoxClientsUpdate();
-                            buttonRegister.Text = "Registar";
-                            textBoxClear();
-                            return;
+                            Student student = new Student(numStudent, name, nif);
+                            CRUDController.saveStudent(student);
+                            CRUDController.listBoxClientsUpdate();
                         }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("Registo Não Concluido");
-                            buttonRegister.Text = "Registar";
-                            textBoxClear();
-                            return;
-                        }
+                        resetRegAndTxt();
+                        return;
                     }
                     else
                     {
-                        Professor professor = new Professor(email, name, nif);
-                        models.Context context = new models.Context();
-                        context.Users.Add(professor);
                         try
                         {
-
-                            context.SaveChanges();
-                            MessageBox.Show("Docente Registado");
-                            listBoxClientsUpdate();
-                            buttonRegister.Text = "Registar";
-                            textBoxClear();
-                            return;
+                            MailAddress adress = new MailAddress(email);
                         }
                         catch (Exception)
                         {
-                            MessageBox.Show("Registo Não Concluido");
-                            buttonRegister.Text = "Registar";
-                            textBoxClear();
+                            MessageBox.Show("Email Inválido");
+                            resetRegAndTxt();
                             return;
                         }
+                        if (verifyNIF())
+                        {
+                            Professor professor = new Professor(email, name, nif);
+                            CRUDController.saveProfessor(professor);
+                            CRUDController.listBoxClientsUpdate();
+                        }
+                        resetRegAndTxt();
+                        return;
                     }
                 }
                 else
                 {
                     MessageBox.Show("Já existe um utilizador com este NIF");
-                    buttonRegister.Text = "Registar";
-                    textBoxClear();
+                    resetRegAndTxt();
                     return;
                 }
             }
-            else
+            else if (buttonRegister.Text == "Editar")
             {
-                if (buttonRegister.Text == "Editar") 
-                {
-                    models.Context context = new models.Context();
-                    var userToUpdate = context.Users.OfType<Client>().SingleOrDefault(u => u.nif == nif);
-                    if (userToUpdate != null)
-                    {
-                        userToUpdate.name = name;
-
-                        if (userToUpdate is Student student)
-                        {
-                            student.studentNumber = numStudent;
-                        }
-                        else if (userToUpdate is Professor professor)
-                        {
-                            professor.email = email;
-                        }
-                        try
-                        {
-                            context.SaveChanges();
-                            MessageBox.Show("Cliente editado com sucesso");
-                            listBoxClientsUpdate();
-                            buttonRegister.Text = "Registar";
-                            textBoxClear();
-                            return;
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Erro ao editar cliente: {ex.Message}");
-                        }
-                    }
-                }
-                
+                Client client = new Client();
+                CRUDController.editClient(client,name,nif ,email, numStudent);
+                CRUDController.listBoxClientsUpdate();
+                resetRegAndTxt();
+                resetButtons();
+                setEnableButtons();
+                textBoxChange();
+                return;
             }
-            
             buttonRegister.Text = "Gravar";
+        }
+        public bool verifyNIF()
+        {
+            if (textBoxNIF.Text.Count() != 9)
+            {
+                MessageBox.Show("NIF não tem 9 digitos");
+                resetRegAndTxt();
+                return false;
+            }
+            return true;
+        }
+        public void resetRegAndTxt()
+        {
+            textBoxClear();
+            buttonRegister.Text = "Registar";
+        }
+        public bool verifyNumStudent()
+        {
+            if (textBoxNumStudent.Text.Count() != 7)
+            {
+                MessageBox.Show("Número de Estudante não tem 7 digitos");
+                textBoxClear();
+                buttonRegister.Text = "Registar";
+                return false;
+            }
+            return true;
         }
         public void textBoxChange()
         {
             if (buttonRegister.Text != "Gravar")
             {
-                
                 textBoxName.ReadOnly = false;
                 textBoxEmail.ReadOnly = false;
                 textBoxNIF.ReadOnly = false;
@@ -157,24 +143,48 @@ namespace iCantine.Views
                 textBoxNumStudent.ReadOnly = true;
             }
         }
-        public void listBoxClientsUpdate()
+
+        public void changeViewEditStudent()
         {
-            using (var context = new models.Context())
-            {
-                var users = context.Users
-                    .OfType<Client>()
-                    .ToList();
-                listBoxCustomers.DataSource = users;
-                listBoxCustomers.DisplayMember = "DisplayName";
-            }
+            radioButtonStudent.Checked = true;
+            radioButtonProfessor.Enabled = false;
+            textBoxEmail.ReadOnly = true;
+            textBoxNIF.ReadOnly = true;
         }
+        public void changeViewEditProfessor()
+        {
+            radioButtonProfessor.Checked = true;
+            radioButtonStudent.Enabled = false;
+            textBoxNumStudent.ReadOnly = true;
+            textBoxNIF.ReadOnly = true;
+        }
+        public void resetButtons()
+        {
+            radioButtonStudent.Enabled = true;
+            radioButtonProfessor.Enabled = true;
+        }
+        public void setEnableButtons()
+        {
+            buttonRegister.Enabled = true;
+            buttonEdit.Enabled = true;
+            buttonBalance.Enabled = true;
+            buttonDelete.Enabled = true;
+        }
+        public void setDisableButtons()
+        {
+            buttonRegister.Enabled = false;
+            buttonEdit.Enabled = false;
+            buttonBalance.Enabled = false;
+            buttonDelete.Enabled = false;
+        }
+
 
         public void textBoxClear()
         {
             textBoxName.Text = "";
-            textBoxEmail.Text= "";
-            textBoxNIF.Text= "";
-            textBoxNumStudent.Text= "";  
+            textBoxEmail.Text = "";
+            textBoxNIF.Text = "";
+            textBoxNumStudent.Text = "";
         }
 
         private void radioButtonStudent_CheckedChanged(object sender, EventArgs e)
@@ -198,7 +208,7 @@ namespace iCantine.Views
             }
             else
             {
-                textBoxNumStudent.ReadOnly= false;
+                textBoxNumStudent.ReadOnly = false;
                 textBoxNumStudent.Text = "";
             }
         }
@@ -220,33 +230,23 @@ namespace iCantine.Views
                 return;
             }
 
-            var selectedUser = (Client)listBoxCustomers.SelectedItem;
+            var selectedUser = listBoxCustomers.SelectedItem as Client;
 
             var confirmResult = MessageBox.Show
-                ($"Tem a certeza que quer apagar {selectedUser.name}?",
+                ("Tem a certeza que quer apagar "+selectedUser.name+"?",
                 "Confirmação",
                 MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
-                using (var context = new models.Context())
+                CRUDController.deleteClient(selectedUser);
+                if (CRUDController.deleteClient(selectedUser))
                 {
-                    var userToDelete = context.Users.OfType<Client>().SingleOrDefault(u => u.idUser == selectedUser.idUser);
-                    if (userToDelete != null)
-                    {
-                        context.Users.Remove(userToDelete);
-                        try
-                        {
-                            context.SaveChanges();
-                            MessageBox.Show("Cliente apagado com sucesso.");
-                            listBoxClientsUpdate();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Erro ao apagar Cliente: {ex.Message}");
-                        }
-                    }
+                    textBoxChange();
+                    return;
                 }
             }
+            return;
+            
         }
 
         private void buttonEdit_Click(object sender, EventArgs e)
@@ -263,26 +263,33 @@ namespace iCantine.Views
 
             if (selectedUser is Student student)
             {
-                radioButtonStudent.Checked = true;
+                textBoxChange();
+                changeViewEditStudent();
                 textBoxNumStudent.Text = student.studentNumber.ToString();
-                textBoxEmail.Text = "";
             }
             else if (selectedUser is Professor professor)
             {
-                radioButtonProfessor.Checked = true;
+                textBoxChange();
+                changeViewEditProfessor();
                 textBoxEmail.Text = professor.email;
-                textBoxNumStudent.Text = "";
             }
-            textBoxChange();
             buttonRegister.Text = "Editar";
-            
+            buttonBalance.Enabled = false;
+            buttonDelete.Enabled = false;
+            buttonEdit.Enabled = false;
+
         }
 
         private void buttonBalance_Click(object sender, EventArgs e)
         {
+            if (listBoxCustomers.SelectedItem == null)
+            {
+                MessageBox.Show("Nenhum Cliente selecionado");
+                return;
+            }
             Client user = listBoxCustomers.SelectedItem as Client;
             string employee = labelEmployee.Text;
-            FormBalance balanceForm = new FormBalance(user,employee);
+            FormBalance balanceForm = new FormBalance(user, employee);
             FormController.changeForm(balanceForm, this);
         }
     }
