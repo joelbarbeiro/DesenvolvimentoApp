@@ -15,6 +15,10 @@ namespace iCantine.models
         public string Type { get; set; }
         public bool Active { get; set; }
 
+        public Plate()
+        {
+        }
+
         public Plate(int idPlate, string description, string type, bool active)
         {
             this.idPlate = idPlate;
