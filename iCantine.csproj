@@ -65,6 +65,7 @@
       <DependentUpon>202405202057248_added stock.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="models\ClientType.cs" />
     <Compile Include="models\CRUDController.cs" />
     <Compile Include="Controllers\FormController.cs" />
     <Compile Include="Views\FormBalance.cs">

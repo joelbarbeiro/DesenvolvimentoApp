@@ -2,14 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Threading.Tasks;
 using iCantine.Views;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.Xml.Linq;
 using System.Net.Mail;
+using System.Data.Entity.Core.EntityClient;
 
 
 namespace iCantine.Controllers
@@ -18,7 +14,7 @@ namespace iCantine.Controllers
     {
         public static bool verifyEmployee(string user)
         {
-            Context context = new Context();
+            models.Context context = new models.Context();
 
             var query_result = context.Employees.Where(
                 employee =>
@@ -34,24 +30,21 @@ namespace iCantine.Controllers
 
         public static bool verifyUser(int nif)
         {
-            Context context = new Context();
+            models.Context context = new models.Context();
 
             var query_result = context.Users.Where(
                 user =>
                 user.nif == nif);
             if (query_result.Count() == 0)
             {
-                Console.WriteLine("Registado com sucesso");
                 return true;
             }
-            Console.WriteLine("Registo Falhado");
             return false;
         }
 
         public static List<models.Menu> loadMenus()
         {
-            Context context = new Context();
-
+            models.Context context = new models.Context();
             var query = context.Menus;
             if (query.Count() > 0)
             {
@@ -68,7 +61,7 @@ namespace iCantine.Controllers
         }
         public static List<Plate> loadPlatesMenu(string type = "*")
         {
-            Context context = new Context();
+            models.Context context = new models.Context();
 
             var query = context.Plates.Where(
                 plate =>
@@ -90,7 +83,7 @@ namespace iCantine.Controllers
         }
         public static List<Extra> loadExtrasMenu()
         {
-            Context context = new Context();
+            models.Context context = new models.Context();
 
             var query = context.Extras.Where(
                 extra =>
@@ -101,7 +94,7 @@ namespace iCantine.Controllers
 
         public static bool saveMenu(models.Menu items)
         {
-            Context context = new Context();
+            models.Context context = new models.Context();
             context.Menus.Add(items);
             try
             {
@@ -127,15 +120,12 @@ namespace iCantine.Controllers
         public static bool saveStudent(Student student)
         {
 
-            Context context = new Context();
+            models.Context context = new models.Context();
             context.Users.Add(student);
             try
             {
                 context.SaveChanges();
                 MessageBox.Show("Estudante Registado");
-                //listBoxClientsUpdate();
-                //buttonRegister.Text = "Registar";
-                //textBoxClear();
                 return true;
             }
             catch (Exception)
@@ -148,7 +138,7 @@ namespace iCantine.Controllers
         }
         public static bool saveProfessor(Professor professor)
         {
-            Context context = new Context();
+            models.Context context = new models.Context();
             context.Users.Add(professor);
             try
             {
@@ -164,7 +154,7 @@ namespace iCantine.Controllers
         }
         public static bool editClient(Client userToUpdate, string name, int nif, string email, int numStudent)
         {
-            Context context = new Context();
+            models.Context context = new models.Context();
             userToUpdate = context.Users.OfType<Client>().SingleOrDefault(u => u.nif == nif);
             if (userToUpdate != null)
             {
@@ -210,20 +200,10 @@ namespace iCantine.Controllers
                 return false;
             }
         }
-        public static void listBoxClientsUpdate()
-        {
-            using (var context = new Context())
-            {
-                var users = context.Users
-                    .OfType<Client>()
-                    .ToList();
-                FormCustomer.listBoxCustomers.DataSource = users;
-                FormCustomer.listBoxCustomers.DisplayMember = "DisplayName";
-            }
-        }
+
         public static bool deleteClient(Client client)
         {
-            using (var context = new Context())
+            using (var context = new models.Context())
             {
                 var userToDelete = context.Users.OfType<Client>().SingleOrDefault(u => u.idUser == client.idUser);
                 if (userToDelete != null)
@@ -233,7 +213,6 @@ namespace iCantine.Controllers
                     {
                         context.SaveChanges();
                         MessageBox.Show("Cliente apagado com sucesso.");
-                        CRUDController.listBoxClientsUpdate();
                         return true;
 
                     }
@@ -249,5 +228,7 @@ namespace iCantine.Controllers
         }
     }
 }
+
+
 
 

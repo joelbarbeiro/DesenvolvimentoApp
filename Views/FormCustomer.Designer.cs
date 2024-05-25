@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            FormCustomer.listBoxCustomers = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButtonProfessor = new System.Windows.Forms.RadioButton();
             this.radioButtonStudent = new System.Windows.Forms.RadioButton();
@@ -48,6 +47,9 @@
             this.buttonRegister = new System.Windows.Forms.Button();
             this.labelEmployee = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.listBoxClients = new System.Windows.Forms.ListBox();
+            this.comboBoxFilters = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,18 +59,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 24);
+            this.label1.Size = new System.Drawing.Size(116, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "Clientes:";
-            // 
-            // listBoxCustomers
-            // 
-            FormCustomer.listBoxCustomers.FormattingEnabled = true;
-            FormCustomer.listBoxCustomers.ItemHeight = 16;
-            FormCustomer.listBoxCustomers.Location = new System.Drawing.Point(17, 50);
-            FormCustomer.listBoxCustomers.Name = "listBoxCustomers";
-            FormCustomer.listBoxCustomers.Size = new System.Drawing.Size(323, 292);
-            FormCustomer.listBoxCustomers.TabIndex = 1;
             // 
             // groupBox1
             // 
@@ -94,7 +87,7 @@
             this.radioButtonProfessor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonProfessor.Location = new System.Drawing.Point(217, 21);
             this.radioButtonProfessor.Name = "radioButtonProfessor";
-            this.radioButtonProfessor.Size = new System.Drawing.Size(86, 21);
+            this.radioButtonProfessor.Size = new System.Drawing.Size(100, 24);
             this.radioButtonProfessor.TabIndex = 21;
             this.radioButtonProfessor.TabStop = true;
             this.radioButtonProfessor.Text = "Docente";
@@ -107,7 +100,7 @@
             this.radioButtonStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonStudent.Location = new System.Drawing.Point(6, 21);
             this.radioButtonStudent.Name = "radioButtonStudent";
-            this.radioButtonStudent.Size = new System.Drawing.Size(99, 21);
+            this.radioButtonStudent.Size = new System.Drawing.Size(114, 24);
             this.radioButtonStudent.TabIndex = 20;
             this.radioButtonStudent.TabStop = true;
             this.radioButtonStudent.Text = "Estudante";
@@ -120,7 +113,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(90, 102);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 17);
+            this.label3.Size = new System.Drawing.Size(44, 20);
             this.label3.TabIndex = 19;
             this.label3.Text = "NIF:";
             // 
@@ -130,7 +123,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(90, 198);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 17);
+            this.label2.Size = new System.Drawing.Size(69, 20);
             this.label2.TabIndex = 13;
             this.label2.Text = "E-mail:";
             // 
@@ -164,7 +157,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(90, 54);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 17);
+            this.label4.Size = new System.Drawing.Size(63, 20);
             this.label4.TabIndex = 16;
             this.label4.Text = "Nome:";
             // 
@@ -174,7 +167,7 @@
             this.labelNumStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNumStudent.Location = new System.Drawing.Point(90, 150);
             this.labelNumStudent.Name = "labelNumStudent";
-            this.labelNumStudent.Size = new System.Drawing.Size(169, 17);
+            this.labelNumStudent.Size = new System.Drawing.Size(194, 20);
             this.labelNumStudent.TabIndex = 12;
             this.labelNumStudent.Text = "Número de estudante:";
             // 
@@ -247,7 +240,7 @@
             this.labelEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEmployee.Location = new System.Drawing.Point(656, 20);
             this.labelEmployee.Name = "labelEmployee";
-            this.labelEmployee.Size = new System.Drawing.Size(42, 16);
+            this.labelEmployee.Size = new System.Drawing.Size(49, 20);
             this.labelEmployee.TabIndex = 17;
             this.labelEmployee.Text = "label";
             // 
@@ -257,15 +250,47 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(485, 15);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(128, 24);
+            this.label5.Size = new System.Drawing.Size(158, 29);
             this.label5.TabIndex = 18;
             this.label5.Text = "Funcionario:";
+            // 
+            // listBoxClients
+            // 
+            this.listBoxClients.FormattingEnabled = true;
+            this.listBoxClients.HorizontalScrollbar = true;
+            this.listBoxClients.ItemHeight = 16;
+            this.listBoxClients.Location = new System.Drawing.Point(17, 67);
+            this.listBoxClients.Name = "listBoxClients";
+            this.listBoxClients.Size = new System.Drawing.Size(312, 244);
+            this.listBoxClients.TabIndex = 19;
+            // 
+            // comboBoxFilters
+            // 
+            this.comboBoxFilters.FormattingEnabled = true;
+            this.comboBoxFilters.Location = new System.Drawing.Point(17, 357);
+            this.comboBoxFilters.Name = "comboBoxFilters";
+            this.comboBoxFilters.Size = new System.Drawing.Size(211, 24);
+            this.comboBoxFilters.TabIndex = 20;
+            this.comboBoxFilters.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilters_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(12, 329);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(74, 25);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Filtrar:";
             // 
             // FormCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.comboBoxFilters);
+            this.Controls.Add(this.listBoxClients);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.labelEmployee);
             this.Controls.Add(this.buttonRegister);
@@ -274,7 +299,6 @@
             this.Controls.Add(this.buttonBalance);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(FormCustomer.listBoxCustomers);
             this.Controls.Add(this.label1);
             this.Name = "FormCustomer";
             this.Text = "FormCustomer";
@@ -288,7 +312,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        public static System.Windows.Forms.ListBox listBoxCustomers;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button buttonBalance;
@@ -307,5 +330,8 @@
         private System.Windows.Forms.RadioButton radioButtonProfessor;
         private System.Windows.Forms.Label labelEmployee;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListBox listBoxClients;
+        private System.Windows.Forms.ComboBox comboBoxFilters;
+        private System.Windows.Forms.Label label6;
     }
 }
