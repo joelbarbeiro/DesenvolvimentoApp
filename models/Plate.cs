@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -14,12 +15,14 @@ namespace iCantine.models
         public string Description { get; set; }
         public string Type { get; set; }
         public bool Active { get; set; }
+        public virtual ICollection<Menu> Menus { get; set; }
+        public virtual string display_ => $"{Description} - {Type} - {Active}";
 
         public Plate()
         {
         }
 
-        public Plate(int idPlate, string description, string type, bool active)
+        public Plate(string description, string type, bool active)
         {
             this.idPlate = idPlate;
             this.Description = description;
@@ -29,7 +32,7 @@ namespace iCantine.models
 
         public override string ToString()
         {
-            return Type + " - " + Description;
+            return Description;
         }
     }
     

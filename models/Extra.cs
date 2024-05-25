@@ -15,6 +15,8 @@ namespace iCantine.models
         public string Description { get; set; }
         public double Price { get; set; }
         public bool Active { get; set; }
+
+        public virtual ICollection<MenuExtra> MenuExtras { get; set; }
         public virtual string DisplayName => $"{Description} - Preço: {Price}€";
         public Extra()
         {
@@ -28,7 +30,7 @@ namespace iCantine.models
 
         public override string ToString()
         {
-            return Description+" "+Price;
+            return Description;
         }
     }
 

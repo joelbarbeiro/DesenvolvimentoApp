@@ -29,9 +29,9 @@ namespace iCantine.Views
             this.user = user;
             labelUsername.Text = user;
 
-            //this.menuItems = menuController.loadMenus();
-            this.plates = menuController.loadPlatesMenu();
-            this.extra = menuController.loadExtrasMenu();
+            menuItems = menuController.loadMenu();
+            plates = menuController.loadPlatesMenu();
+            extra = menuController.loadExtrasMenu();
 
             updateComboBox();
             updateMenuListBox();
@@ -65,28 +65,34 @@ namespace iCantine.Views
         {
             if (validateDataMenu())
             {
+                List<models.Extra> extras = new List<models.Extra>();
+
                 int numSaves = 0;
                 while (numSaves < checkHours())
                 {
                     string[] hours = getHours();
                     DateTime day = dateTimePicker1.Value.ToUniversalTime();
                     DateTime hour = convertTimeFromString(hours[numSaves]);
-                    string typePlate = comboBoxPlateType.SelectedText;
-                    string plates = listBoxPlate.SelectedItem.ToString();
+                    Plate plate = menuController.getPlate(listBoxPlate.Text);
+                    foreach(var itemExtra in listBoxExtras.SelectedItems)
+                    {
+                        extras.Add(menuController.getExtra(itemExtra.ToString()));
+                    }
 
                     int quantity = 0;
-                    int studentPrice = 0;
-                    int professorPrice = 0;
+                    decimal studentPrice = 0;
+                    decimal professorPrice = 0;
                     int.TryParse(textBoxQuantity.Text, out quantity);
-                    int.TryParse(textBoxPriceStudent.Text, out studentPrice);
-                    int.TryParse(textBoxPriceProfessor.Text, out professorPrice);
+                    decimal.TryParse(textBoxPriceStudent.Text, out studentPrice);
+                    decimal.TryParse(textBoxPriceProfessor.Text, out professorPrice);
 
-                    //models.Menu item = new models.Menu(day, hour, quantity, studentPrice, professorPrice);
-                    //menuItems.Add(item);
+                    models.Menu menu = new models.Menu(hour, quantity, studentPrice, professorPrice);
 
-                    //menuController.saveMenu(item);
+                    menuController.saveMenu(menu, plate, extras);
                     numSaves++;
                 }
+                menuItems = menuController.loadMenu();
+                updateMenuListBox();
             }
         }
 
@@ -100,7 +106,7 @@ namespace iCantine.Views
             changeTextBoxState();
         }
 
-        private void listBoxExtra_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxExtras_SelectedIndexChanged(object sender, EventArgs e)
         {
             changeTextBoxState();
         }
@@ -182,8 +188,8 @@ namespace iCantine.Views
         }
         private void updateExtraListBox()
         {
-            listBoxPlate.DataSource = null;
-            listBoxPlate.DataSource = extra;
+            listBoxExtras.DataSource = null;
+            listBoxExtras.DataSource = extra;
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -207,7 +213,7 @@ namespace iCantine.Views
         }
         private string isDinner()
         {
-            if (checkBoxLunch.Checked == true)
+            if (checkBoxDinner.Checked == true)
             {
                 return "19:00";
             }
@@ -220,7 +226,7 @@ namespace iCantine.Views
         private int checkHours()
         {
             int i = 1;
-            if (checkBoxLunch.Checked || checkBoxDinner.Checked)
+            if (checkBoxLunch.Checked && checkBoxDinner.Checked)
             {
                 i = 2;
             }
@@ -229,8 +235,8 @@ namespace iCantine.Views
         }
         private string[] getHours()
         {
+            string[] hours = new string[2];
             int i = 0;
-            string[] hours = null;
             if(checkBoxLunch.Checked == true )
             {
                 hours[i] = isLunch();
@@ -279,5 +285,6 @@ namespace iCantine.Views
                 buttonCreateMenu.Enabled = false;
             }
         }
+
     }
 }

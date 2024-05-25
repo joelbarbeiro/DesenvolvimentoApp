@@ -49,7 +49,8 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.checkBoxDinner = new System.Windows.Forms.CheckBox();
             this.checkBoxLunch = new System.Windows.Forms.CheckBox();
-            this.listBoxExtra = new System.Windows.Forms.ListBox();
+            this.listBoxExtras = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -254,20 +255,32 @@
             this.checkBoxLunch.UseVisualStyleBackColor = true;
             this.checkBoxLunch.CheckedChanged += new System.EventHandler(this.checkBoxLunch_CheckedChanged);
             // 
-            // listBoxExtra
+            // listBoxExtras
             // 
-            this.listBoxExtra.FormattingEnabled = true;
-            this.listBoxExtra.Location = new System.Drawing.Point(328, 118);
-            this.listBoxExtra.Name = "listBoxExtra";
-            this.listBoxExtra.Size = new System.Drawing.Size(125, 199);
-            this.listBoxExtra.TabIndex = 24;
+            this.listBoxExtras.FormattingEnabled = true;
+            this.listBoxExtras.Location = new System.Drawing.Point(328, 92);
+            this.listBoxExtras.Name = "listBoxExtras";
+            this.listBoxExtras.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBoxExtras.Size = new System.Drawing.Size(125, 225);
+            this.listBoxExtras.TabIndex = 24;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label4.Location = new System.Drawing.Point(324, 68);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 20);
+            this.label4.TabIndex = 25;
+            this.label4.Text = "Extras";
             // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(675, 367);
-            this.Controls.Add(this.listBoxExtra);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.listBoxExtras);
             this.Controls.Add(this.checkBoxDinner);
             this.Controls.Add(this.checkBoxLunch);
             this.Controls.Add(this.dateTimePicker1);
@@ -319,6 +332,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.CheckBox checkBoxDinner;
         private System.Windows.Forms.CheckBox checkBoxLunch;
-        private System.Windows.Forms.ListBox listBoxExtra;
+        private System.Windows.Forms.ListBox listBoxExtras;
+        private System.Windows.Forms.Label label4;
     }
 }
