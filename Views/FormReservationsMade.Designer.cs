@@ -1,6 +1,6 @@
 ﻿namespace iCantine.Views
 {
-    partial class FormReservasEfetuadas
+    partial class FormReservationsMade
     {
         /// <summary>
         /// Required designer variable.

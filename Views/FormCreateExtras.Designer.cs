@@ -117,10 +117,12 @@
             // 
             // listBoxExtras
             // 
+            this.listBoxExtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxExtras.FormattingEnabled = true;
+            this.listBoxExtras.ItemHeight = 24;
             this.listBoxExtras.Location = new System.Drawing.Point(442, 92);
             this.listBoxExtras.Name = "listBoxExtras";
-            this.listBoxExtras.Size = new System.Drawing.Size(315, 290);
+            this.listBoxExtras.Size = new System.Drawing.Size(315, 268);
             this.listBoxExtras.TabIndex = 8;
             // 
             // buttonEdit
@@ -162,7 +164,7 @@
             // 
             this.labelUsername.AutoSize = true;
             this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUsername.Location = new System.Drawing.Point(561, 21);
+            this.labelUsername.Location = new System.Drawing.Point(652, 33);
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(105, 24);
             this.labelUsername.TabIndex = 12;
