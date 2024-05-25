@@ -23,14 +23,14 @@ namespace iCantine.Views
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             FormRegister formRegister = new FormRegister();
-            FormController.changeForm(formRegister,this); 
+            FormController.changeForm(formRegister, this);
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            
+
             string username = textBoxUsername.Text;
-            if(string.IsNullOrEmpty(username) )
+            if (string.IsNullOrEmpty(username))
             {
                 MessageBox.Show("Não inseriu Username");
                 return;
@@ -39,7 +39,7 @@ namespace iCantine.Views
             var query_result = context.Employees.Where(
                 employee =>
                 employee.username == username);
-            if(query_result.Count() == 0)
+            if (query_result.Count() == 0)
             {
                 MessageBox.Show("Login Falhado");
                 return;
@@ -48,7 +48,6 @@ namespace iCantine.Views
             MainForm mainForm = new MainForm(username);
             FormController.changeForm(mainForm, this);
         }
-
         
     }
 }

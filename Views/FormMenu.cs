@@ -124,7 +124,7 @@ namespace iCantine.Views
             int tester = 0;
             if(textBoxQuantity.Text == string.Empty) 
             {
-                MessageBox.Show("Não introduzio valor na quantidade");
+                MessageBox.Show("Não introduziu valor na quantidade");
                 return false;
             }
             if(textBoxPriceStudent.Text == string.Empty)
@@ -140,7 +140,7 @@ namespace iCantine.Views
             int.TryParse(textBoxQuantity.Text, out tester);
             if (tester < 0)
             {
-                MessageBox.Show("Não introduzio valor na quantidade");
+                MessageBox.Show("Não introduziu valor na quantidade");
                 return false;
             }
             int.TryParse(textBoxPriceStudent.Text, out tester);

@@ -79,7 +79,7 @@ namespace iCantine.Controllers
 
                 foreach (var plate in query)
                 {
-                    Plate item = new Plate(plate.idPlate, plate.Description, plate.Type, plate.Active);
+                    Plate item = new Plate(plate.Description, plate.Type, plate.Stock, plate.Price);
                     plates.Add(item);
                 }
                 return plates;

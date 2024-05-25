@@ -24,9 +24,15 @@ namespace iCantine
         }
         private void changeUserLabel(string user)
         {
-            labelUsername.Text=user.ToUpper();
+            labelUsername.Text = CapitalizeFirstLetter(user);
         }
+        public string CapitalizeFirstLetter(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return input;
 
+            return char.ToUpper(input[0]) + input.Substring(1);
+        }
         private void buttonLogout_Click(object sender, EventArgs e)
         {
           
@@ -44,8 +50,8 @@ namespace iCantine
 
         private void buttonReservations_Click(object sender, EventArgs e)
         {
-            FormEfetuarReservas formReservations = new FormEfetuarReservas(user);
-            FormController.changeForm(formReservations, this);
+            FormReservationsOptions formReservationsoptions = new FormReservationsOptions(user);
+            FormController.changeForm(formReservationsoptions, this);
         }
 
         private void buttonExtras_Click(object sender, EventArgs e)
@@ -59,6 +65,12 @@ namespace iCantine
             string user = labelUsername.Text;
             FormMenu FormMenu = new FormMenu(user);
             FormController.changeForm(FormMenu, this);
+        }
+
+        private void buttonPlates_Click(object sender, EventArgs e)
+        {
+            FormCreatePlates formPlates = new FormCreatePlates(user);
+            FormController.changeForm(formPlates, this);
         }
     }
 }

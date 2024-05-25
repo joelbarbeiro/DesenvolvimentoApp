@@ -17,6 +17,7 @@ namespace iCantine.Views
     {
         private bool isEditMode = false;
         public string user;
+        public string description;
         public FormCreateExtras(string user)
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace iCantine.Views
                 Context context = new Context();
                 try
                 {
+                    negativeStockControl(stock);
                     extra.Active = stockControl(stock);
                     context.Extras.Add(extra);
                     context.SaveChanges();
@@ -86,39 +88,7 @@ namespace iCantine.Views
 
             return char.ToUpper(input[0]) + input.Substring(1);
         }
-        private void buttonDelete_Click(object sender, EventArgs e)
-        {
-            if (listBoxExtras.SelectedItem == null)
-            {
-                MessageBox.Show("Selecione um extra para eliminar");
-                return;
-            }
-            var selectedExtra = (Extra)listBoxExtras.SelectedItem;
-            var confirmDelete = MessageBox.Show($"Tem a certeza que quer apagar o extra: {selectedExtra}€?", "Confirmar", MessageBoxButtons.YesNo);
-
-            if(confirmDelete == DialogResult.Yes)
-            {
-                using(var context = new models.Context())
-                {
-                    var deleteExtra = context.Extras.OfType<Extra>().SingleOrDefault(u => u.idExtra == selectedExtra.idExtra);
-                    if(deleteExtra != null)
-                    {
-                        context.Extras.Remove(deleteExtra);
-                        try
-                        {
-                            context.SaveChanges();
-                            MessageBox.Show("Extra eliminado com sucesso.");
-                            updateListBoxExtra();
-                        }
-                        catch(Exception ex)
-                        {
-                            MessageBox.Show($"Erro ao apagar Extra: {ex.Message}");
-                        }
-                    }
-                }
-            }
-
-        }
+        
 
         private void buttonEdit_Click(object sender, EventArgs e)
         {
@@ -136,7 +106,8 @@ namespace iCantine.Views
                 textBoxDescription.Text = selectedExtra.Description;
                 priceUpDown.Value = (decimal)selectedExtra.Price;
                 stockUpDown.Value = selectedExtra.Stock;
-                if(negativeStockControl(selectedExtra.Stock))
+                listBoxExtras.Enabled = false;
+                if (negativeStockControl(selectedExtra.Stock))
                 {
                     saveData(selectedExtra);
                     addControl();
@@ -147,14 +118,14 @@ namespace iCantine.Views
             {
                 if (listBoxExtras.SelectedItem == null)
                 {
-                    MessageBox.Show("Selecione um extra para salvar");
+                    MessageBox.Show("Selecione um extra para guardar");
                     return;
                 }
 
                 var selectedExtra = (Extra)listBoxExtras.SelectedItem;
 
                 selectedExtra.Description = textBoxDescription.Text;
-                selectedExtra.Price = (float)priceUpDown.Value;
+                selectedExtra.Price = (double)priceUpDown.Value;
                 selectedExtra.Stock = (int)stockUpDown.Value;
 
                 if (negativeStockControl(selectedExtra.Stock))
@@ -162,10 +133,11 @@ namespace iCantine.Views
                     saveData(selectedExtra);
                     updateListBoxExtra();
                     clearTextBox();
-                    MessageBox.Show("As alterações foram salvas com sucesso");
+                    MessageBox.Show("As alterações foram guardadas com sucesso");
 
                     buttonEdit.Text = "Editar";
                     isEditMode = false;
+                    listBoxExtras.Enabled = true;
                     addControl();
                 }
                
@@ -234,6 +206,39 @@ namespace iCantine.Views
 
 
                     context.SaveChanges();
+                }
+            }
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (listBoxExtras.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um extra para eliminar");
+                return;
+            }
+            var selectedExtra = (Extra)listBoxExtras.SelectedItem;
+            var confirmDelete = MessageBox.Show($"Tem a certeza que quer apagar o extra: {listBoxExtras.SelectedItem.ToString()}?", "Confirmar", MessageBoxButtons.YesNo);
+
+            if (confirmDelete == DialogResult.Yes)
+            {
+                using (var context = new models.Context())
+                {
+                    var deleteExtra = context.Extras.OfType<Extra>().SingleOrDefault(u => u.idExtra == selectedExtra.idExtra);
+                    if (deleteExtra != null)
+                    {
+                        context.Extras.Remove(deleteExtra);
+                        try
+                        {
+                            context.SaveChanges();
+                            MessageBox.Show("Extra eliminado com sucesso.");
+                            updateListBoxExtra();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Erro ao apagar Extra: {ex.Message}");
+                        }
+                    }
                 }
             }
         }

@@ -54,7 +54,6 @@
             this.labelUsername.AutoSize = true;
             this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelUsername.Location = new System.Drawing.Point(533, 13);
-
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(105, 24);
             this.labelUsername.TabIndex = 0;
@@ -80,6 +79,7 @@
             this.buttonPlates.TabIndex = 4;
             this.buttonPlates.Text = "Pratos";
             this.buttonPlates.UseVisualStyleBackColor = true;
+            this.buttonPlates.Click += new System.EventHandler(this.buttonPlates_Click);
             // 
             // buttonMenus
             // 
@@ -90,7 +90,6 @@
             this.buttonMenus.TabIndex = 5;
             this.buttonMenus.Text = "Menus";
             this.buttonMenus.UseVisualStyleBackColor = true;
-
             this.buttonMenus.Click += new System.EventHandler(this.buttonMenus_Click);
             // 
             // buttonReservations
@@ -240,9 +239,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-
             this.ClientSize = new System.Drawing.Size(800, 450);
-
             this.Controls.Add(this.listBoxFriday);
             this.Controls.Add(this.listBoxThursday);
             this.Controls.Add(this.listBoxWednesday);

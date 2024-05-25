@@ -28,7 +28,7 @@ namespace iCantine.Views
         }
         private void changeUserLabel(string user)
         {
-            labelEmployee.Text = user.ToUpper();
+            labelEmployee.Text = CapitalizeFirstLetter(user);
         }
 
 
@@ -285,5 +285,13 @@ namespace iCantine.Views
             FormBalance balanceForm = new FormBalance(user,employee);
             FormController.changeForm(balanceForm, this);
         }
+        public string CapitalizeFirstLetter(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return input;
+
+            return char.ToUpper(input[0]) + input.Substring(1);
+        }
     }
+
 }
