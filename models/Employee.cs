@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,9 +14,11 @@ namespace iCantine.models
         {
         }
 
-        public Employee(string username)
+        public Employee(string username, string name, int nif):base(name,nif)
         {
             this.username = username;
+            this.name = name;
+            this.nif = nif;
         }
 
         public override string ToString()

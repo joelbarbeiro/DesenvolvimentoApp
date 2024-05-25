@@ -1,4 +1,4 @@
-﻿namespace iCantine.Views
+namespace iCantine.Views
 {
     partial class FormCustomer
     {
@@ -45,11 +45,12 @@
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonRegister = new System.Windows.Forms.Button();
-            this.labelEmployee = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.listBoxClients = new System.Windows.Forms.ListBox();
             this.comboBoxFilters = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.buttonEmployee = new System.Windows.Forms.Button();
+            this.labelEmployee = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +60,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 29);
+            this.label1.Size = new System.Drawing.Size(91, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Clientes:";
             // 
@@ -75,7 +76,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.labelNumStudent);
             this.groupBox1.Controls.Add(this.textBoxNumStudent);
-            this.groupBox1.Location = new System.Drawing.Point(346, 67);
+            this.groupBox1.Location = new System.Drawing.Point(367, 67);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(370, 250);
             this.groupBox1.TabIndex = 10;
@@ -87,7 +88,7 @@
             this.radioButtonProfessor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonProfessor.Location = new System.Drawing.Point(217, 21);
             this.radioButtonProfessor.Name = "radioButtonProfessor";
-            this.radioButtonProfessor.Size = new System.Drawing.Size(100, 24);
+            this.radioButtonProfessor.Size = new System.Drawing.Size(86, 21);
             this.radioButtonProfessor.TabIndex = 21;
             this.radioButtonProfessor.TabStop = true;
             this.radioButtonProfessor.Text = "Docente";
@@ -100,7 +101,7 @@
             this.radioButtonStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonStudent.Location = new System.Drawing.Point(6, 21);
             this.radioButtonStudent.Name = "radioButtonStudent";
-            this.radioButtonStudent.Size = new System.Drawing.Size(114, 24);
+            this.radioButtonStudent.Size = new System.Drawing.Size(99, 21);
             this.radioButtonStudent.TabIndex = 20;
             this.radioButtonStudent.TabStop = true;
             this.radioButtonStudent.Text = "Estudante";
@@ -113,7 +114,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(90, 102);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 20);
+            this.label3.Size = new System.Drawing.Size(37, 17);
             this.label3.TabIndex = 19;
             this.label3.Text = "NIF:";
             // 
@@ -123,7 +124,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(90, 198);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 20);
+            this.label2.Size = new System.Drawing.Size(58, 17);
             this.label2.TabIndex = 13;
             this.label2.Text = "E-mail:";
             // 
@@ -157,7 +158,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(90, 54);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 20);
+            this.label4.Size = new System.Drawing.Size(54, 17);
             this.label4.TabIndex = 16;
             this.label4.Text = "Nome:";
             // 
@@ -167,7 +168,7 @@
             this.labelNumStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNumStudent.Location = new System.Drawing.Point(90, 150);
             this.labelNumStudent.Name = "labelNumStudent";
-            this.labelNumStudent.Size = new System.Drawing.Size(194, 20);
+            this.labelNumStudent.Size = new System.Drawing.Size(169, 17);
             this.labelNumStudent.TabIndex = 12;
             this.labelNumStudent.Text = "Número de estudante:";
             // 
@@ -193,7 +194,7 @@
             // buttonBalance
             // 
             this.buttonBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBalance.Location = new System.Drawing.Point(440, 349);
+            this.buttonBalance.Location = new System.Drawing.Point(461, 349);
             this.buttonBalance.Name = "buttonBalance";
             this.buttonBalance.Size = new System.Drawing.Size(96, 39);
             this.buttonBalance.TabIndex = 12;
@@ -204,7 +205,7 @@
             // buttonEdit
             // 
             this.buttonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEdit.Location = new System.Drawing.Point(540, 349);
+            this.buttonEdit.Location = new System.Drawing.Point(561, 349);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(96, 39);
             this.buttonEdit.TabIndex = 13;
@@ -215,7 +216,7 @@
             // buttonDelete
             // 
             this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDelete.Location = new System.Drawing.Point(642, 349);
+            this.buttonDelete.Location = new System.Drawing.Point(663, 349);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(96, 39);
             this.buttonDelete.TabIndex = 14;
@@ -226,7 +227,7 @@
             // buttonRegister
             // 
             this.buttonRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRegister.Location = new System.Drawing.Point(338, 349);
+            this.buttonRegister.Location = new System.Drawing.Point(359, 349);
             this.buttonRegister.Name = "buttonRegister";
             this.buttonRegister.Size = new System.Drawing.Size(96, 39);
             this.buttonRegister.TabIndex = 15;
@@ -234,23 +235,13 @@
             this.buttonRegister.UseVisualStyleBackColor = true;
             this.buttonRegister.Click += new System.EventHandler(this.buttonRegister_Click);
             // 
-            // labelEmployee
-            // 
-            this.labelEmployee.AutoSize = true;
-            this.labelEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEmployee.Location = new System.Drawing.Point(656, 20);
-            this.labelEmployee.Name = "labelEmployee";
-            this.labelEmployee.Size = new System.Drawing.Size(49, 20);
-            this.labelEmployee.TabIndex = 17;
-            this.labelEmployee.Text = "label";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(485, 15);
+            this.label5.Location = new System.Drawing.Point(323, 16);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(158, 29);
+            this.label5.Size = new System.Drawing.Size(128, 24);
             this.label5.TabIndex = 18;
             this.label5.Text = "Funcionario:";
             // 
@@ -261,7 +252,7 @@
             this.listBoxClients.ItemHeight = 16;
             this.listBoxClients.Location = new System.Drawing.Point(17, 67);
             this.listBoxClients.Name = "listBoxClients";
-            this.listBoxClients.Size = new System.Drawing.Size(312, 244);
+            this.listBoxClients.Size = new System.Drawing.Size(330, 244);
             this.listBoxClients.TabIndex = 19;
             // 
             // comboBoxFilters
@@ -279,20 +270,44 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(12, 329);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(74, 25);
+            this.label6.Size = new System.Drawing.Size(61, 20);
             this.label6.TabIndex = 21;
             this.label6.Text = "Filtrar:";
+            // 
+            // buttonEmployee
+            // 
+            this.buttonEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEmployee.Location = new System.Drawing.Point(663, 16);
+            this.buttonEmployee.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonEmployee.Name = "buttonEmployee";
+            this.buttonEmployee.Size = new System.Drawing.Size(128, 29);
+            this.buttonEmployee.TabIndex = 27;
+            this.buttonEmployee.Text = "Funcionário";
+            this.buttonEmployee.UseVisualStyleBackColor = true;
+            this.buttonEmployee.Click += new System.EventHandler(this.buttonEmployee_Click_1);
+            // 
+            // labelEmployee
+            // 
+            this.labelEmployee.AutoSize = true;
+            this.labelEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEmployee.Location = new System.Drawing.Point(500, 18);
+            this.labelEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelEmployee.Name = "labelEmployee";
+            this.labelEmployee.Size = new System.Drawing.Size(105, 24);
+            this.labelEmployee.TabIndex = 34;
+            this.labelEmployee.Text = "Username";
             // 
             // FormCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(846, 450);
+            this.Controls.Add(this.labelEmployee);
+            this.Controls.Add(this.buttonEmployee);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.comboBoxFilters);
             this.Controls.Add(this.listBoxClients);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.labelEmployee);
             this.Controls.Add(this.buttonRegister);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonEdit);
@@ -328,10 +343,11 @@
         private System.Windows.Forms.TextBox textBoxNumStudent;
         private System.Windows.Forms.RadioButton radioButtonStudent;
         private System.Windows.Forms.RadioButton radioButtonProfessor;
-        private System.Windows.Forms.Label labelEmployee;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox listBoxClients;
         private System.Windows.Forms.ComboBox comboBoxFilters;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button buttonEmployee;
+        private System.Windows.Forms.Label labelEmployee;
     }
 }

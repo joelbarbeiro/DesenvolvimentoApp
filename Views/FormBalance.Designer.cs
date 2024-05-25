@@ -1,4 +1,4 @@
-﻿namespace iCantine.Views
+namespace iCantine.Views
 {
     partial class FormBalance
     {
@@ -37,6 +37,7 @@
             this.buttonBack = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.labelEmployee = new System.Windows.Forms.Label();
+            this.buttonEmployee = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericBalance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,11 +130,24 @@
             this.labelEmployee.TabIndex = 25;
             this.labelEmployee.Text = "label";
             // 
+            // buttonEmployee
+            // 
+            this.buttonEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEmployee.Location = new System.Drawing.Point(250, 9);
+            this.buttonEmployee.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonEmployee.Name = "buttonEmployee";
+            this.buttonEmployee.Size = new System.Drawing.Size(102, 27);
+            this.buttonEmployee.TabIndex = 28;
+            this.buttonEmployee.Text = "Funcionário";
+            this.buttonEmployee.UseVisualStyleBackColor = true;
+            this.buttonEmployee.Click += new System.EventHandler(this.buttonEmployee_Click);
+            // 
             // FormBalance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 271);
+            this.ClientSize = new System.Drawing.Size(365, 271);
+            this.Controls.Add(this.buttonEmployee);
             this.Controls.Add(this.labelEmployee);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.buttonBack);
@@ -162,5 +176,6 @@
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label labelEmployee;
+        private System.Windows.Forms.Button buttonEmployee;
     }
 }
