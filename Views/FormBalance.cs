@@ -35,7 +35,15 @@ namespace iCantine.Views
         {
             string user = labelEmployee.Text;
             decimal balance = numericBalance.Value;
-            client.Balance += balance;
+            if (numericBalance.Value > 0)
+            {
+                client.Balance += balance;
+            }
+            else
+            {
+                MessageBox.Show("Valor tem de ser superior a zero");
+                return;
+            }
             Context context = new Context();
             try
             {
@@ -44,13 +52,28 @@ namespace iCantine.Views
                 {
                     if (userToUpdate is Student student)
                     {
-                        student.Balance += balance;
-                       
+                        if (numericBalance.Value > 0)
+                        {
+                            student.Balance += balance;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Valor tem de ser superior a zero");
+                            return;
+                        }
                     }
                     else if (userToUpdate is Professor professor)
                     {
-                        professor.Balance += balance;
-                        
+                        if (numericBalance.Value > 0)
+                        {
+                            professor.Balance += balance;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Valor tem de ser superior a zero");
+                            return;
+                        }
+
                     }
                     context.SaveChanges();
                 }
@@ -58,7 +81,7 @@ namespace iCantine.Views
                 FormCustomer customerForm = new FormCustomer(user);
                 FormController.changeForm(customerForm, this);
             }
-            catch(Exception )
+            catch (Exception)
             {
                 MessageBox.Show("Não foi possivel carregar o saldo");
             }
