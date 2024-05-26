@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace iCantine.models
         public string Type { get; set; }
         public int Stock { get; set; }
         public bool Active { get; set; }
+        public virtual ICollection<Menu> Menus { get; set; }
         public double Price { get; set; }
         public virtual string DisplayName => $"Prato: {Description}€ - Tipo: {Type} - Stock: {Stock} - Price: {Price}";
         public virtual string ReservationName => $"{Description}";

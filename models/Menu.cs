@@ -12,21 +12,20 @@ namespace iCantine.models
         [Key]
         public int idMenu { get; set; }
         public DateTime Data { get; set; }
-        public DateTime Hour { get; set; }
         public int QuantAvailable { get; set; }
-        public double PriceStudent { get; set; }
-        public double PriceProf { get; set; }
-        public List<Plate> Plates { get; set; }
-        public List<Extra> Extras { get; set; }
+        public decimal PriceStudent { get; set; }
+        public decimal PriceProf { get; set; }
+        public int idPlates {  get; set; }
+        public Plate Plate { get; set; }
+
 
         public Menu()
         {
         }
 
-        public Menu(DateTime data, DateTime hour, int quantAvailable, double priceStudent, double priceProf)
+        public Menu(DateTime data, int quantAvailable, decimal priceStudent, decimal priceProf)
         {
             Data = data;
-            Hour = hour;
             QuantAvailable = quantAvailable;
             PriceStudent = priceStudent;
             PriceProf = priceProf;
@@ -34,7 +33,7 @@ namespace iCantine.models
 
         public override string ToString()
         {
-            return Data+ " "+ QuantAvailable;
+            return Data+ " "+ QuantAvailable ;
         }
     }
 }
