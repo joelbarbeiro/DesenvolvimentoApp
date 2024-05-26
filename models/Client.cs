@@ -11,7 +11,7 @@ namespace iCantine.models
     {
         public decimal Balance { get; set; }
         public virtual string DisplayName => $"{name} (Balance: {Balance:C})";
-
+        public virtual string Name => $"{name}";
         public Client()
         {
         }

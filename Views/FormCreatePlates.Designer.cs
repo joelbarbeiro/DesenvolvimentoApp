@@ -30,54 +30,60 @@
         {
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
-            this.listBoxPratos = new System.Windows.Forms.ListBox();
+            this.listBoxPlates = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBoxPrice = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxType = new System.Windows.Forms.TextBox();
-            this.comboBoxStock = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.labelUsername = new System.Windows.Forms.Label();
+            this.stockUpDown = new System.Windows.Forms.NumericUpDown();
+            this.priceUpDown = new System.Windows.Forms.NumericUpDown();
+            this.comboBoxType = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.stockUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonDelete
             // 
             this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDelete.Location = new System.Drawing.Point(378, 365);
+            this.buttonDelete.Location = new System.Drawing.Point(378, 378);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(143, 50);
             this.buttonDelete.TabIndex = 21;
             this.buttonDelete.Text = "Eliminar Prato";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click_1);
             // 
             // buttonEdit
             // 
             this.buttonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEdit.Location = new System.Drawing.Point(646, 365);
+            this.buttonEdit.Location = new System.Drawing.Point(646, 378);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(116, 50);
             this.buttonEdit.TabIndex = 20;
             this.buttonEdit.Text = "Editar Prato";
             this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
-            // listBoxPratos
+            // listBoxPlates
             // 
-            this.listBoxPratos.FormattingEnabled = true;
-            this.listBoxPratos.Location = new System.Drawing.Point(378, 69);
-            this.listBoxPratos.Name = "listBoxPratos";
-            this.listBoxPratos.Size = new System.Drawing.Size(384, 290);
-            this.listBoxPratos.TabIndex = 19;
+            this.listBoxPlates.FormattingEnabled = true;
+            this.listBoxPlates.Location = new System.Drawing.Point(378, 82);
+            this.listBoxPlates.Name = "listBoxPlates";
+            this.listBoxPlates.Size = new System.Drawing.Size(384, 290);
+            this.listBoxPlates.TabIndex = 19;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(374, 28);
+            this.label4.Location = new System.Drawing.Point(374, 55);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(161, 24);
             this.label4.TabIndex = 18;
@@ -92,6 +98,7 @@
             this.buttonBack.TabIndex = 17;
             this.buttonBack.Text = "Voltar";
             this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click_1);
             // 
             // buttonAdd
             // 
@@ -102,6 +109,7 @@
             this.buttonAdd.TabIndex = 16;
             this.buttonAdd.Text = "Adicionar";
             this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click_1);
             // 
             // label3
             // 
@@ -112,13 +120,6 @@
             this.label3.Size = new System.Drawing.Size(65, 24);
             this.label3.TabIndex = 14;
             this.label3.Text = "Preço:";
-            // 
-            // textBoxPrice
-            // 
-            this.textBoxPrice.Location = new System.Drawing.Point(54, 155);
-            this.textBoxPrice.Name = "textBoxPrice";
-            this.textBoxPrice.Size = new System.Drawing.Size(199, 20);
-            this.textBoxPrice.TabIndex = 15;
             // 
             // label2
             // 
@@ -157,21 +158,6 @@
             this.label1.TabIndex = 22;
             this.label1.Text = "Tipo:";
             // 
-            // textBoxType
-            // 
-            this.textBoxType.Location = new System.Drawing.Point(54, 213);
-            this.textBoxType.Name = "textBoxType";
-            this.textBoxType.Size = new System.Drawing.Size(199, 20);
-            this.textBoxType.TabIndex = 23;
-            // 
-            // comboBoxStock
-            // 
-            this.comboBoxStock.FormattingEnabled = true;
-            this.comboBoxStock.Location = new System.Drawing.Point(54, 263);
-            this.comboBoxStock.Name = "comboBoxStock";
-            this.comboBoxStock.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxStock.TabIndex = 24;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -182,28 +168,75 @@
             this.label6.TabIndex = 25;
             this.label6.Text = "Stock:";
             // 
+            // labelUsername
+            // 
+            this.labelUsername.AutoSize = true;
+            this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUsername.Location = new System.Drawing.Point(657, 18);
+            this.labelUsername.Name = "labelUsername";
+            this.labelUsername.Size = new System.Drawing.Size(105, 24);
+            this.labelUsername.TabIndex = 26;
+            this.labelUsername.Text = "Username";
+            // 
+            // stockUpDown
+            // 
+            this.stockUpDown.Location = new System.Drawing.Point(54, 263);
+            this.stockUpDown.Name = "stockUpDown";
+            this.stockUpDown.Size = new System.Drawing.Size(199, 20);
+            this.stockUpDown.TabIndex = 27;
+            // 
+            // priceUpDown
+            // 
+            this.priceUpDown.Location = new System.Drawing.Point(54, 155);
+            this.priceUpDown.Name = "priceUpDown";
+            this.priceUpDown.Size = new System.Drawing.Size(199, 20);
+            this.priceUpDown.TabIndex = 29;
+            // 
+            // comboBoxType
+            // 
+            this.comboBoxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxType.FormattingEnabled = true;
+            this.comboBoxType.Location = new System.Drawing.Point(54, 212);
+            this.comboBoxType.Name = "comboBoxType";
+            this.comboBoxType.Size = new System.Drawing.Size(199, 21);
+            this.comboBoxType.TabIndex = 30;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(523, 18);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(128, 24);
+            this.label7.TabIndex = 31;
+            this.label7.Text = "Funcionário:";
+            // 
             // FormCreatePlates
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.comboBoxType);
+            this.Controls.Add(this.priceUpDown);
+            this.Controls.Add(this.stockUpDown);
+            this.Controls.Add(this.labelUsername);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.comboBoxStock);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxType);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonEdit);
-            this.Controls.Add(this.listBoxPratos);
+            this.Controls.Add(this.listBoxPlates);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBoxPrice);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxDescription);
             this.Controls.Add(this.label5);
             this.Name = "FormCreatePlates";
             this.Text = "FormCreatePlates";
+            ((System.ComponentModel.ISupportInitialize)(this.stockUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,18 +246,20 @@
 
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonEdit;
-        private System.Windows.Forms.ListBox listBoxPratos;
+        private System.Windows.Forms.ListBox listBoxPlates;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBoxPrice;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxType;
-        private System.Windows.Forms.ComboBox comboBoxStock;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelUsername;
+        private System.Windows.Forms.NumericUpDown stockUpDown;
+        private System.Windows.Forms.NumericUpDown priceUpDown;
+        private System.Windows.Forms.ComboBox comboBoxType;
+        private System.Windows.Forms.Label label7;
     }
 }

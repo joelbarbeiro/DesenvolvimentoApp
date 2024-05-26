@@ -15,7 +15,9 @@ namespace iCantine.Views
 {
     public partial class FormCreateExtras : Form
     {
+        private bool isEditMode = false;
         public string user;
+        public string description;
         public FormCreateExtras(string user)
         {
             InitializeComponent();
@@ -28,33 +30,28 @@ namespace iCantine.Views
         {
             string description = textBoxDescription.Text;
             double price = (double)priceUpDown.Value;
+            int stock = (int)stockUpDown.Value;
 
-            if(string.IsNullOrEmpty(description))
+            if(validationControl(price, description))
             {
-                MessageBox.Show("A descrição não pode estar vazia.");
-                return;
+                Extra extra = new Extra(description, price, stock);
+                Context context = new Context();
+                try
+                {
+                    negativeStockControl(stock);
+                    extra.Active = stockControl(stock);
+                    context.Extras.Add(extra);
+                    context.SaveChanges();
+                    MessageBox.Show("Extra guardado com sucesso");
+                    updateListBoxExtra();
+                    clearTextBox();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex);
+                }
             }
-
-            if(price <= 0)
-            {
-                MessageBox.Show("O preço deve ser maior que zero.");
-                return;
-            }
-
-            Extra extra = new Extra(description, price);
-            Context context = new Context();
-            try
-            {
-                context.Extras.Add(extra);
-                context.SaveChanges();
-                MessageBox.Show("Extra guardado com sucesso");
-                updateListBoxExtra();
-                clearTextBox();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Error: " + ex);
-            } 
+           
         }
         public void updateListBoxExtra()
         {
@@ -71,6 +68,7 @@ namespace iCantine.Views
         {
             textBoxDescription.Text = "";
             priceUpDown.Value = 0;
+            stockUpDown.Value = 0;
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -90,6 +88,128 @@ namespace iCantine.Views
 
             return char.ToUpper(input[0]) + input.Substring(1);
         }
+        
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            if(!isEditMode) { 
+                if(listBoxExtras.SelectedItem == null)
+                {
+                    MessageBox.Show("Selecione um extra para editar");
+                    return;
+                }
+                buttonEdit.Text = "Guardar";
+                isEditMode = true;
+
+                var selectedExtra = (Extra)listBoxExtras.SelectedItem;
+
+                textBoxDescription.Text = selectedExtra.Description;
+                priceUpDown.Value = (decimal)selectedExtra.Price;
+                stockUpDown.Value = selectedExtra.Stock;
+                listBoxExtras.Enabled = false;
+                if (negativeStockControl(selectedExtra.Stock))
+                {
+                    saveData(selectedExtra);
+                    addControl();
+                }
+                
+            } 
+            else
+            {
+                if (listBoxExtras.SelectedItem == null)
+                {
+                    MessageBox.Show("Selecione um extra para guardar");
+                    return;
+                }
+
+                var selectedExtra = (Extra)listBoxExtras.SelectedItem;
+
+                selectedExtra.Description = textBoxDescription.Text;
+                selectedExtra.Price = (double)priceUpDown.Value;
+                selectedExtra.Stock = (int)stockUpDown.Value;
+
+                if (negativeStockControl(selectedExtra.Stock))
+                {
+                    saveData(selectedExtra);
+                    updateListBoxExtra();
+                    clearTextBox();
+                    MessageBox.Show("As alterações foram guardadas com sucesso");
+
+                    buttonEdit.Text = "Editar";
+                    isEditMode = false;
+                    listBoxExtras.Enabled = true;
+                    addControl();
+                }
+               
+                
+            }
+        }
+
+        private bool validationControl(double price, string description)
+        {
+            if (string.IsNullOrEmpty(description))
+            {
+                MessageBox.Show("A descrição não pode estar vazia.");
+                return false;
+            }
+            if (price <= 0)
+            {
+                MessageBox.Show("O preço deve ser maior que zero.");
+                return false;
+            }
+            return true;
+        }
+
+        private bool stockControl(int stock)
+        {
+            if (stock > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void addControl()
+        {
+            if (!isEditMode)
+            {
+                buttonAddExtra.Enabled = true;
+                return;
+            }
+            else
+            {
+                buttonAddExtra.Enabled = false;
+                return;
+            }
+        }
+
+        private bool negativeStockControl(int stock)
+        {
+            if (stock < 1)
+            {
+                MessageBox.Show("Quantidade em stock têm de ser um numero inteiro");
+                return false;
+            }
+            return true;  
+        }
+        
+       private void saveData(Extra selectedExtra)
+        {
+            using (var context = new models.Context())
+            {
+                var dbExtra = context.Extras.SingleOrDefault(b => b.idExtra == selectedExtra.idExtra);
+                if (dbExtra != null)
+                {
+                    dbExtra.Description = selectedExtra.Description;
+                    dbExtra.Price = selectedExtra.Price;
+                    dbExtra.Stock = selectedExtra.Stock;
+
+
+                    context.SaveChanges();
+                }
+            }
+        }
+
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             if (listBoxExtras.SelectedItem == null)
@@ -98,14 +218,14 @@ namespace iCantine.Views
                 return;
             }
             var selectedExtra = (Extra)listBoxExtras.SelectedItem;
-            var confirmDelete = MessageBox.Show($"Tem a certeza que quer apagar o extra: {selectedExtra}€?", "Confirmar", MessageBoxButtons.YesNo);
+            var confirmDelete = MessageBox.Show($"Tem a certeza que quer apagar o extra: {listBoxExtras.SelectedItem.ToString()}?", "Confirmar", MessageBoxButtons.YesNo);
 
-            if(confirmDelete == DialogResult.Yes)
+            if (confirmDelete == DialogResult.Yes)
             {
-                using(var context = new models.Context())
+                using (var context = new models.Context())
                 {
                     var deleteExtra = context.Extras.OfType<Extra>().SingleOrDefault(u => u.idExtra == selectedExtra.idExtra);
-                    if(deleteExtra != null)
+                    if (deleteExtra != null)
                     {
                         context.Extras.Remove(deleteExtra);
                         try
@@ -114,26 +234,13 @@ namespace iCantine.Views
                             MessageBox.Show("Extra eliminado com sucesso.");
                             updateListBoxExtra();
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             MessageBox.Show($"Erro ao apagar Extra: {ex.Message}");
                         }
                     }
                 }
             }
-
-        }
-
-        private void buttonEdit_Click(object sender, EventArgs e)
-        {
-            if(listBoxExtras.SelectedItem == null)
-            {
-                MessageBox.Show("Selecione um extra para editar");
-                return;
-            }
-            var selectedExtra = (Extra)listBoxExtras.SelectedItem;
-            textBoxDescription.Text = selectedExtra.Description;
-            priceUpDown.Value = (decimal)selectedExtra.Price;
         }
     }
 }

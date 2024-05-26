@@ -60,12 +60,27 @@
     <Compile Include="Migrations\202405252334305_qer.Designer.cs">
       <DependentUpon>202405252334305_qer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405202002262_initialMigrations.cs" />
+    <Compile Include="Migrations\202405202002262_initialMigrations.Designer.cs">
+      <DependentUpon>202405202002262_initialMigrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405202057248_added stock.cs" />
+    <Compile Include="Migrations\202405202057248_added stock.Designer.cs">
+      <DependentUpon>202405202057248_added stock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="models\ClientType.cs" />
     <Compile Include="models\CRUDController.cs" />
     <Compile Include="Controllers\FormController.cs" />
     <Compile Include="models\HourList.cs" />
     <Compile Include="models\menuController.cs" />
     <Compile Include="models\MenuExtra.cs" />
+    <Compile Include="Views\FormReservationsOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormReservationsOptions.Designer.cs">
+      <DependentUpon>FormReservationsOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\FormBalance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,11 +99,11 @@
     <Compile Include="Views\FormCustomer.Designer.cs">
       <DependentUpon>FormCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\FormEfetuarReservas.cs">
+    <Compile Include="Views\FormMakeReservation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\FormEfetuarReservas.Designer.cs">
-      <DependentUpon>FormEfetuarReservas.cs</DependentUpon>
+    <Compile Include="Views\FormMakeReservation.Designer.cs">
+      <DependentUpon>FormMakeReservation.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\FormCreateExtras.cs">
       <SubType>Form</SubType>
@@ -96,11 +111,11 @@
     <Compile Include="Views\FormCreateExtras.Designer.cs">
       <DependentUpon>FormCreateExtras.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\FormReservasEfetuadas.cs">
+    <Compile Include="Views\FormReservationsMade.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\FormReservasEfetuadas.Designer.cs">
-      <DependentUpon>FormReservasEfetuadas.cs</DependentUpon>
+    <Compile Include="Views\FormReservationsMade.Designer.cs">
+      <DependentUpon>FormReservationsMade.cs</DependentUpon>
     </Compile>
     <Compile Include="models\PlateType.cs" />
     <Compile Include="Views\FormMenu.cs">
@@ -145,6 +160,15 @@
     <EmbeddedResource Include="Migrations\202405252334305_qer.resx">
       <DependentUpon>202405252334305_qer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405202002262_initialMigrations.resx">
+      <DependentUpon>202405202002262_initialMigrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405202057248_added stock.resx">
+      <DependentUpon>202405202057248_added stock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormReservationsOptions.resx">
+      <DependentUpon>FormReservationsOptions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\FormBalance.resx">
       <DependentUpon>FormBalance.cs</DependentUpon>
     </EmbeddedResource>
@@ -157,11 +181,11 @@
     <EmbeddedResource Include="Views\FormCustomer.resx">
       <DependentUpon>FormCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\FormEfetuarReservas.resx">
-      <DependentUpon>FormEfetuarReservas.cs</DependentUpon>
+    <EmbeddedResource Include="Views\FormMakeReservation.resx">
+      <DependentUpon>FormMakeReservation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\FormReservasEfetuadas.resx">
-      <DependentUpon>FormReservasEfetuadas.cs</DependentUpon>
+    <EmbeddedResource Include="Views\FormReservationsMade.resx">
+      <DependentUpon>FormReservationsMade.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>

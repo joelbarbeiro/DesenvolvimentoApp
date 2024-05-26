@@ -15,17 +15,21 @@ namespace iCantine.models
         public string Description { get; set; }
         public double Price { get; set; }
         public bool Active { get; set; }
-
+        public int Stock { get; set; }
         public virtual ICollection<MenuExtra> MenuExtras { get; set; }
-        public virtual string DisplayName => $"{Description} - Preço: {Price}€";
+      
+        public virtual string DisplayName => $"{Description} - Preço: {Price}€ - Stock: {Stock}";
+        public virtual string ReservationName => $"{Description}";
+      
         public Extra()
         {
         }
 
-        public Extra(string description, double price)
+        public Extra(string description, double price, int stock)
         {
             Description = description;
             Price = price;
+            Stock = stock;
         }
 
         public override string ToString()

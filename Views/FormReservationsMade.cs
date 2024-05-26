@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace iCantine.Views
 {
-    public partial class FormReservasEfetuadas : Form
+    public partial class FormReservationsMade : Form
     {
-        public FormReservasEfetuadas()
+        public FormReservationsMade()
         {
             InitializeComponent();
         }

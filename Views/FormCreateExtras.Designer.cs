@@ -40,7 +40,10 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.priceUpDown = new System.Windows.Forms.NumericUpDown();
             this.labelUsername = new System.Windows.Forms.Label();
+            this.stockUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.priceUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -83,7 +86,7 @@
             // buttonAddExtra
             // 
             this.buttonAddExtra.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddExtra.Location = new System.Drawing.Point(116, 205);
+            this.buttonAddExtra.Location = new System.Drawing.Point(116, 251);
             this.buttonAddExtra.Name = "buttonAddExtra";
             this.buttonAddExtra.Size = new System.Drawing.Size(132, 23);
             this.buttonAddExtra.TabIndex = 5;
@@ -114,10 +117,12 @@
             // 
             // listBoxExtras
             // 
+            this.listBoxExtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxExtras.FormattingEnabled = true;
+            this.listBoxExtras.ItemHeight = 24;
             this.listBoxExtras.Location = new System.Drawing.Point(442, 92);
             this.listBoxExtras.Name = "listBoxExtras";
-            this.listBoxExtras.Size = new System.Drawing.Size(315, 290);
+            this.listBoxExtras.Size = new System.Drawing.Size(315, 268);
             this.listBoxExtras.TabIndex = 8;
             // 
             // buttonEdit
@@ -159,17 +164,42 @@
             // 
             this.labelUsername.AutoSize = true;
             this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUsername.Location = new System.Drawing.Point(561, 21);
+            this.labelUsername.Location = new System.Drawing.Point(652, 33);
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(105, 24);
             this.labelUsername.TabIndex = 12;
             this.labelUsername.Text = "Username";
+            // 
+            // stockUpDown
+            // 
+            this.stockUpDown.InterceptArrowKeys = false;
+            this.stockUpDown.Location = new System.Drawing.Point(49, 225);
+            this.stockUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.stockUpDown.Name = "stockUpDown";
+            this.stockUpDown.Size = new System.Drawing.Size(199, 20);
+            this.stockUpDown.TabIndex = 13;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(45, 200);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 24);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Stock:";
             // 
             // FormCreateExtras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.stockUpDown);
             this.Controls.Add(this.labelUsername);
             this.Controls.Add(this.priceUpDown);
             this.Controls.Add(this.buttonDelete);
@@ -185,6 +215,7 @@
             this.Name = "FormCreateExtras";
             this.Text = "FormCreateExtras";
             ((System.ComponentModel.ISupportInitialize)(this.priceUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,5 +235,7 @@
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.NumericUpDown priceUpDown;
         private System.Windows.Forms.Label labelUsername;
+        private System.Windows.Forms.NumericUpDown stockUpDown;
+        private System.Windows.Forms.Label label5;
     }
 }
