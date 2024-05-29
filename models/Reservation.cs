@@ -15,6 +15,7 @@ namespace iCantine.models
         public string Plate { get; set; }
         public string Extra { get; set; }
         public string Client { get; set; }
+        public string Hour { get; set; }
         public virtual string ReservationName => $"{Date},{Plate},{Client},{Extra}";
         public List<Client> Clients;
         public List<Ticket> Tickets;
@@ -27,17 +28,18 @@ namespace iCantine.models
         }
 
 
-        public Reservation(string plate, string extra, string client, string date)
+        public Reservation(string plate, string extra, string client, string date, string hour)
         {
             Plate = plate;
             Extra = extra;
             Client = client;
             Date = date;
+            Hour = hour;
         }
 
         public override string ToString()
         {
-            return Date + "-" + Plate + "-" + Extra + "-" + Client;
+            return Date + "-" + Hour + ":" + Plate + "," + Extra + "," + Client;
         }
     }
 }

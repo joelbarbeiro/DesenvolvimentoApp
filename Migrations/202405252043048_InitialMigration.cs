@@ -3,16 +3,16 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class addedstock : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Extras", "Stock", c => c.Int(nullable: false));
+            AddColumn("dbo.Reservations", "Hour", c => c.DateTime(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Extras", "Stock");
+            DropColumn("dbo.Reservations", "Hour");
         }
     }
 }
