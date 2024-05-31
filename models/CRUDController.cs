@@ -52,7 +52,7 @@ namespace iCantine.Controllers
 
                 foreach (var menu in query)
                 {
-                    models.Menu item = new models.Menu(menu.Data, menu.Hour, menu.QuantAvailable, menu.PriceStudent, menu.PriceProf);
+                    models.Menu item = new models.Menu(menu.Data, menu.QuantAvailable, menu.PriceStudent, menu.PriceProf);
                     items.Add(item);
                 }
                 return items;
