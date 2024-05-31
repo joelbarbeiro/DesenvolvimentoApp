@@ -1,4 +1,4 @@
-﻿using iCantine.models;
+using iCantine.models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,21 +24,33 @@ namespace iCantine.Views
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             string username = textBoxUsername.Text;
-            if (CRUDController.verifyEmployee(username))
+            string name = textBoxName.Text;
+            int nif = 0;
+            int.TryParse(textBoxNIF.Text, out nif);
+
+            if (CRUDController.verifyEmployee(username,nif))
             {
-                Employee employee = new Employee(username);
-                Context context = new Context();
-                context.Employees.Add(employee);
-                try
+                if (verifyNIF())
                 {
-                    context.SaveChanges();
-                    this.Close();
-                    FormLogin formLogin = new FormLogin();
-                    FormController.changeForm(formLogin, this);
+                    Employee employee = new Employee(username, name, nif);
+                    Context context = new Context();
+                    context.Employees.Add(employee);
+                    try
+                    {
+                        context.SaveChanges();
+                        this.Close();
+                        FormLogin formLogin = new FormLogin();
+                        FormController.changeForm(formLogin, this);
+                        MessageBox.Show("Funcionário Registado com Sucesso");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Registo Não Concluido: " + ex);
+                        return;
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Registo Não Concluido: " + ex);
+                else {
+                    MessageBox.Show("Registo não concluido"); 
                     return;
                 }
             }
@@ -49,13 +61,21 @@ namespace iCantine.Views
             }
         }
 
-
+        public bool verifyNIF()
+        {
+            if (textBoxNIF.Text.Count() != 9)
+            {
+                MessageBox.Show("NIF não tem 9 digitos");
+                return false;
+            }
+            return true;
+        }
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
             this.Close();
             FormLogin formLogin = new FormLogin();
-            FormController.changeForm(formLogin,this);
+            FormController.changeForm(formLogin, this);
         }
     }
 }

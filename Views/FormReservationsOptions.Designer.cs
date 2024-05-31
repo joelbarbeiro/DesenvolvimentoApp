@@ -1,4 +1,4 @@
-﻿namespace iCantine.models
+namespace iCantine.models
 {
     partial class FormReservationsOptions
     {

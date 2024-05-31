@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -18,21 +18,10 @@ namespace iCantine.models
         public DbSet<Receipt> Receipts { get; set; }
         public DbSet<Extra> Extras { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<MenuExtra> MenuExtras { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Menu>()
-                .HasRequired(m => m.Plate)
-                .WithMany(p => p.Menus)
-                .HasForeignKey(m => m.idPlates);
-
-            modelBuilder.Entity<MenuExtra>()
-                .HasRequired(me => me.Extras)
-                .WithMany(e => e.MenuExtras)
-                .HasForeignKey(me => me.idExtras);
 
         }
     }

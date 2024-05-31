@@ -1,4 +1,4 @@
-﻿using iCantine.models;
+using iCantine.models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +12,19 @@ namespace iCantine.Controllers
 {
     public class CRUDController
     {
-        public static bool verifyEmployee(string user)
+        public static bool verifyEmployee(string user, int nif)
         {
             models.Context context = new models.Context();
 
             var query_result = context.Employees.Where(
                 employee =>
-                employee.username == user);
+                employee.username == user ||
+                employee.nif == nif
+                );
             if (query_result.Count() == 0)
             {
-                Console.WriteLine("Registado com successo");
                 return true;
             }
-            Console.WriteLine("Registo Falhado");
             return false;
         }
 
@@ -41,7 +41,75 @@ namespace iCantine.Controllers
             }
             return false;
         }
-        public string CapitalizeFirstLetter(string input)
+
+        public static List<models.Menu> loadMenus()
+        {
+            models.Context context = new models.Context();
+            var query = context.Menus;
+            if (query.Count() > 0)
+            {
+                List<models.Menu> items = new List<models.Menu>();
+
+                foreach (var menu in query)
+                {
+                    models.Menu item = new models.Menu(menu.Data, menu.QuantAvailable, menu.PriceStudent, menu.PriceProf);
+                    items.Add(item);
+                }
+                return items;
+            }
+            return null;
+        }
+        public static List<Plate> loadPlatesMenu(string type = "*")
+        {
+            models.Context context = new models.Context();
+
+            var query = context.Plates.Where(
+                plate =>
+                plate.Type == type &&
+                plate.Active == true);
+
+            if (query.Count() > 0)
+            {
+                List<Plate> plates = new List<Plate>();
+
+                foreach (var plate in query)
+                {
+                    Plate item = new Plate(plate.Description, plate.Type, plate.Stock, plate.Price);
+                    plates.Add(item);
+                }
+                return plates;
+            }
+            return null;
+        }
+        public static List<Extra> loadExtrasMenu()
+        {
+            models.Context context = new models.Context();
+
+            var query = context.Extras.Where(
+                extra =>
+                extra.Active == true);
+
+            return query.ToList();
+        }
+
+        public static bool saveMenu(models.Menu items)
+        {
+            models.Context context = new models.Context();
+            context.Menus.Add(items);
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao gravar: " + ex);
+                return false;
+            }
+            MessageBox.Show("Menu gravado com sucesso");
+            return true;
+        }
+
+        public static string CapitalizeFirstLetter(string input)
         {
             if (string.IsNullOrEmpty(input))
                 return input;

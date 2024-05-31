@@ -1,4 +1,4 @@
-﻿using iCantine.Controllers;
+using iCantine.Controllers;
 using iCantine.models;
 using System;
 using System.Collections.Generic;
@@ -17,11 +17,12 @@ namespace iCantine.Views
 {
     public partial class FormCustomer : Form
     {
-
+        public string user;
 
         public FormCustomer(string user)
         {
             InitializeComponent();
+            this.user = user;
             changeUserLabel(user);
             listBoxClientsUpdate();
             updateDropdownItems();
@@ -29,9 +30,8 @@ namespace iCantine.Views
         }
         private void changeUserLabel(string user)
         {
-            labelEmployee.Text = CapitalizeFirstLetter(user);
+            labelEmployee.Text = CRUDController.CapitalizeFirstLetter(user);
         }
-        //Callback interfaces 
         public void listBoxClientsUpdate()
         {
             using (var context = new models.Context())
@@ -51,8 +51,6 @@ namespace iCantine.Views
             string email = textBoxEmail.Text;
             int.TryParse(textBoxNIF.Text, out nif);
             int.TryParse(textBoxNumStudent.Text, out numStudent);
-
-
 
             if (buttonRegister.Text == "Gravar")
             {
@@ -101,7 +99,6 @@ namespace iCantine.Views
                     setEnableButtons();
                     return;
                 }
-                
             }
             else if (buttonRegister.Text == "Editar")
             {
@@ -251,7 +248,6 @@ namespace iCantine.Views
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            string user = labelEmployee.Text;
             MainForm mainForm = new MainForm(user);
             FormController.changeForm(mainForm, this);
         }
@@ -326,13 +322,6 @@ namespace iCantine.Views
             FormController.changeForm(balanceForm, this);
         }
 
-        public string CapitalizeFirstLetter(string input)
-        {
-            if (string.IsNullOrEmpty(input))
-                return input;
-
-            return char.ToUpper(input[0]) + input.Substring(1);
-        }
         public void updateDropdownItems()
         {
             comboBoxFilters.Items.Clear();
@@ -340,7 +329,6 @@ namespace iCantine.Views
             comboBoxFilters.Items.Add("Docente");
             comboBoxFilters.Items.Add("Estudante");
             comboBoxFilters.SelectedIndex = 0;
-
         }
         public void listBoxStudentsUpdate()
         {
@@ -378,6 +366,12 @@ namespace iCantine.Views
         {
             updateListFiltered(comboBoxFilters.SelectedItem.ToString());
 
+        }
+
+        private void buttonEmployee_Click_1(object sender, EventArgs e)
+        {
+            FormEmployee formEmployee = new FormEmployee(user);
+            FormController.changeForm(formEmployee, this);
         }
     }
 

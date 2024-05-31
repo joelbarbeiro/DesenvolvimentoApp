@@ -1,4 +1,4 @@
-﻿namespace iCantine.Views
+namespace iCantine.Views
 {
     partial class FormCreateExtras
     {

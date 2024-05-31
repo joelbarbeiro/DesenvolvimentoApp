@@ -1,4 +1,4 @@
-﻿using iCantine.Controllers;
+using iCantine.Controllers;
 using iCantine.models;
 using System;
 using System.Collections.Generic;
@@ -16,10 +16,12 @@ namespace iCantine.Views
     public partial class FormBalance : Form
     {
         public Client client = new Client();
+        public string user;
         public FormBalance(Client client, string user)
         {
             InitializeComponent();
             this.client = client;
+            this.user = user;
             labelClient.Text = client.name;
             labelEmployee.Text = user;
             labelBalance.Text = client.Balance.ToString();
@@ -92,6 +94,12 @@ namespace iCantine.Views
             string user = labelEmployee.Text;
             FormCustomer customerForm = new FormCustomer(user);
             FormController.changeForm(customerForm, this);
+        }
+
+        private void buttonEmployee_Click(object sender, EventArgs e)
+        {
+            FormEmployee formEmployee = new FormEmployee(user);
+            FormController.changeForm(formEmployee, this);
         }
     }
 }

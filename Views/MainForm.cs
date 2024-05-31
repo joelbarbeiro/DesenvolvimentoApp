@@ -1,4 +1,4 @@
-﻿using iCantine.models;
+using iCantine.models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -71,6 +71,18 @@ namespace iCantine
         {
             FormCreatePlates formPlates = new FormCreatePlates(user);
             FormController.changeForm(formPlates, this);
+        }
+
+        private void buttonEmployee_Click(object sender, EventArgs e)
+        {
+            FormEmployee formEmployee = new FormEmployee(user);
+            FormController.changeForm(formEmployee, this);
+        }
+
+        private void buttonTickets_Click(object sender, EventArgs e)
+        {
+            FormTicket formTicket = new FormTicket(user);
+            FormController.changeForm(formTicket, this);
         }
     }
 }

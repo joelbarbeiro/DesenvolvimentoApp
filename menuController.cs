@@ -43,7 +43,7 @@ namespace iCantine.models
 
                     foreach (var extra in query)
                     {
-                        Extra item = new Extra(extra.Description, extra.Price, 0);
+                        Extra item = new Extra(extra.Description, extra.Price);
                         extras.Add(item);
                     }
                     return extras;
@@ -74,7 +74,7 @@ namespace iCantine.models
 
                     foreach (var plate in query)
                     {
-                        Plate item = new Plate(plate.Description, plate.Type, 0, 0);
+                        Plate item = new Plate(plate.Description, plate.Type, plate.Active);
                         plates.Add(item);
                     }
                     return plates;
@@ -122,11 +122,10 @@ namespace iCantine.models
                 context.SaveChanges();
                 foreach (var itemsExtra in extra)
                 {
-                    /*
                     var saveToMenuExtra = new MenuExtra { idMenu = items.idMenu, idExtras = itemsExtra.idExtra };
                     context.MenuExtras.Add(saveToMenuExtra);
                     context.SaveChanges();
-                    */
+
                     
                 }
             }
