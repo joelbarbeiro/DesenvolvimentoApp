@@ -79,6 +79,7 @@
     <Compile Include="models\CRUDController.cs" />
     <Compile Include="Controllers\FormController.cs" />
     <Compile Include="models\menuController.cs" />
+    <Compile Include="models\MenuExtra.cs" />
     <Compile Include="Views\FormEmployee.cs">
       <SubType>Form</SubType>
     </Compile>

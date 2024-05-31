@@ -18,6 +18,7 @@ namespace iCantine.models
         public FormReservationsOptions(string user)
         {
             InitializeComponent();
+            this.user= user;
         }
 
         private void button1_Click(object sender, EventArgs e)

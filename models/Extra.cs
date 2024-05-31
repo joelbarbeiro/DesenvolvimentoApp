@@ -16,7 +16,8 @@ namespace iCantine.models
         public double Price { get; set; }
         public bool Active { get; set; }
         public int Stock { get; set; }
-     
+        public virtual ICollection<MenuExtra> MenuExtras { get; set; }
+
         public virtual string DisplayName => $"{Description} - Preço: {Price}€ - Stock: {Stock}";
         public virtual string ReservationName => $"{Description}";
       
