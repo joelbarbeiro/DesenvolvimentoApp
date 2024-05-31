@@ -23,10 +23,10 @@ namespace iCantine.models
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Menu>()
-                .HasRequired(m => m.Plate)
-                .WithMany(p => p.Menus)
-                .HasForeignKey(m => m.idPlates);
+            modelBuilder.Entity<MenuPlate>()
+                .HasRequired(mp => mp.Plates)
+                .WithMany(p => p.MenuPlates)
+                .HasForeignKey(mp => mp.idPlates);
 
             modelBuilder.Entity<MenuExtra>()
                 .HasRequired(me => me.Extras)

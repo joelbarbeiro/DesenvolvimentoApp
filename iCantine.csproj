@@ -71,15 +71,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202405252043048_InitialMigration.cs" />
-    <Compile Include="Migrations\202405252043048_InitialMigration.Designer.cs">
-      <DependentUpon>202405252043048_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202405311927025_UpdateMigration.cs" />
+    <Compile Include="Migrations\202405311927025_UpdateMigration.Designer.cs">
+      <DependentUpon>202405311927025_UpdateMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405311941110_Add-Migration.cs" />
+    <Compile Include="Migrations\202405311941110_Add-Migration.Designer.cs">
+      <DependentUpon>202405311941110_Add-Migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="models\CRUDController.cs" />
     <Compile Include="Controllers\FormController.cs" />
     <Compile Include="models\menuController.cs" />
     <Compile Include="models\MenuExtra.cs" />
+    <Compile Include="models\MenuPlate.cs" />
     <Compile Include="Views\FormEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,8 +179,11 @@
     <Compile Include="Views\FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\202405252043048_InitialMigration.resx">
-      <DependentUpon>202405252043048_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202405311927025_UpdateMigration.resx">
+      <DependentUpon>202405311927025_UpdateMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405311941110_Add-Migration.resx">
+      <DependentUpon>202405311941110_Add-Migration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormEmployee.resx">
       <DependentUpon>FormEmployee.cs</DependentUpon>
