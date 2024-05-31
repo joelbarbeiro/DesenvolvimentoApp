@@ -42,6 +42,7 @@ namespace iCantine.Views
             this.labelUsername = new System.Windows.Forms.Label();
             this.stockUpDown = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.priceUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stockUpDown)).BeginInit();
             this.SuspendLayout();
@@ -164,7 +165,7 @@ namespace iCantine.Views
             // 
             this.labelUsername.AutoSize = true;
             this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUsername.Location = new System.Drawing.Point(652, 33);
+            this.labelUsername.Location = new System.Drawing.Point(652, 18);
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(105, 24);
             this.labelUsername.TabIndex = 12;
@@ -193,11 +194,22 @@ namespace iCantine.Views
             this.label5.TabIndex = 14;
             this.label5.Text = "Stock:";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(518, 18);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(128, 24);
+            this.label7.TabIndex = 34;
+            this.label7.Text = "Funcionário:";
+            // 
             // FormCreateExtras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.stockUpDown);
             this.Controls.Add(this.labelUsername);
@@ -237,5 +249,6 @@ namespace iCantine.Views
         private System.Windows.Forms.Label labelUsername;
         private System.Windows.Forms.NumericUpDown stockUpDown;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
     }
 }

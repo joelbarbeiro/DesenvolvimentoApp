@@ -46,6 +46,8 @@ namespace iCantine.Views
             this.label5 = new System.Windows.Forms.Label();
             this.radioButtonDinner = new System.Windows.Forms.RadioButton();
             this.radioButtonLunch = new System.Windows.Forms.RadioButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.labelPrice = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -64,9 +66,9 @@ namespace iCantine.Views
             this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label.Location = new System.Drawing.Point(601, 48);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(88, 24);
+            this.label.Size = new System.Drawing.Size(144, 24);
             this.label.TabIndex = 4;
-            this.label.Text = "Reservas";
+            this.label.Text = "Reservas Atuais";
             // 
             // listBoxExtras
             // 
@@ -82,7 +84,7 @@ namespace iCantine.Views
             this.listBoxReservations.HorizontalScrollbar = true;
             this.listBoxReservations.Location = new System.Drawing.Point(605, 75);
             this.listBoxReservations.Name = "listBoxReservations";
-            this.listBoxReservations.Size = new System.Drawing.Size(262, 303);
+            this.listBoxReservations.Size = new System.Drawing.Size(262, 264);
             this.listBoxReservations.TabIndex = 6;
             // 
             // buttonBack
@@ -227,11 +229,33 @@ namespace iCantine.Views
             this.radioButtonLunch.Text = "Almoço";
             this.radioButtonLunch.UseVisualStyleBackColor = false;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(617, 354);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(62, 24);
+            this.label6.TabIndex = 42;
+            this.label6.Text = "Total:";
+            // 
+            // labelPrice
+            // 
+            this.labelPrice.AutoSize = true;
+            this.labelPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPrice.Location = new System.Drawing.Point(683, 354);
+            this.labelPrice.Name = "labelPrice";
+            this.labelPrice.Size = new System.Drawing.Size(64, 24);
+            this.labelPrice.TabIndex = 43;
+            this.labelPrice.Text = "preço";
+            // 
             // FormMakeReservation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(879, 450);
+            this.Controls.Add(this.labelPrice);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.radioButtonDinner);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.listBoxMenus);
@@ -277,5 +301,7 @@ namespace iCantine.Views
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.RadioButton radioButtonDinner;
         private System.Windows.Forms.RadioButton radioButtonLunch;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelPrice;
     }
 }

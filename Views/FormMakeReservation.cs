@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -206,6 +207,19 @@ namespace iCantine.Views
         private void radioButtonDinner_CheckedChanged(object sender, EventArgs e)
         {
             UpdateHour();
+        }
+        public static getPratosMenus()
+        {
+            using(var context = new models.Context())
+            {
+                var studentsInMath = context.Courses
+                .Include(c => c.Menus.Select(sc => sc.Plates))
+                .Single(c => c.Title == "Mathematics")
+                .StudentCourses
+                .Select(sc => sc.Plates)
+                .ToList();
+            }
+            
         }
 
     }

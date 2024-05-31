@@ -18,7 +18,7 @@ namespace iCantine.models
         public int Stock { get; set; }
      
         public virtual string DisplayName => $"{Description} - Preço: {Price}€ - Stock: {Stock}";
-        public virtual string ReservationName => $"{Description}";
+        public virtual string ReservationName => $"{Description} - {Price}";
       
         public Extra()
         {
