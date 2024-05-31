@@ -58,7 +58,7 @@ namespace iCantine
             this.labelUsername.Location = new System.Drawing.Point(558, 16);
             this.labelUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(105, 24);
+            this.labelUsername.Size = new System.Drawing.Size(132, 29);
             this.labelUsername.TabIndex = 0;
             this.labelUsername.Text = "Username";
             // 
@@ -66,7 +66,7 @@ namespace iCantine
             // 
             this.buttonLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogout.Location = new System.Drawing.Point(863, 11);
-            this.buttonLogout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonLogout.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLogout.Name = "buttonLogout";
             this.buttonLogout.Size = new System.Drawing.Size(141, 34);
             this.buttonLogout.TabIndex = 1;
@@ -78,7 +78,7 @@ namespace iCantine
             // 
             this.buttonPlates.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonPlates.Location = new System.Drawing.Point(179, 84);
-            this.buttonPlates.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonPlates.Margin = new System.Windows.Forms.Padding(4);
             this.buttonPlates.Name = "buttonPlates";
             this.buttonPlates.Size = new System.Drawing.Size(136, 85);
             this.buttonPlates.TabIndex = 4;
@@ -90,7 +90,7 @@ namespace iCantine
             // 
             this.buttonMenus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonMenus.Location = new System.Drawing.Point(16, 84);
-            this.buttonMenus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonMenus.Margin = new System.Windows.Forms.Padding(4);
             this.buttonMenus.Name = "buttonMenus";
             this.buttonMenus.Size = new System.Drawing.Size(136, 85);
             this.buttonMenus.TabIndex = 5;
@@ -102,7 +102,7 @@ namespace iCantine
             // 
             this.buttonReservations.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonReservations.Location = new System.Drawing.Point(515, 84);
-            this.buttonReservations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonReservations.Margin = new System.Windows.Forms.Padding(4);
             this.buttonReservations.Name = "buttonReservations";
             this.buttonReservations.Size = new System.Drawing.Size(136, 85);
             this.buttonReservations.TabIndex = 6;
@@ -114,7 +114,7 @@ namespace iCantine
             // 
             this.buttonCustomers.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCustomers.Location = new System.Drawing.Point(347, 84);
-            this.buttonCustomers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCustomers.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCustomers.Name = "buttonCustomers";
             this.buttonCustomers.Size = new System.Drawing.Size(136, 85);
             this.buttonCustomers.TabIndex = 7;
@@ -126,7 +126,7 @@ namespace iCantine
             // 
             this.buttonTickets.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonTickets.Location = new System.Drawing.Point(868, 84);
-            this.buttonTickets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonTickets.Margin = new System.Windows.Forms.Padding(4);
             this.buttonTickets.Name = "buttonTickets";
             this.buttonTickets.Size = new System.Drawing.Size(136, 85);
             this.buttonTickets.TabIndex = 8;
@@ -138,7 +138,7 @@ namespace iCantine
             // 
             this.buttonExtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonExtras.Location = new System.Drawing.Point(692, 84);
-            this.buttonExtras.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonExtras.Margin = new System.Windows.Forms.Padding(4);
             this.buttonExtras.Name = "buttonExtras";
             this.buttonExtras.Size = new System.Drawing.Size(136, 85);
             this.buttonExtras.TabIndex = 9;
@@ -150,10 +150,10 @@ namespace iCantine
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(28, 210);
+            this.label5.Location = new System.Drawing.Point(59, 215);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(115, 17);
+            this.label5.Size = new System.Drawing.Size(131, 20);
             this.label5.TabIndex = 15;
             this.label5.Text = "Segunda-Feira";
             // 
@@ -161,10 +161,10 @@ namespace iCantine
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(848, 210);
+            this.label1.Location = new System.Drawing.Point(879, 215);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 17);
+            this.label1.Size = new System.Drawing.Size(106, 20);
             this.label1.TabIndex = 16;
             this.label1.Text = "Sexta-Feira";
             // 
@@ -172,10 +172,10 @@ namespace iCantine
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(641, 210);
+            this.label2.Location = new System.Drawing.Point(679, 215);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 17);
+            this.label2.Size = new System.Drawing.Size(114, 20);
             this.label2.TabIndex = 17;
             this.label2.Text = "Quinta-Feira";
             // 
@@ -183,10 +183,10 @@ namespace iCantine
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(432, 210);
+            this.label3.Location = new System.Drawing.Point(471, 215);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 17);
+            this.label3.Size = new System.Drawing.Size(116, 20);
             this.label3.TabIndex = 18;
             this.label3.Text = "Quarta-Feira";
             // 
@@ -194,10 +194,10 @@ namespace iCantine
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(237, 210);
+            this.label4.Location = new System.Drawing.Point(268, 215);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 17);
+            this.label4.Size = new System.Drawing.Size(107, 20);
             this.label4.TabIndex = 19;
             this.label4.Text = "Terça-Feira";
             // 
@@ -205,50 +205,50 @@ namespace iCantine
             // 
             this.listBoxMonday.FormattingEnabled = true;
             this.listBoxMonday.ItemHeight = 16;
-            this.listBoxMonday.Location = new System.Drawing.Point(33, 255);
-            this.listBoxMonday.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxMonday.Location = new System.Drawing.Point(32, 266);
+            this.listBoxMonday.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxMonday.Name = "listBoxMonday";
-            this.listBoxMonday.Size = new System.Drawing.Size(168, 260);
+            this.listBoxMonday.Size = new System.Drawing.Size(163, 100);
             this.listBoxMonday.TabIndex = 20;
             // 
             // listBoxTuesday
             // 
             this.listBoxTuesday.FormattingEnabled = true;
             this.listBoxTuesday.ItemHeight = 16;
-            this.listBoxTuesday.Location = new System.Drawing.Point(243, 255);
-            this.listBoxTuesday.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxTuesday.Location = new System.Drawing.Point(244, 266);
+            this.listBoxTuesday.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxTuesday.Name = "listBoxTuesday";
-            this.listBoxTuesday.Size = new System.Drawing.Size(161, 260);
+            this.listBoxTuesday.Size = new System.Drawing.Size(161, 100);
             this.listBoxTuesday.TabIndex = 21;
             // 
             // listBoxWednesday
             // 
             this.listBoxWednesday.FormattingEnabled = true;
             this.listBoxWednesday.ItemHeight = 16;
-            this.listBoxWednesday.Location = new System.Drawing.Point(437, 255);
-            this.listBoxWednesday.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxWednesday.Location = new System.Drawing.Point(452, 266);
+            this.listBoxWednesday.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxWednesday.Name = "listBoxWednesday";
-            this.listBoxWednesday.Size = new System.Drawing.Size(168, 260);
+            this.listBoxWednesday.Size = new System.Drawing.Size(161, 100);
             this.listBoxWednesday.TabIndex = 22;
             // 
             // listBoxThursday
             // 
             this.listBoxThursday.FormattingEnabled = true;
             this.listBoxThursday.ItemHeight = 16;
-            this.listBoxThursday.Location = new System.Drawing.Point(647, 255);
-            this.listBoxThursday.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxThursday.Location = new System.Drawing.Point(661, 266);
+            this.listBoxThursday.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxThursday.Name = "listBoxThursday";
-            this.listBoxThursday.Size = new System.Drawing.Size(161, 260);
+            this.listBoxThursday.Size = new System.Drawing.Size(161, 100);
             this.listBoxThursday.TabIndex = 23;
             // 
             // listBoxFriday
             // 
             this.listBoxFriday.FormattingEnabled = true;
             this.listBoxFriday.ItemHeight = 16;
-            this.listBoxFriday.Location = new System.Drawing.Point(848, 255);
-            this.listBoxFriday.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxFriday.Location = new System.Drawing.Point(859, 266);
+            this.listBoxFriday.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxFriday.Name = "listBoxFriday";
-            this.listBoxFriday.Size = new System.Drawing.Size(168, 260);
+            this.listBoxFriday.Size = new System.Drawing.Size(161, 100);
             this.listBoxFriday.TabIndex = 24;
             // 
             // label6
@@ -268,7 +268,7 @@ namespace iCantine
             this.label7.Location = new System.Drawing.Point(285, 16);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(128, 24);
+            this.label7.Size = new System.Drawing.Size(158, 29);
             this.label7.TabIndex = 25;
             this.label7.Text = "Funcionário:";
             // 
@@ -309,7 +309,7 @@ namespace iCantine
             this.Controls.Add(this.buttonPlates);
             this.Controls.Add(this.buttonLogout);
             this.Controls.Add(this.labelUsername);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
