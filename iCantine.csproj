@@ -72,12 +72,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Migrations\202405252043048_InitialMigration.cs" />
-    <Compile Include="Migrations\202405252043048_InitialMigration.Designer.cs">
+    <Compile Include="Migrations\202405252043048_InitialMigration.Designer.cs"/>
       <DependentUpon>202405252043048_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202405311752382_initialMigration.cs" />
+    <Compile Include="Migrations\202405311752382_initialMigration.Designer.cs"/>
+      <DependentUpon>202405311752382_initialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="models\CRUDController.cs" />
     <Compile Include="Controllers\FormController.cs" />
+    <Compile Include="models\menuController.cs" />
+    <Compile Include="Views\FormEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormEmployee.Designer.cs">
+      <DependentUpon>FormEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\FormReservationsOptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +137,12 @@
     <Compile Include="Views\FormMenu.Designer.cs">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\FormTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormTicket.Designer.cs">
+      <DependentUpon>FormTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,6 +179,12 @@
     <EmbeddedResource Include="Migrations\202405252043048_InitialMigration.resx">
       <DependentUpon>202405252043048_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405311752382_initialMigration.resx">
+      <DependentUpon>202405311752382_initialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormEmployee.resx">
+      <DependentUpon>FormEmployee.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\FormReservationsOptions.resx">
       <DependentUpon>FormReservationsOptions.cs</DependentUpon>
     </EmbeddedResource>
@@ -186,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormTicket.resx">
+      <DependentUpon>FormTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

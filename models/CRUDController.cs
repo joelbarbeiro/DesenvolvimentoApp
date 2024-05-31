@@ -1,4 +1,4 @@
-﻿using iCantine.models;
+using iCantine.models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +12,19 @@ namespace iCantine.Controllers
 {
     public class CRUDController
     {
-        public static bool verifyEmployee(string user)
+        public static bool verifyEmployee(string user, int nif)
         {
             models.Context context = new models.Context();
 
             var query_result = context.Employees.Where(
                 employee =>
-                employee.username == user);
+                employee.username == user ||
+                employee.nif == nif
+                );
             if (query_result.Count() == 0)
             {
-                Console.WriteLine("Registado com successo");
                 return true;
             }
-            Console.WriteLine("Registo Falhado");
             return false;
         }
 
@@ -52,7 +52,7 @@ namespace iCantine.Controllers
 
                 foreach (var menu in query)
                 {
-                    models.Menu item = new models.Menu(menu.Data, menu.Hour, menu.QuantAvailable, menu.PriceStudent, menu.PriceProf);
+                    models.Menu item = new models.Menu(menu.Data, menu.QuantAvailable, menu.PriceStudent, menu.PriceProf);
                     items.Add(item);
                 }
                 return items;
@@ -109,7 +109,7 @@ namespace iCantine.Controllers
             return true;
         }
 
-        public string CapitalizeFirstLetter(string input)
+        public static string CapitalizeFirstLetter(string input)
         {
             if (string.IsNullOrEmpty(input))
                 return input;

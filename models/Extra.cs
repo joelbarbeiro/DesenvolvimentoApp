@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -16,8 +16,10 @@ namespace iCantine.models
         public double Price { get; set; }
         public bool Active { get; set; }
         public int Stock { get; set; }
+     
         public virtual string DisplayName => $"{Description} - Preço: {Price}€ - Stock: {Stock}";
         public virtual string ReservationName => $"{Description}";
+      
         public Extra()
         {
         }

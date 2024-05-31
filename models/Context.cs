@@ -1,13 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace iCantine.models
 {
-    internal class Context:DbContext
+    public class Context:DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Employee> Employees { get; set; }
@@ -17,5 +18,11 @@ namespace iCantine.models
         public DbSet<Receipt> Receipts { get; set; }
         public DbSet<Extra> Extras { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+        }
     }
 }
