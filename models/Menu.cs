@@ -9,14 +9,16 @@ namespace iCantine.models
 {
     public class Menu
     {
+
         [Key]
         public int idMenu { get; set; }
         public DateTime Data { get; set; }
         public int QuantAvailable { get; set; }
         public decimal PriceStudent { get; set; }
         public decimal PriceProf { get; set; }
-        public int idPlates {  get; set; }
+        public int idPlates { get; set; }
         public Plate Plate { get; set; }
+
 
 
 
