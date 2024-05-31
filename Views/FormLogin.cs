@@ -28,7 +28,6 @@ namespace iCantine.Views
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-
             string username = textBoxUsername.Text;
             if (string.IsNullOrEmpty(username))
             {
