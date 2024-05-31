@@ -18,6 +18,8 @@ namespace iCantine.models
         public int idPlates {  get; set; }
         public Plate Plate { get; set; }
 
+
+
         public Menu()
         {
         }
