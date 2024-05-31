@@ -42,13 +42,17 @@ namespace iCantine.Views
             this.listBoxPlates = new System.Windows.Forms.ListBox();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
+            this.listBoxMenus = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.radioButtonDinner = new System.Windows.Forms.RadioButton();
+            this.radioButtonLunch = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 48);
+            this.label1.Location = new System.Drawing.Point(258, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 24);
             this.label1.TabIndex = 1;
@@ -58,7 +62,7 @@ namespace iCantine.Views
             // 
             this.label.AutoSize = true;
             this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label.Location = new System.Drawing.Point(549, 48);
+            this.label.Location = new System.Drawing.Point(601, 48);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(88, 24);
             this.label.TabIndex = 4;
@@ -67,17 +71,18 @@ namespace iCantine.Views
             // listBoxExtras
             // 
             this.listBoxExtras.FormattingEnabled = true;
-            this.listBoxExtras.Location = new System.Drawing.Point(323, 75);
+            this.listBoxExtras.Location = new System.Drawing.Point(447, 75);
             this.listBoxExtras.Name = "listBoxExtras";
-            this.listBoxExtras.Size = new System.Drawing.Size(224, 303);
+            this.listBoxExtras.Size = new System.Drawing.Size(152, 303);
             this.listBoxExtras.TabIndex = 5;
             // 
             // listBoxReservations
             // 
             this.listBoxReservations.FormattingEnabled = true;
-            this.listBoxReservations.Location = new System.Drawing.Point(553, 75);
+            this.listBoxReservations.HorizontalScrollbar = true;
+            this.listBoxReservations.Location = new System.Drawing.Point(605, 75);
             this.listBoxReservations.Name = "listBoxReservations";
-            this.listBoxReservations.Size = new System.Drawing.Size(235, 303);
+            this.listBoxReservations.Size = new System.Drawing.Size(262, 303);
             this.listBoxReservations.TabIndex = 6;
             // 
             // buttonBack
@@ -95,7 +100,7 @@ namespace iCantine.Views
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(434, 406);
+            this.label4.Location = new System.Drawing.Point(533, 406);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(73, 24);
             this.label4.TabIndex = 8;
@@ -104,7 +109,7 @@ namespace iCantine.Views
             // buttonReserve
             // 
             this.buttonReserve.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonReserve.Location = new System.Drawing.Point(687, 394);
+            this.buttonReserve.Location = new System.Drawing.Point(770, 396);
             this.buttonReserve.Name = "buttonReserve";
             this.buttonReserve.Size = new System.Drawing.Size(97, 44);
             this.buttonReserve.TabIndex = 10;
@@ -115,7 +120,7 @@ namespace iCantine.Views
             // comboBoxClient
             // 
             this.comboBoxClient.FormattingEnabled = true;
-            this.comboBoxClient.Location = new System.Drawing.Point(508, 409);
+            this.comboBoxClient.Location = new System.Drawing.Point(612, 409);
             this.comboBoxClient.Name = "comboBoxClient";
             this.comboBoxClient.Size = new System.Drawing.Size(152, 21);
             this.comboBoxClient.TabIndex = 11;
@@ -124,7 +129,7 @@ namespace iCantine.Views
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(549, 9);
+            this.label7.Location = new System.Drawing.Point(617, 9);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(128, 24);
             this.label7.TabIndex = 33;
@@ -134,7 +139,7 @@ namespace iCantine.Views
             // 
             this.labelUsername.AutoSize = true;
             this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUsername.Location = new System.Drawing.Point(683, 9);
+            this.labelUsername.Location = new System.Drawing.Point(751, 9);
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(105, 24);
             this.labelUsername.TabIndex = 32;
@@ -144,7 +149,7 @@ namespace iCantine.Views
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(319, 48);
+            this.label2.Location = new System.Drawing.Point(443, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 24);
             this.label2.TabIndex = 34;
@@ -153,14 +158,14 @@ namespace iCantine.Views
             // listBoxPlates
             // 
             this.listBoxPlates.FormattingEnabled = true;
-            this.listBoxPlates.Location = new System.Drawing.Point(16, 75);
+            this.listBoxPlates.Location = new System.Drawing.Point(262, 75);
             this.listBoxPlates.Name = "listBoxPlates";
-            this.listBoxPlates.Size = new System.Drawing.Size(301, 303);
+            this.listBoxPlates.Size = new System.Drawing.Size(179, 303);
             this.listBoxPlates.TabIndex = 35;
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Location = new System.Drawing.Point(90, 35);
+            this.dateTimePicker.Location = new System.Drawing.Point(181, 13);
             this.dateTimePicker.MaxDate = new System.DateTime(2025, 12, 31, 0, 0, 0, 0);
             this.dateTimePicker.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker.Name = "dateTimePicker";
@@ -179,11 +184,57 @@ namespace iCantine.Views
             this.label3.TabIndex = 37;
             this.label3.Text = "Data para Reserva";
             // 
+            // listBoxMenus
+            // 
+            this.listBoxMenus.FormattingEnabled = true;
+            this.listBoxMenus.Location = new System.Drawing.Point(102, 75);
+            this.listBoxMenus.Name = "listBoxMenus";
+            this.listBoxMenus.Size = new System.Drawing.Size(154, 303);
+            this.listBoxMenus.TabIndex = 38;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(98, 48);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 24);
+            this.label5.TabIndex = 39;
+            this.label5.Text = "Menus";
+            // 
+            // radioButtonDinner
+            // 
+            this.radioButtonDinner.AutoSize = true;
+            this.radioButtonDinner.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonDinner.Location = new System.Drawing.Point(12, 109);
+            this.radioButtonDinner.Name = "radioButtonDinner";
+            this.radioButtonDinner.Size = new System.Drawing.Size(78, 28);
+            this.radioButtonDinner.TabIndex = 40;
+            this.radioButtonDinner.TabStop = true;
+            this.radioButtonDinner.Text = "Jantar";
+            this.radioButtonDinner.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonLunch
+            // 
+            this.radioButtonLunch.AutoSize = true;
+            this.radioButtonLunch.BackColor = System.Drawing.Color.Transparent;
+            this.radioButtonLunch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonLunch.Location = new System.Drawing.Point(12, 75);
+            this.radioButtonLunch.Name = "radioButtonLunch";
+            this.radioButtonLunch.Size = new System.Drawing.Size(93, 28);
+            this.radioButtonLunch.TabIndex = 41;
+            this.radioButtonLunch.TabStop = true;
+            this.radioButtonLunch.Text = "Almoço";
+            this.radioButtonLunch.UseVisualStyleBackColor = false;
+            // 
             // FormMakeReservation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(879, 450);
+            this.Controls.Add(this.radioButtonDinner);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.listBoxMenus);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.listBoxPlates);
@@ -198,6 +249,7 @@ namespace iCantine.Views
             this.Controls.Add(this.listBoxExtras);
             this.Controls.Add(this.label);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.radioButtonLunch);
             this.Name = "FormMakeReservation";
             this.Text = "Form Efetuar Reservas";
             this.ResumeLayout(false);
@@ -221,5 +273,9 @@ namespace iCantine.Views
         private System.Windows.Forms.ListBox listBoxPlates;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ListBox listBoxMenus;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.RadioButton radioButtonDinner;
+        private System.Windows.Forms.RadioButton radioButtonLunch;
     }
 }
