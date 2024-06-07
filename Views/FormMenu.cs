@@ -86,9 +86,8 @@ namespace iCantine.Views
                     decimal.TryParse(textBoxPriceStudent.Text, out studentPrice);
                     decimal.TryParse(textBoxPriceProfessor.Text, out professorPrice);
 
-                    models.Menu menu = new models.Menu(hour, quantity, studentPrice, professorPrice);
-
-                    //menuController.saveMenu(menu, plate, extras);
+                    models.Menu menu = new models.Menu(day,hour, quantity, studentPrice, professorPrice);
+                    menuController.saveMenu(menu,plate, extras);
                     numSaves++;
                 }
                 //menuItems = menuController.loadMenu();

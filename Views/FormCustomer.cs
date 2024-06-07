@@ -194,7 +194,7 @@ namespace iCantine.Views
         }
         public void setDisableButtons()
         {
-            if(buttonRegister.Text == "Gravar")
+            if (buttonRegister.Text == "Gravar")
             {
                 buttonRegister.Enabled = true;
                 buttonEdit.Enabled = false;
@@ -330,12 +330,19 @@ namespace iCantine.Views
             comboBoxFilters.Items.Add("Estudante");
             comboBoxFilters.SelectedIndex = 0;
         }
+
         public void listBoxStudentsUpdate()
         {
             models.Context context = new models.Context();
             var professors = context.Users.OfType<Professor>().ToList();
             listBoxClients.DataSource = null;
             listBoxClients.DataSource = professors;
+            listBoxClients.DisplayMember = "DisplayName";
+        }
+        public void listBoxSearchedUpdate(List<Client> searched)
+        {
+            listBoxClients.DataSource = null;
+            listBoxClients.DataSource = searched;
             listBoxClients.DisplayMember = "DisplayName";
         }
         public void listBoxProfessorsUpdate()
@@ -372,6 +379,36 @@ namespace iCantine.Views
         {
             FormEmployee formEmployee = new FormEmployee(user);
             FormController.changeForm(formEmployee, this);
+        }
+
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            string userToSearch = textBoxSearch.Text.Trim(); // Trim any leading/trailing whitespace
+            int nifToSearch;
+            bool isNifValid = int.TryParse(textBoxSearch.Text, out nifToSearch);
+
+            try
+            {
+                using (var context = new models.Context())
+                {
+                    // Perform the query
+                    var clients = context.Users
+                        .OfType<Client>()
+                        .Where(c => c.name.Contains(userToSearch) || (isNifValid && c.nif == nifToSearch))
+                        .ToList();
+
+                    listBoxSearchedUpdate(clients);
+
+                    if (clients.Count == 0)
+                    {
+                        MessageBox.Show("Nenhum cliente com esse Nome/NIF");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao procurar cliente: {ex.Message}");
+            }
         }
     }
 

@@ -41,14 +41,31 @@ namespace iCantine
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.listBoxMonday = new System.Windows.Forms.ListBox();
-            this.listBoxTuesday = new System.Windows.Forms.ListBox();
-            this.listBoxWednesday = new System.Windows.Forms.ListBox();
-            this.listBoxThursday = new System.Windows.Forms.ListBox();
-            this.listBoxFriday = new System.Windows.Forms.ListBox();
+            this.listBoxMondayLunch = new System.Windows.Forms.ListBox();
+            this.listBoxTuesdayLunch = new System.Windows.Forms.ListBox();
+            this.listBoxWednesdayLunch = new System.Windows.Forms.ListBox();
+            this.listBoxThursdayLunch = new System.Windows.Forms.ListBox();
+            this.listBoxFridayLunch = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.buttonEmployee = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.listBoxFridayDinner = new System.Windows.Forms.ListBox();
+            this.listBoxThursdayDinner = new System.Windows.Forms.ListBox();
+            this.listBoxWednesdayDinner = new System.Windows.Forms.ListBox();
+            this.listBoxTuesdayDinner = new System.Windows.Forms.ListBox();
+            this.listBoxMondayDinner = new System.Windows.Forms.ListBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.labelSelectedWeek = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelUsername
@@ -150,7 +167,7 @@ namespace iCantine
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(59, 215);
+            this.label5.Location = new System.Drawing.Point(45, 228);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(131, 20);
@@ -161,7 +178,7 @@ namespace iCantine
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(879, 215);
+            this.label1.Location = new System.Drawing.Point(880, 228);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(106, 20);
@@ -172,7 +189,7 @@ namespace iCantine
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(679, 215);
+            this.label2.Location = new System.Drawing.Point(678, 228);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(114, 20);
@@ -183,7 +200,7 @@ namespace iCantine
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(471, 215);
+            this.label3.Location = new System.Drawing.Point(472, 228);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(116, 20);
@@ -194,62 +211,62 @@ namespace iCantine
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(268, 215);
+            this.label4.Location = new System.Drawing.Point(272, 228);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(107, 20);
             this.label4.TabIndex = 19;
             this.label4.Text = "Terça-Feira";
             // 
-            // listBoxMonday
+            // listBoxMondayLunch
             // 
-            this.listBoxMonday.FormattingEnabled = true;
-            this.listBoxMonday.ItemHeight = 16;
-            this.listBoxMonday.Location = new System.Drawing.Point(32, 266);
-            this.listBoxMonday.Margin = new System.Windows.Forms.Padding(4);
-            this.listBoxMonday.Name = "listBoxMonday";
-            this.listBoxMonday.Size = new System.Drawing.Size(163, 100);
-            this.listBoxMonday.TabIndex = 20;
+            this.listBoxMondayLunch.FormattingEnabled = true;
+            this.listBoxMondayLunch.ItemHeight = 16;
+            this.listBoxMondayLunch.Location = new System.Drawing.Point(25, 290);
+            this.listBoxMondayLunch.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxMondayLunch.Name = "listBoxMondayLunch";
+            this.listBoxMondayLunch.Size = new System.Drawing.Size(163, 100);
+            this.listBoxMondayLunch.TabIndex = 20;
             // 
-            // listBoxTuesday
+            // listBoxTuesdayLunch
             // 
-            this.listBoxTuesday.FormattingEnabled = true;
-            this.listBoxTuesday.ItemHeight = 16;
-            this.listBoxTuesday.Location = new System.Drawing.Point(244, 266);
-            this.listBoxTuesday.Margin = new System.Windows.Forms.Padding(4);
-            this.listBoxTuesday.Name = "listBoxTuesday";
-            this.listBoxTuesday.Size = new System.Drawing.Size(161, 100);
-            this.listBoxTuesday.TabIndex = 21;
+            this.listBoxTuesdayLunch.FormattingEnabled = true;
+            this.listBoxTuesdayLunch.ItemHeight = 16;
+            this.listBoxTuesdayLunch.Location = new System.Drawing.Point(241, 290);
+            this.listBoxTuesdayLunch.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxTuesdayLunch.Name = "listBoxTuesdayLunch";
+            this.listBoxTuesdayLunch.Size = new System.Drawing.Size(161, 100);
+            this.listBoxTuesdayLunch.TabIndex = 21;
             // 
-            // listBoxWednesday
+            // listBoxWednesdayLunch
             // 
-            this.listBoxWednesday.FormattingEnabled = true;
-            this.listBoxWednesday.ItemHeight = 16;
-            this.listBoxWednesday.Location = new System.Drawing.Point(452, 266);
-            this.listBoxWednesday.Margin = new System.Windows.Forms.Padding(4);
-            this.listBoxWednesday.Name = "listBoxWednesday";
-            this.listBoxWednesday.Size = new System.Drawing.Size(161, 100);
-            this.listBoxWednesday.TabIndex = 22;
+            this.listBoxWednesdayLunch.FormattingEnabled = true;
+            this.listBoxWednesdayLunch.ItemHeight = 16;
+            this.listBoxWednesdayLunch.Location = new System.Drawing.Point(453, 290);
+            this.listBoxWednesdayLunch.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxWednesdayLunch.Name = "listBoxWednesdayLunch";
+            this.listBoxWednesdayLunch.Size = new System.Drawing.Size(161, 100);
+            this.listBoxWednesdayLunch.TabIndex = 22;
             // 
-            // listBoxThursday
+            // listBoxThursdayLunch
             // 
-            this.listBoxThursday.FormattingEnabled = true;
-            this.listBoxThursday.ItemHeight = 16;
-            this.listBoxThursday.Location = new System.Drawing.Point(661, 266);
-            this.listBoxThursday.Margin = new System.Windows.Forms.Padding(4);
-            this.listBoxThursday.Name = "listBoxThursday";
-            this.listBoxThursday.Size = new System.Drawing.Size(161, 100);
-            this.listBoxThursday.TabIndex = 23;
+            this.listBoxThursdayLunch.FormattingEnabled = true;
+            this.listBoxThursdayLunch.ItemHeight = 16;
+            this.listBoxThursdayLunch.Location = new System.Drawing.Point(663, 290);
+            this.listBoxThursdayLunch.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxThursdayLunch.Name = "listBoxThursdayLunch";
+            this.listBoxThursdayLunch.Size = new System.Drawing.Size(161, 100);
+            this.listBoxThursdayLunch.TabIndex = 23;
             // 
-            // listBoxFriday
+            // listBoxFridayLunch
             // 
-            this.listBoxFriday.FormattingEnabled = true;
-            this.listBoxFriday.ItemHeight = 16;
-            this.listBoxFriday.Location = new System.Drawing.Point(859, 266);
-            this.listBoxFriday.Margin = new System.Windows.Forms.Padding(4);
-            this.listBoxFriday.Name = "listBoxFriday";
-            this.listBoxFriday.Size = new System.Drawing.Size(161, 100);
-            this.listBoxFriday.TabIndex = 24;
+            this.listBoxFridayLunch.FormattingEnabled = true;
+            this.listBoxFridayLunch.ItemHeight = 16;
+            this.listBoxFridayLunch.Location = new System.Drawing.Point(879, 290);
+            this.listBoxFridayLunch.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxFridayLunch.Name = "listBoxFridayLunch";
+            this.listBoxFridayLunch.Size = new System.Drawing.Size(161, 100);
+            this.listBoxFridayLunch.TabIndex = 24;
             // 
             // label6
             // 
@@ -284,18 +301,213 @@ namespace iCantine
             this.buttonEmployee.UseVisualStyleBackColor = true;
             this.buttonEmployee.Click += new System.EventHandler(this.buttonEmployee_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(68, 266);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(71, 20);
+            this.label8.TabIndex = 27;
+            this.label8.Text = "Almoço";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(286, 266);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(71, 20);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Almoço";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(498, 267);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(71, 20);
+            this.label10.TabIndex = 29;
+            this.label10.Text = "Almoço";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(710, 267);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(71, 20);
+            this.label11.TabIndex = 30;
+            this.label11.Text = "Almoço";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(924, 267);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(71, 20);
+            this.label12.TabIndex = 31;
+            this.label12.Text = "Almoço";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(68, 403);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(62, 20);
+            this.label17.TabIndex = 37;
+            this.label17.Text = "Jantar";
+            // 
+            // listBoxFridayDinner
+            // 
+            this.listBoxFridayDinner.FormattingEnabled = true;
+            this.listBoxFridayDinner.ItemHeight = 16;
+            this.listBoxFridayDinner.Location = new System.Drawing.Point(879, 427);
+            this.listBoxFridayDinner.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxFridayDinner.Name = "listBoxFridayDinner";
+            this.listBoxFridayDinner.Size = new System.Drawing.Size(161, 100);
+            this.listBoxFridayDinner.TabIndex = 36;
+            // 
+            // listBoxThursdayDinner
+            // 
+            this.listBoxThursdayDinner.FormattingEnabled = true;
+            this.listBoxThursdayDinner.ItemHeight = 16;
+            this.listBoxThursdayDinner.Location = new System.Drawing.Point(663, 427);
+            this.listBoxThursdayDinner.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxThursdayDinner.Name = "listBoxThursdayDinner";
+            this.listBoxThursdayDinner.Size = new System.Drawing.Size(161, 100);
+            this.listBoxThursdayDinner.TabIndex = 35;
+            // 
+            // listBoxWednesdayDinner
+            // 
+            this.listBoxWednesdayDinner.FormattingEnabled = true;
+            this.listBoxWednesdayDinner.ItemHeight = 16;
+            this.listBoxWednesdayDinner.Location = new System.Drawing.Point(453, 427);
+            this.listBoxWednesdayDinner.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxWednesdayDinner.Name = "listBoxWednesdayDinner";
+            this.listBoxWednesdayDinner.Size = new System.Drawing.Size(161, 100);
+            this.listBoxWednesdayDinner.TabIndex = 34;
+            // 
+            // listBoxTuesdayDinner
+            // 
+            this.listBoxTuesdayDinner.FormattingEnabled = true;
+            this.listBoxTuesdayDinner.ItemHeight = 16;
+            this.listBoxTuesdayDinner.Location = new System.Drawing.Point(241, 427);
+            this.listBoxTuesdayDinner.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxTuesdayDinner.Name = "listBoxTuesdayDinner";
+            this.listBoxTuesdayDinner.Size = new System.Drawing.Size(161, 100);
+            this.listBoxTuesdayDinner.TabIndex = 33;
+            // 
+            // listBoxMondayDinner
+            // 
+            this.listBoxMondayDinner.FormattingEnabled = true;
+            this.listBoxMondayDinner.ItemHeight = 16;
+            this.listBoxMondayDinner.Location = new System.Drawing.Point(25, 427);
+            this.listBoxMondayDinner.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxMondayDinner.Name = "listBoxMondayDinner";
+            this.listBoxMondayDinner.Size = new System.Drawing.Size(163, 100);
+            this.listBoxMondayDinner.TabIndex = 32;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(295, 403);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(62, 20);
+            this.label13.TabIndex = 38;
+            this.label13.Text = "Jantar";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(507, 403);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(62, 20);
+            this.label14.TabIndex = 39;
+            this.label14.Text = "Jantar";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(710, 403);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(62, 20);
+            this.label15.TabIndex = 40;
+            this.label15.Text = "Jantar";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(924, 403);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(62, 20);
+            this.label16.TabIndex = 41;
+            this.label16.Text = "Jantar";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(114, 193);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker1.TabIndex = 42;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // labelSelectedWeek
+            // 
+            this.labelSelectedWeek.AutoSize = true;
+            this.labelSelectedWeek.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSelectedWeek.Location = new System.Drawing.Point(355, 190);
+            this.labelSelectedWeek.Name = "labelSelectedWeek";
+            this.labelSelectedWeek.Size = new System.Drawing.Size(88, 25);
+            this.labelSelectedWeek.TabIndex = 45;
+            this.labelSelectedWeek.Text = "semana";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.labelSelectedWeek);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.listBoxFridayDinner);
+            this.Controls.Add(this.listBoxThursdayDinner);
+            this.Controls.Add(this.listBoxWednesdayDinner);
+            this.Controls.Add(this.listBoxTuesdayDinner);
+            this.Controls.Add(this.listBoxMondayDinner);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.buttonEmployee);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.listBoxFriday);
-            this.Controls.Add(this.listBoxThursday);
-            this.Controls.Add(this.listBoxWednesday);
-            this.Controls.Add(this.listBoxTuesday);
-            this.Controls.Add(this.listBoxMonday);
+            this.Controls.Add(this.listBoxFridayLunch);
+            this.Controls.Add(this.listBoxThursdayLunch);
+            this.Controls.Add(this.listBoxWednesdayLunch);
+            this.Controls.Add(this.listBoxTuesdayLunch);
+            this.Controls.Add(this.listBoxMondayLunch);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -332,14 +544,31 @@ namespace iCantine
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox listBoxMonday;
-        private System.Windows.Forms.ListBox listBoxTuesday;
-        private System.Windows.Forms.ListBox listBoxWednesday;
-        private System.Windows.Forms.ListBox listBoxThursday;
-        private System.Windows.Forms.ListBox listBoxFriday;
+        private System.Windows.Forms.ListBox listBoxMondayLunch;
+        private System.Windows.Forms.ListBox listBoxTuesdayLunch;
+        private System.Windows.Forms.ListBox listBoxWednesdayLunch;
+        private System.Windows.Forms.ListBox listBoxThursdayLunch;
+        private System.Windows.Forms.ListBox listBoxFridayLunch;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button buttonEmployee;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ListBox listBoxFridayDinner;
+        private System.Windows.Forms.ListBox listBoxThursdayDinner;
+        private System.Windows.Forms.ListBox listBoxWednesdayDinner;
+        private System.Windows.Forms.ListBox listBoxTuesdayDinner;
+        private System.Windows.Forms.ListBox listBoxMondayDinner;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label labelSelectedWeek;
     }
 }
 
