@@ -12,6 +12,7 @@ namespace iCantine.models
         [Key]
         public int idMenuExtras { get; set; }
         public int idMenu { get; set; }
+        public virtual ICollection<Menu> Menus { get; set; }
         public int idExtras { get; set; }
         public Extra Extras { get; set; }
 

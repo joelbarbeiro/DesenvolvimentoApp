@@ -11,8 +11,10 @@ namespace iCantine.models
     {
         [Key]
         public int idMenuPlates { get; set; }
+        public int idMenu { get; set; }
+        public virtual ICollection<Menu> Menus { get; set; }
         public int idPlates { get; set; }
-        public int idExtras { get; set; }
+        
         public Plate Plates { get; set; }
 
         public MenuPlate()

@@ -29,7 +29,7 @@ namespace iCantine.Views
             this.user = user;
             labelUsername.Text = user;
 
-            menuItems = menuController.loadMenu();
+            //menuItems = menuController.loadMenu();
             plates = menuController.loadPlatesMenu();
             extra = menuController.loadExtrasMenu();
 
@@ -88,10 +88,10 @@ namespace iCantine.Views
 
                     models.Menu menu = new models.Menu(hour, quantity, studentPrice, professorPrice);
 
-                    menuController.saveMenu(menu, plate, extras);
+                    //menuController.saveMenu(menu, plate, extras);
                     numSaves++;
                 }
-                menuItems = menuController.loadMenu();
+                //menuItems = menuController.loadMenu();
                 updateMenuListBox();
             }
         }

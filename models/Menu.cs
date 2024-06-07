@@ -16,8 +16,10 @@ namespace iCantine.models
         public int QuantAvailable { get; set; }
         public decimal PriceStudent { get; set; }
         public decimal PriceProf { get; set; }
-        public int idPlates { get; set; }
-        public Plate Plate { get; set; }
+        public int idMenuPlates { get; set; }
+        public MenuPlate MenuPlates { get; set; }
+        public int idMenuExtra { get; set; }
+        public MenuExtra MenuExtras { get; set; }
 
 
 
