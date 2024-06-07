@@ -11,7 +11,26 @@ namespace iCantine.models
 {
     internal class menuController
     {
-        
+        public static List<models.Menu> loadMenus(DateTime selectedDay)
+        {
+            using (Context context = new Context())
+            {
+                var query = context.Menus.Where(menu =>
+                                                menu.Data == selectedDay);
+                if (query.Count() > 0)
+                {
+                    List<models.Menu> items = new List<models.Menu>();
+
+                    foreach (var menu in query)
+                    {
+                        models.Menu item = new models.Menu(menu.Data,menu.Hour, menu.QuantAvailable, menu.PriceStudent, menu.PriceProf);
+                        items.Add(item);
+                    }
+                    return items;
+                }
+            }
+            return null;
+        }
         public static List<Extra> loadExtrasMenu()
         {
             List<Extra> extras = new List<Extra>();
