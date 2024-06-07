@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
@@ -10,28 +11,10 @@ namespace iCantine.models
 {
     internal class menuController
     {
-        public static List<models.Menu> loadMenus(DateTime selectedDay)
-        {
-            using (Context context = new Context())
-            {
-                var query = context.Menus.Where(menu =>
-                                                menu.Data == selectedDay);
-                if (query.Count() > 0)
-                {
-                    List<models.Menu> items = new List<models.Menu>();
-
-                    foreach (var menu in query)
-                    {
-                        models.Menu item = new models.Menu(menu.Data, menu.QuantAvailable, menu.PriceStudent, menu.PriceProf);
-                        items.Add(item);
-                    }
-                    return items;
-                }
-            }
-            return null;
-        }
+        
         public static List<Extra> loadExtrasMenu()
         {
+            List<Extra> extras = new List<Extra>();
             using (Context context = new Context())
             {
                 var query = context.Extras.Where(
@@ -39,13 +22,7 @@ namespace iCantine.models
                     extra.Active == true);
                 if (query.Count() > 0)
                 {
-                    List<Extra> extras = new List<Extra>();
-
-                    foreach (var extra in query)
-                    {
-                        Extra item = new Extra(extra.Description, extra.Price, 0);
-                        extras.Add(item);
-                    }
+                    extras = query.ToList();
                     return extras;
                 }
             }
@@ -54,6 +31,7 @@ namespace iCantine.models
 
         public static List<Plate> loadPlatesMenu(string type = "Todos")
         {
+            List<Plate> plates = new List<Plate>();
             using (Context context = new Context())
                 {
 
@@ -70,13 +48,7 @@ namespace iCantine.models
 
                 if (query.Count() > 0)
                 {
-                    List<Plate> plates = new List<Plate>();
-
-                    foreach (var plate in query)
-                    {
-                        Plate item = new Plate(plate.Description, plate.Type, 0, 0);
-                        plates.Add(item);
-                    }
+                    plates = query.ToList();
                     return plates;
                 }
             }
@@ -113,43 +85,77 @@ namespace iCantine.models
             return item;
         }
 
-        public static bool saveMenu(models.Menu items, Plate plate, List<Extra> extra)
+        public static bool saveMenu(models.Menu items, List<Plate> plate, List<Extra> extra)
         {
             using (Context context = new Context())
             {
-                items.idPlates = plate.idPlate;
                 context.Menus.Add(items);
                 context.SaveChanges();
+                foreach (var itemPlate in plate)
+                {
+                    var saveToMenuPlate = new MenuPlate { idMenu = items.idMenu, idPlates = itemPlate.idPlate };
+                    context.MenuPlates.Add(saveToMenuPlate);
+                    context.MenuPlates.Add(saveToMenuPlate);
+                }
                 foreach (var itemsExtra in extra)
                 {
-                    /*
                     var saveToMenuExtra = new MenuExtra { idMenu = items.idMenu, idExtras = itemsExtra.idExtra };
                     context.MenuExtras.Add(saveToMenuExtra);
-                    context.SaveChanges();
-                    */
-                    
+                    context.SaveChanges();                  
                 }
             }
             return true;
         }
-        public static List<Menu> loadMenu()
-        {
-            var items = new List<Menu>();
-            using(Context context = new Context())
-            {
-                var query = context.Menus;
 
-                return query.ToList();
-            }
-        }
-        /*public static get()
+        public static List<Menu> loadMenu (DateTime date)
         {
-            var studentsInMath = context.Courses
-                .Include(c => c.StudentCourses.Select(sc => sc.Student))
-                .Single(c => c.Title == "Mathematics")
-                .StudentCourses
-                .Select(sc => sc.Student)
-                .ToList();
+            var menus = new List<Menu>();
+
+            using (Context context = new Context())
+            {
+                menus = context.Menus.Where(
+                    menu =>
+                    menu.Data == date
+                    ).ToList();
+            }
+
+            return menus;
+        }
+        public static List<Plate> loadMenuPlate (int idMenu)
+        {
+            var plates = new List<Plate>();
+            using (Context context = new Context())
+            {
+
+            }
+            return plates;
+        }
+        public static List<Extra> loadMenuExtra (int idMenu)
+        {
+            var extra = new List<Extra>();
+            using (Context context =new Context())
+            {
+                /*extra = (from mp  in context.Menus
+                         join p in DbContext)
+                         */
+            }
+            return extra;
+        }
+        /*
+         
+
+        var entryPoint = (from ep in dbContext.tbl_EntryPoint
+                 join e in dbContext.tbl_Entry on ep.EID equals e.EID
+                 join t in dbContext.tbl_Title on e.TID equals t.TID
+                 where e.OwnerID == user.UID
+                 select new {
+                     UID = e.OwnerID,
+                     TID = e.TID,
+                     Title = t.Title,
+                     EID = e.EID
+                 }).Take(10);
+       
+
         }*/
     }
 }
