@@ -249,6 +249,21 @@ namespace iCantine.Views
 
                     context.SaveChanges();
                 }
+                var menuPlate = context.MenuPlates.SingleOrDefault(mp => mp.idPlates == selectedPlate.idPlate);
+                if (menuPlate == null)
+                {
+                    menuPlate = new MenuPlate
+                    {
+                        idPlates = selectedPlate.idPlate,
+                        idExtras = 0
+                    };
+                    context.MenuPlates.Add(menuPlate);
+                }
+                else
+                {
+                    menuPlate.idPlates = selectedPlate.idPlate;
+                }
+                context.SaveChanges();
             }
         }
         private void addControl()
@@ -264,6 +279,7 @@ namespace iCantine.Views
                 return;
             }
         }
+        
 
         
     }

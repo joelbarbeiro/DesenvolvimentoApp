@@ -20,7 +20,7 @@ namespace iCantine.models
         public double Price { get; set; }
         public virtual ICollection<MenuPlate> MenuPlates { get; set; }
         public virtual string DisplayName => $"Prato: {Description}€ - Tipo: {Type} - Stock: {Stock} - Price: {Price}";
-        public virtual string ReservationName => $"{Description}";
+        public virtual string ReservationName => $"{Description} - {Price}";
         public Plate()
         {
 

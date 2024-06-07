@@ -41,6 +41,7 @@ namespace iCantine.Views
             if (query_result.Count() == 0)
             {
                 MessageBox.Show("Login Falhado");
+                textBoxUsername.Clear();
                 return;
             }
             Employee user = query_result.First();

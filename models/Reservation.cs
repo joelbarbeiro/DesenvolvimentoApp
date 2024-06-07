@@ -11,7 +11,7 @@ namespace iCantine.models
     {
         [Key]
         public int idReservation { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public string Plate { get; set; }
         public string Extra { get; set; }
         public string Client { get; set; }
@@ -28,7 +28,7 @@ namespace iCantine.models
         }
 
 
-        public Reservation(string plate, string extra, string client, string date, string hour)
+        public Reservation(string plate, string extra, string client, DateTime date, string hour)
         {
             Plate = plate;
             Extra = extra;

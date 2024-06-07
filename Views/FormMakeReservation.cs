@@ -39,6 +39,7 @@ namespace iCantine.Views
             updateComboBox();
             updatelistBoxMenus();
             updateListBoxReservations();
+            listBoxReservations.DataSource = null;
         }
         public void updatelistBoxMenus()
         {
@@ -84,20 +85,42 @@ namespace iCantine.Views
                 comboBoxClient.DisplayMember = "Name";
             }
         }
-        
+
 
         private void buttonReserve_Click(object sender, EventArgs e)
         {
-            string plate = listBoxPlates.SelectedItem.ToString();
-            string extra = listBoxExtras.SelectedItem.ToString();
-            string client = comboBoxClient.SelectedItem.ToString();
-            string date = dateTimePicker.Value.Date.ToString("d");
-            
-
-            if (validationControl(plate, extra, client))
+            if (listBoxReservations.SelectedItem == null)
             {
-                Reservation reservation = new Reservation(plate, extra, client, date, hour);
-                Context context = new Context();
+                MessageBox.Show("Nenhuma reserva selecionada");
+                return;
+            }
+
+            string reservationString = listBoxReservations.SelectedItem.ToString();
+            
+            string[] reservationItems = reservationString.Split(' ');
+
+            if(reservationItems.Length < 5)
+            {
+                MessageBox.Show("Formato da reserva inválido");
+                return;
+            }
+            for(int i=0; i<5; i++)
+            {
+                MessageBox.Show(reservationItems[i]);
+            }
+            string reservationPlate = reservationItems[0];
+            string reservationExtra = reservationItems[1];
+            string reservationClient = reservationItems[2];
+            string reservationMenu = reservationItems[3];
+            string reservationDate = reservationItems[4];
+            string reservationHour = reservationItems[5];
+
+            //DateTime parsedDate = DateTime.Parse(reservationDate);
+
+
+            var reservation = new Reservation(reservationPlate, reservationExtra, reservationClient, DateTime.Parse(reservationDate), reservationHour);
+            using (var context = new models.Context())
+            {
                 try
                 {
                     context.Reservations.Add(reservation);
@@ -107,9 +130,38 @@ namespace iCantine.Views
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro: " + ex);
+                    MessageBox.Show("Erro: " + ex.Message);
                 }
             }
+
+
+            /*
+            string plate = listBoxPlates.SelectedItem.ToString();
+            string extra = listBoxExtras.SelectedItem.ToString();
+            string client = comboBoxClient.SelectedItem.ToString();
+            string date = dateTimePicker.Value.Date.ToString("d");
+            DateTime selectedDate = dateTimePicker.Value.Date;
+
+            if (validationControl(plate, extra, client))
+            {
+                UpdateHour();
+                Reservation reservation = new Reservation(plate, extra, client, selectedDate, hour);
+                using (var context = new models.Context())
+                {
+                    try
+                    {
+                        context.Reservations.Add(reservation);
+                        context.SaveChanges();
+                        MessageBox.Show("Reserva guardada com sucesso");
+                        updateListBoxReservations();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro: " + ex.Message);
+                    }
+                }
+            }*/
+
         }
         private void UpdateHour()
         {
@@ -143,19 +195,19 @@ namespace iCantine.Views
 
             return char.ToUpper(input[0]) + input.Substring(1);
         }
-        private bool validationControl(string plate, string extra, string client)
+        private bool validationControl(Plate plate, List<Extra> Extra, User client, models.Menu menu)
         {
-            if (string.IsNullOrEmpty(extra))
+            if (extra == null)
             {
                 MessageBox.Show("Selecione um extra.");
                 return false;
             }
-            if (string.IsNullOrEmpty(plate))
+            if (plate == null && listBoxMenus.SelectedItem == null)
             {
-                MessageBox.Show("Selecione um Plate.");
+                MessageBox.Show("Selecione um Plate ou um Menu.");
                 return false;
             }
-            if (string.IsNullOrEmpty(client))
+            if (client == null)
             {
                 MessageBox.Show("Selecione um cliente");
                 return false;
@@ -208,5 +260,35 @@ namespace iCantine.Views
             UpdateHour();
         }
 
+        private void addReserve()
+        {
+            /*Plate plate = (Plate)listBoxPlates.SelectedItem;
+            Extra extra = (Extra)listBoxExtras.SelectedItem;
+            User client = (User)comboBoxClient.SelectedItem;
+            DateTime date = (DateTime)dateTimePicker.Value.Date;
+            
+            var finalItems = plate + " " + extra + " " + client + " " + date + " " + hour;
+            listBoxReservations.Items.Add(finalItems);*/
+
+            var selectedPlate = listBoxPlates.SelectedItem as Plate;
+            List<Extra> selectedExtra = listBoxExtras.SelectedItem as List<Extra>;
+            var selectedClient = comboBoxClient.SelectedItem as Client;
+            var selectedMenu = listBoxMenus.SelectedItem as models.Menu;
+            DateTime date = (DateTime)dateTimePicker.Value.Date;
+
+            UpdateHour();
+
+            if (validationControl(selectedPlate, selectedExtra, selectedClient, selectedMenu))
+            {
+                string dateString = date.ToString("d");
+                var finalItems = selectedPlate + " " + selectedExtra + " " + selectedClient + " " + selectedMenu + " " + dateTimePicker.Value.Date + " " + hour;
+                listBoxReservations.Items.Add(finalItems);
+            }
+        }
+
+        private void buttonAddReserve_Click_1(object sender, EventArgs e)
+        {
+            addReserve();
+        }
     }
 }
