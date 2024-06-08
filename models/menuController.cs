@@ -90,5 +90,16 @@ namespace iCantine.models
             }
             return false;
         }
+        public bool deleteMenu(models.Menu itemToRemove)
+        {
+            var menuToRemove = Context.Menus.SingleOrDefault(m => m.idMenu == itemToRemove.idMenu);
+            if (menuToRemove != null)
+            {
+                Context.Menus.Remove(menuToRemove);
+                Context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
     }
 }

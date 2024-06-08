@@ -22,6 +22,7 @@ namespace iCantine.Views
         public List<Extra> extra;
         public string user;
         private MenuController menuController = new MenuController();
+
         public FormMenu(string user)
         {
             InitializeComponent();
@@ -407,6 +408,7 @@ namespace iCantine.Views
             }
         }
 
+
         private int getSavedHour(DateTime savedDateTime)
         {
             return (int)savedDateTime.Hour;
@@ -422,6 +424,27 @@ namespace iCantine.Views
             {
                 checkBoxDinner.Checked = true;
                 checkBoxLunch.Checked = false;
+            }
+        }
+
+        public void buttonDeleteMenu_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Tem a certesa que quer eliminar o menu selecionado?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            // Handle the result
+            if (result == DialogResult.OK)
+            {
+                var selectedMenu = new models.Menu();
+                selectedMenu = (models.Menu)listBoxMenu.SelectedItem;
+
+                if (menuController.deleteMenu(selectedMenu))
+                {
+                    MessageBox.Show("Menu eliminado com sucesso!");
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao eliminar o menu!");
+                }
             }
         }
     }

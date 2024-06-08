@@ -142,6 +142,7 @@ namespace iCantine.Views
             this.buttonDeleteMenu.TabIndex = 11;
             this.buttonDeleteMenu.Text = "Eliminar";
             this.buttonDeleteMenu.UseVisualStyleBackColor = true;
+            this.buttonDeleteMenu.Click += new System.EventHandler(this.buttonDeleteMenu_Click);
             // 
             // comboBoxPlateType
             // 
