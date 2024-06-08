@@ -10,7 +10,6 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "iCantine.models.Context";
         }
 
         protected override void Seed(iCantine.models.Context context)

@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class update5 : DbMigration
     {
         public override void Up()
         {
@@ -40,7 +40,6 @@
                     {
                         idMenu = c.Int(nullable: false, identity: true),
                         Data = c.DateTime(nullable: false),
-                        Hour = c.DateTime(nullable: false),
                         QuantAvailable = c.Int(nullable: false),
                         PriceStudent = c.Decimal(nullable: false, precision: 18, scale: 2),
                         PriceProf = c.Decimal(nullable: false, precision: 18, scale: 2),

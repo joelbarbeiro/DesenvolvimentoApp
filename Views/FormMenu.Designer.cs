@@ -66,7 +66,7 @@ namespace iCantine.Views
             // listBoxPlate
             // 
             this.listBoxPlate.FormattingEnabled = true;
-            this.listBoxPlate.Location = new System.Drawing.Point(197, 118);
+            this.listBoxPlate.Location = new System.Drawing.Point(149, 118);
             this.listBoxPlate.Name = "listBoxPlate";
             this.listBoxPlate.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxPlate.Size = new System.Drawing.Size(125, 199);
@@ -87,7 +87,7 @@ namespace iCantine.Views
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(197, 69);
+            this.label3.Location = new System.Drawing.Point(149, 69);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 20);
             this.label3.TabIndex = 4;
@@ -96,15 +96,15 @@ namespace iCantine.Views
             // listBoxMenu
             // 
             this.listBoxMenu.FormattingEnabled = true;
-            this.listBoxMenu.Location = new System.Drawing.Point(459, 92);
+            this.listBoxMenu.Location = new System.Drawing.Point(411, 92);
             this.listBoxMenu.Name = "listBoxMenu";
-            this.listBoxMenu.Size = new System.Drawing.Size(193, 225);
+            this.listBoxMenu.Size = new System.Drawing.Size(418, 225);
             this.listBoxMenu.TabIndex = 7;
             // 
             // buttonBack
             // 
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBack.Location = new System.Drawing.Point(67, 323);
+            this.buttonBack.Location = new System.Drawing.Point(18, 323);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(125, 36);
             this.buttonBack.TabIndex = 8;
@@ -116,7 +116,7 @@ namespace iCantine.Views
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.Location = new System.Drawing.Point(455, 68);
+            this.label5.Location = new System.Drawing.Point(407, 68);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 20);
             this.label5.TabIndex = 9;
@@ -125,7 +125,7 @@ namespace iCantine.Views
             // buttonCreateMenu
             // 
             this.buttonCreateMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCreateMenu.Location = new System.Drawing.Point(198, 323);
+            this.buttonCreateMenu.Location = new System.Drawing.Point(441, 323);
             this.buttonCreateMenu.Name = "buttonCreateMenu";
             this.buttonCreateMenu.Size = new System.Drawing.Size(125, 36);
             this.buttonCreateMenu.TabIndex = 10;
@@ -136,7 +136,7 @@ namespace iCantine.Views
             // buttonDeleteMenu
             // 
             this.buttonDeleteMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDeleteMenu.Location = new System.Drawing.Point(461, 323);
+            this.buttonDeleteMenu.Location = new System.Drawing.Point(704, 323);
             this.buttonDeleteMenu.Name = "buttonDeleteMenu";
             this.buttonDeleteMenu.Size = new System.Drawing.Size(125, 36);
             this.buttonDeleteMenu.TabIndex = 11;
@@ -146,7 +146,7 @@ namespace iCantine.Views
             // comboBoxPlateType
             // 
             this.comboBoxPlateType.FormattingEnabled = true;
-            this.comboBoxPlateType.Location = new System.Drawing.Point(197, 92);
+            this.comboBoxPlateType.Location = new System.Drawing.Point(149, 92);
             this.comboBoxPlateType.Name = "comboBoxPlateType";
             this.comboBoxPlateType.Size = new System.Drawing.Size(125, 21);
             this.comboBoxPlateType.TabIndex = 12;
@@ -156,7 +156,7 @@ namespace iCantine.Views
             // 
             this.labelUsername.AutoSize = true;
             this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUsername.Location = new System.Drawing.Point(455, 14);
+            this.labelUsername.Location = new System.Drawing.Point(640, 15);
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(105, 24);
             this.labelUsername.TabIndex = 13;
@@ -186,7 +186,7 @@ namespace iCantine.Views
             // 
             this.textBoxQuantity.Location = new System.Drawing.Point(17, 168);
             this.textBoxQuantity.Name = "textBoxQuantity";
-            this.textBoxQuantity.Size = new System.Drawing.Size(125, 20);
+            this.textBoxQuantity.Size = new System.Drawing.Size(89, 20);
             this.textBoxQuantity.TabIndex = 16;
             // 
             // textBoxPriceStudent
@@ -217,12 +217,13 @@ namespace iCantine.Views
             // buttonEditMenu
             // 
             this.buttonEditMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEditMenu.Location = new System.Drawing.Point(330, 323);
+            this.buttonEditMenu.Location = new System.Drawing.Point(573, 323);
             this.buttonEditMenu.Name = "buttonEditMenu";
             this.buttonEditMenu.Size = new System.Drawing.Size(125, 36);
             this.buttonEditMenu.TabIndex = 20;
             this.buttonEditMenu.Text = "Editar";
             this.buttonEditMenu.UseVisualStyleBackColor = true;
+            this.buttonEditMenu.Click += new System.EventHandler(this.buttonEditMenu_Click);
             // 
             // dateTimePicker1
             // 
@@ -259,7 +260,7 @@ namespace iCantine.Views
             // listBoxExtras
             // 
             this.listBoxExtras.FormattingEnabled = true;
-            this.listBoxExtras.Location = new System.Drawing.Point(328, 92);
+            this.listBoxExtras.Location = new System.Drawing.Point(280, 92);
             this.listBoxExtras.Name = "listBoxExtras";
             this.listBoxExtras.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxExtras.Size = new System.Drawing.Size(125, 225);
@@ -269,7 +270,7 @@ namespace iCantine.Views
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(324, 68);
+            this.label4.Location = new System.Drawing.Point(276, 68);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 20);
             this.label4.TabIndex = 25;
@@ -279,7 +280,7 @@ namespace iCantine.Views
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(675, 367);
+            this.ClientSize = new System.Drawing.Size(837, 367);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.listBoxExtras);
             this.Controls.Add(this.checkBoxDinner);

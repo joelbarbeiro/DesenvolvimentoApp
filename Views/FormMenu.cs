@@ -68,22 +68,21 @@ namespace iCantine.Views
                 List<Plate> selectedPlates = new List<Plate>();
                 List<Extra> selectedExtras = new List<Extra>();
 
-
                 int numSaves = 0;
-                MessageBox.Show("grava -> " + checkHours());
                 while (numSaves < checkHours())
                 {
                     string[] hours = getHours();
                     DateTime day = dateTimePicker1.Value.ToUniversalTime();
-                    DateTime hour = convertTimeFromString(hours[numSaves]);
-                    //todo 
-                    foreach(var itemPlate in listBoxPlate.SelectedItems)
+                    //DateTime hour = convertTimeFromString(hours[numSaves]);
+                    DateTime dateToSave = convertTimeFromString(day, hours, numSaves);
+                    
+                    foreach (var itemPlate in listBoxPlate.SelectedItems)
                     {
-                       selectedPlates.Add(menuController.getPlate(itemPlate.ToString()));
+                        selectedPlates.Add((Plate)itemPlate);
                     }
                     foreach (var itemExtra in listBoxExtras.SelectedItems)
                     {
-                        selectedExtras.Add(menuController.getExtra(itemExtra.ToString()));
+                        selectedExtras.Add((Extra)itemExtra);
                     }
 
                     int quantity = 0;
@@ -93,7 +92,7 @@ namespace iCantine.Views
                     decimal.TryParse(textBoxPriceStudent.Text, out studentPrice);
                     decimal.TryParse(textBoxPriceProfessor.Text, out professorPrice);
 
-                    models.Menu menu = new models.Menu(day, hour, quantity, studentPrice, professorPrice);
+                    models.Menu menu = new models.Menu(dateToSave, quantity, studentPrice, professorPrice);
 
                     if(menuController.saveMenu(menu, selectedPlates, selectedExtras))
                     {
@@ -103,10 +102,71 @@ namespace iCantine.Views
                     {
                         MessageBox.Show("Falha ao gravar!");
                     }
+
                     numSaves++;
                 }
                 menuItems = menuController.loadMenu();
                 updateMenuListBox();
+            }
+        }
+
+        private void buttonEditMenu_Click(object sender, EventArgs e)
+        {
+            var selectedMenu = new models.Menu();
+            selectedMenu = (models.Menu)listBoxMenu.SelectedItem;
+
+            if (buttonEditMenu.Text == "Editar")
+            {
+                editButtonState();
+
+                textBoxQuantity.Text = selectedMenu.QuantAvailable.ToString();
+                textBoxPriceStudent.Text = selectedMenu.PriceStudent.ToString();
+                textBoxPriceProfessor.Text = selectedMenu.PriceProf.ToString();
+                checkCheckBox(getSavedHour(selectedMenu.Data));
+
+            } else if (buttonEditMenu.Text == "Gravar")
+            {
+                List<Plate> selectedPlates = new List<Plate>();
+                List<Extra> selectedExtras = new List<Extra>();
+
+                string[] hours = getHours();
+                DateTime day = dateTimePicker1.Value.ToUniversalTime();
+                //DateTime hour = convertTimeFromString(hours[numSaves]);
+                DateTime dateToSave = convertTimeFromString(day, hours);
+
+                int quantity = 0;
+                decimal studentPrice = 0;
+                decimal professorPrice = 0;
+                int.TryParse(textBoxQuantity.Text, out quantity);
+                decimal.TryParse(textBoxPriceStudent.Text, out studentPrice);
+                decimal.TryParse(textBoxPriceProfessor.Text, out professorPrice);
+
+                selectedMenu.Data = dateToSave;
+                selectedMenu.QuantAvailable = quantity;
+                selectedMenu.PriceStudent = studentPrice;
+                selectedMenu.PriceProf = professorPrice;
+                
+
+                foreach (var itemPlate in listBoxPlate.SelectedItems)
+                {
+                    selectedPlates.Add((Plate)itemPlate);
+                }
+                foreach (var itemExtra in listBoxExtras.SelectedItems)
+                {
+                    selectedExtras.Add((Extra)itemExtra);
+                }
+
+                if (menuController.updateMenu(selectedMenu, selectedPlates, selectedExtras))
+                {
+                    MessageBox.Show("Menu gravado com sucesso!");
+                }
+                else
+                {
+                    MessageBox.Show("Falha ao gravar!");
+                }
+                menuItems = menuController.loadMenu();
+                updateMenuListBox();
+                editButtonState();
             }
         }
 
@@ -233,9 +293,22 @@ namespace iCantine.Views
             }
             return string.Empty;
         }
-        private DateTime convertTimeFromString(string str)
+        private DateTime convertTimeFromString(DateTime day, string[] hours, int numSaves = 0)
         {
-            return DateTime.ParseExact(isLunch(), "HH:mm", CultureInfo.InvariantCulture);
+            DateTime dateToSave = DateTime.Now;
+            string[] timeParts = hours[numSaves].Split(':');
+            if (timeParts.Length == 2 && int.TryParse(timeParts[0], out int hour) && int.TryParse(timeParts[1], out int minutes))
+            {
+                 dateToSave = new DateTime(
+                    day.Year,
+                    day.Month,
+                    day.Day,
+                    hour,
+                    minutes,
+                    0);
+            }
+            return dateToSave;
+
         }
         private int checkHours()
         {
@@ -267,13 +340,16 @@ namespace iCantine.Views
         {
             try
             {
-                decimal student = decimal.Parse(textBoxPriceStudent.Text);
-                student = student * 1.2m;
-                textBoxPriceProfessor.Text = student.ToString();
+                if (textBoxPriceStudent.Text != string.Empty)
+                {
+                    decimal student = decimal.Parse(textBoxPriceStudent.Text);
+                    student = student * 1.2m;
+                    textBoxPriceProfessor.Text = student.ToString();
+                }
             }
             catch 
             {
-                    MessageBox.Show("Utilize a virgula em vez do ponto para separar as casas decimais!");
+                MessageBox.Show("Utilize a virgula em vez do ponto para separar as casas decimais!");
                 textBoxPriceStudent.Text = string.Empty;
                 textBoxPriceProfessor.Text = string.Empty;
             }
@@ -300,5 +376,53 @@ namespace iCantine.Views
             }
         }
 
+        
+
+        private void editButtonState()
+        {
+            if (buttonEditMenu.Text == "Editar") 
+            {
+                buttonBack.Enabled = false;
+                buttonCreateMenu.Enabled = false;
+                buttonDeleteMenu.Enabled = false;
+                textBoxQuantity.Enabled = true;
+                textBoxPriceStudent.Enabled = true;
+                textBoxPriceProfessor.Enabled = true;
+                buttonEditMenu.Text = "Gravar";
+            }
+            else if (buttonEditMenu.Text == "Gravar")
+            {
+                buttonBack.Enabled = true;
+                buttonCreateMenu.Enabled = true;
+                buttonDeleteMenu.Enabled = true;
+                textBoxQuantity.Enabled = false;
+                textBoxQuantity.Text = string.Empty;
+                textBoxPriceStudent.Enabled = false;
+                textBoxPriceStudent.Text = string.Empty;
+                textBoxPriceProfessor.Enabled = false;
+                textBoxPriceProfessor.Text = string.Empty;
+                checkBoxLunch.Checked = false;
+                checkBoxDinner.Checked = false;
+                buttonEditMenu.Text = "Editar";
+            }
+        }
+
+        private int getSavedHour(DateTime savedDateTime)
+        {
+            return (int)savedDateTime.Hour;
+        }
+        private void checkCheckBox(int hour)
+        {
+            if (hour == 12) 
+            {
+                checkBoxLunch.Checked = true;
+                checkBoxDinner.Checked = false;
+            }
+            else if (hour == 19)
+            {
+                checkBoxDinner.Checked = true;
+                checkBoxLunch.Checked = false;
+            }
+        }
     }
 }

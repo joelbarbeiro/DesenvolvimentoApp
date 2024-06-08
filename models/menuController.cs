@@ -56,30 +56,6 @@ namespace iCantine.models
                 }
             return null;
         }
-        public Plate getPlate(string description)
-        {
-            Plate item = new Plate();
-
-                var query = Context.Plates.Where(
-                    plate =>
-                    plate.Description == description &&
-                    plate.Active == true);
-
-                item = query.FirstOrDefault();
-            return item;
-        }
-
-        public Extra getExtra(string description)
-        {
-            Extra item = new Extra();
-
-                var query = Context.Extras.Where(
-                    plate =>
-                    plate.Description == description &&
-                    plate.Active == true);
-                item = query.FirstOrDefault();
-            return item;
-        }
 
         public bool saveMenu(models.Menu items, List<Plate> plate, List<Extra> extra)
         {
@@ -96,19 +72,23 @@ namespace iCantine.models
             var menus = new List<Menu>();
 
             menus = Context.Menus.Include(m => m.Plates).Include(m => m.Extras).ToList();
-            foreach (var menu in menus)
-            {
 
-                foreach (var plate in menu.Plates)
-                {
-                    Console.WriteLine("---------> " + plate);
-                }
-                foreach(var extra in menu.Extras)
-                {
-                    Console.WriteLine("---> " + extra);
-                }
-            }
             return menus;
+        }
+
+        public bool updateMenu(models.Menu menuToUpdate, List<Plate> plate, List<Extra> extra)
+        {
+            var updateMenu = Context.Menus.SingleOrDefault(m => m.idMenu == menuToUpdate.idMenu);
+            if (updateMenu != null)
+            {
+                updateMenu.Plates = plate;
+                updateMenu.Extras = extra;
+
+                Context.SaveChanges();
+                return true;
+
+            }
+            return false;
         }
     }
 }

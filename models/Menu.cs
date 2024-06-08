@@ -15,23 +15,25 @@ namespace iCantine.models
         [Key]
         public int idMenu { get; set; }
         public DateTime Data { get; set; }
-        public DateTime Hour { get; set; }
+        //public DateTime Hour { get; set; }
         public int QuantAvailable { get; set; }
         public decimal PriceStudent { get; set; }
         public decimal PriceProf { get; set; }
         public List<Plate> Plates { get; set; }
         public List<Extra> Extras { get; set; }
 
-
+        public virtual string DisplayMenu =>
+        $"Prato: {string.Join(", ", Plates.Select(p => p.DisplayName))}\n" +
+        $"Extras: {string.Join(", ", Extras.Select(e => e.DisplayName))}\n" +
+        $"Quantidade: {QuantAvailable}";
 
 
         public Menu()
         {
         }
 
-        public Menu(DateTime data,DateTime hour, int quantAvailable, decimal priceStudent, decimal priceProf)
+        public Menu(DateTime data, int quantAvailable, decimal priceStudent, decimal priceProf)
         {
-            Hour = hour;
             Data = data;
             QuantAvailable = quantAvailable;
             PriceStudent = priceStudent;
@@ -40,7 +42,9 @@ namespace iCantine.models
 
         public override string ToString()
         {
-            return Data+ " "+ QuantAvailable ;
+            return $"Prato: {string.Join(", ", Plates.Select(p => p.ToString()))}" +
+        $" Extras: {string.Join(", ", Extras.Select(e => e.ToString()))}" +
+        $" Quantidade: {QuantAvailable}";
         }
     }
 }
