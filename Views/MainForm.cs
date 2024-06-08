@@ -80,7 +80,6 @@ namespace iCantine
         }
         private void updateLunchList()
         {
-#pragma warning disable CS0168 // Variable is declared but never used
             try
             {
                 var allMenus = getMenu();
@@ -121,7 +120,6 @@ namespace iCantine
                 listBoxThursdayLunch.DataSource = null;
                 listBoxFridayLunch.DataSource = null;
             }
-#pragma warning restore CS0168 // Variable is declared but never used
         }
 
 
