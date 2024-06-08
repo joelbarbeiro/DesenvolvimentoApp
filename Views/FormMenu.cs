@@ -21,7 +21,7 @@ namespace iCantine.Views
         public List<Plate> plates;
         public List<Extra> extra;
         public string user;
-
+        private MenuController menuController = new MenuController();
         public FormMenu(string user)
         {
             InitializeComponent();
@@ -29,7 +29,7 @@ namespace iCantine.Views
             this.user = user;
             labelUsername.Text = user;
 
-            //menuItems = menuController.loadMenu();
+            menuItems = menuController.loadMenu();
             plates = menuController.loadPlatesMenu();
             extra = menuController.loadExtrasMenu();
 
@@ -65,18 +65,25 @@ namespace iCantine.Views
         {
             if (validateDataMenu())
             {
-                List<models.Extra> extras = new List<models.Extra>();
+                List<Plate> selectedPlates = new List<Plate>();
+                List<Extra> selectedExtras = new List<Extra>();
+
 
                 int numSaves = 0;
+                MessageBox.Show("grava -> " + checkHours());
                 while (numSaves < checkHours())
                 {
                     string[] hours = getHours();
                     DateTime day = dateTimePicker1.Value.ToUniversalTime();
                     DateTime hour = convertTimeFromString(hours[numSaves]);
-                    Plate plate = menuController.getPlate(listBoxPlate.Text);
-                    foreach(var itemExtra in listBoxExtras.SelectedItems)
+                    //todo 
+                    foreach(var itemPlate in listBoxPlate.SelectedItems)
                     {
-                        extras.Add(menuController.getExtra(itemExtra.ToString()));
+                       selectedPlates.Add(menuController.getPlate(itemPlate.ToString()));
+                    }
+                    foreach (var itemExtra in listBoxExtras.SelectedItems)
+                    {
+                        selectedExtras.Add(menuController.getExtra(itemExtra.ToString()));
                     }
 
                     int quantity = 0;
@@ -86,11 +93,19 @@ namespace iCantine.Views
                     decimal.TryParse(textBoxPriceStudent.Text, out studentPrice);
                     decimal.TryParse(textBoxPriceProfessor.Text, out professorPrice);
 
-                    models.Menu menu = new models.Menu(day,hour, quantity, studentPrice, professorPrice);
-                    menuController.saveMenu(menu,plate, extras);
+                    models.Menu menu = new models.Menu(day, hour, quantity, studentPrice, professorPrice);
+
+                    if(menuController.saveMenu(menu, selectedPlates, selectedExtras))
+                    {
+                        MessageBox.Show("Menu gravado com sucesso!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Falha ao gravar!");
+                    }
                     numSaves++;
                 }
-                //menuItems = menuController.loadMenu();
+                menuItems = menuController.loadMenu();
                 updateMenuListBox();
             }
         }

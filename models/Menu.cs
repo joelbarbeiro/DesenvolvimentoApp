@@ -19,15 +19,13 @@ namespace iCantine.models
         public int QuantAvailable { get; set; }
         public decimal PriceStudent { get; set; }
         public decimal PriceProf { get; set; }
-        public int idMenuPlates { get; set; }
-        public MenuPlate MenuPlates { get; set; }
-        public int idMenuExtra { get; set; }
-        public MenuExtra MenuExtras { get; set; }
+        public List<Plate> Plates { get; set; }
+        public List<Extra> Extras { get; set; }
 
 
 
 
-        public virtual string ReservationName => $"{Description}";
+        //public virtual string ReservationName => $"{Description}";
         public Menu()
         {
         }

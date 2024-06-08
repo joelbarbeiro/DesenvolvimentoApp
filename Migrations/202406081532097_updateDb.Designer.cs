@@ -7,13 +7,13 @@ namespace iCantine.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class updateMenudb : IMigrationMetadata
+    public sealed partial class updateDb : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(updateMenudb));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updateDb));
         
         string IMigrationMetadata.Id
         {
-            get { return "202406031934026_updateMenudb"; }
+            get { return "202406081532097_updateDb"; }
         }
         
         string IMigrationMetadata.Source

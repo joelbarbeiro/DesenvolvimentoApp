@@ -21,7 +21,9 @@ namespace iCantine.Views
         public List<models.Menu> menuItems;
         private List<Plate> plates;
         private List<Extra> extra;
+#pragma warning disable CS0169 // The field 'FormMakeReservation.clients' is never used
         private List<Client> clients;
+#pragma warning restore CS0169 // The field 'FormMakeReservation.clients' is never used
         private string hour;
 
 
