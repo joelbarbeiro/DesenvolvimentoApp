@@ -23,11 +23,6 @@ namespace iCantine.models
         public MenuPlate MenuPlates { get; set; }
         public int idMenuExtra { get; set; }
         public MenuExtra MenuExtras { get; set; }
-
-
-
-
-        public virtual string ReservationName => $"{Description}";
         public Menu()
         {
         }

@@ -49,6 +49,7 @@ namespace iCantine.Views
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: " + ex);
+                    return;
                 }
             }
            
@@ -203,6 +204,7 @@ namespace iCantine.Views
                     dbExtra.Description = selectedExtra.Description;
                     dbExtra.Price = selectedExtra.Price;
                     dbExtra.Stock = selectedExtra.Stock;
+                    dbExtra.Active = stockControl(selectedExtra.Stock); //experimental
 
 
                     context.SaveChanges();

@@ -48,6 +48,7 @@ namespace iCantine.Views
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: " + ex);
+                    return;
                 }
             }
 
@@ -79,6 +80,7 @@ namespace iCantine.Views
                         catch (Exception ex)
                         {
                             MessageBox.Show($"Erro ao apagar prato: {ex.Message}");
+                            return;
                         }
                     }
                 }

@@ -20,8 +20,6 @@ namespace iCantine.models
         public DbSet<MenuExtra> MenuExtras { get; set; }
         public DbSet<MenuPlate> MenuPlates { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<MenuPlate> MenuPlates { get; set; }
-        public DbSet<MenuExtra> MenuExtras { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
