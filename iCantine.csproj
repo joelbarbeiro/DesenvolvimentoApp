@@ -71,24 +71,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202405312009227_update.cs" />
-    <Compile Include="Migrations\202405312009227_update.Designer.cs">
-      <DependentUpon>202405312009227_update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202405312012590_update2.cs" />
-    <Compile Include="Migrations\202405312012590_update2.Designer.cs">
-      <DependentUpon>202405312012590_update2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202406031934026_updateMenudb.cs" />
-    <Compile Include="Migrations\202406031934026_updateMenudb.Designer.cs">
-      <DependentUpon>202406031934026_updateMenudb.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="models\CRUDController.cs" />
     <Compile Include="Controllers\FormController.cs" />
-    <Compile Include="models\menuController.cs" />
-    <Compile Include="models\MenuExtra.cs" />
-    <Compile Include="models\MenuPlate.cs" />
+    <Compile Include="models\MenuController.cs" />
     <Compile Include="Views\FormEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,15 +169,6 @@
     <Compile Include="Views\FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\202405312009227_update.resx">
-      <DependentUpon>202405312009227_update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202405312012590_update2.resx">
-      <DependentUpon>202405312012590_update2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202406031934026_updateMenudb.resx">
-      <DependentUpon>202406031934026_updateMenudb.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\FormEmployee.resx">
       <DependentUpon>FormEmployee.cs</DependentUpon>
     </EmbeddedResource>
