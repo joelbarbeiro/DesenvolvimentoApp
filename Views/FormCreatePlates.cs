@@ -239,7 +239,7 @@ namespace iCantine.Views
         }
         private void saveData(Plate selectedPlate)
         {
-            using (var context = new models.Context())
+            /*using (var context = new models.Context())
             {
                 var dbPlate = context.Plates.SingleOrDefault(b => b.idPlate == selectedPlate.idPlate);
                 if (dbPlate != null)
@@ -251,7 +251,7 @@ namespace iCantine.Views
 
                     context.SaveChanges();
                 }
-                var menuPlate = context.MenuPlates.SingleOrDefault(mp => mp.idPlates == selectedPlate.idPlate);
+                var menuPlate = context.Menus.Plate.SingleOrDefault(mp => mp.idPlates == selectedPlate.idPlate);
                 if (menuPlate == null)
                 {
                     menuPlate = new MenuPlate
@@ -266,7 +266,7 @@ namespace iCantine.Views
                     menuPlate.idPlates = selectedPlate.idPlate;
                 }
                 context.SaveChanges();
-            }
+            }*/
         }
         private void addControl()
         {
