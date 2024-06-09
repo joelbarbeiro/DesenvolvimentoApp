@@ -11,21 +11,22 @@ using System.Windows.Forms;
 using iCantine.Controllers;
 using iCantine.Views;
 using System.Runtime.Remoting.Contexts;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Data.Entity;
 
 namespace iCantine
 {
     public partial class MainForm : Form
     {
         public string user;
-        public List<models.Menu> menusMain;
         public MainForm(string user)
         {
             InitializeComponent();
             this.user = user;
-            List<models.Menu> menusMain = new List<models.Menu>();
             changeUserLabel(user);
             UpdateWeekRange();
             updateLunchList();
+            updateDinnerList();
         }
         private void changeUserLabel(string user)
         {
@@ -58,58 +59,59 @@ namespace iCantine
             }
             labelSelectedWeek.Text = $"Semana de: {selectedDates.First().ToShortDateString()} até {selectedDates.Last().ToShortDateString()}";
         }
-        public List<models.Menu> getMenu()
+        public List<models.Menu> getLunchMenu(DateTime selectedDate)
         {
-            
             using (var context = new models.Context())
             {
-                var allMenus = new List<models.Menu>();
-
-                foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
-                {
-                    var menusForDay = context.Menus
-                        .OfType<models.Menu>()
-                        .Where(m => m.Data.DayOfWeek == day)
-                        .ToList();
-
-                    allMenus.AddRange(menusForDay);
-                }
-
-                return allMenus;
+                var query = context.Menus.Where(
+                    menu =>
+                    menu.Data.Year == selectedDate.Year &&
+                    menu.Data.Month == selectedDate.Month &&
+                    menu.Data.Day == selectedDate.Day &&
+                    menu.Data.Hour == 12
+                    ).Include(m => m.Plates).Include(m => m.Extras);
+                    ;
+                return query.ToList();
             }
         }
+        public List<models.Menu> getDinnerMenu(DateTime selectedDate)
+        {
+            using (var context = new models.Context())
+            {
+                var query = context.Menus.Where(
+                    menu =>
+                    menu.Data.Year == selectedDate.Year &&
+                    menu.Data.Month == selectedDate.Month &&
+                    menu.Data.Day == selectedDate.Day &&
+                    menu.Data.Hour == 19
+                    ).Include(m => m.Plates).Include(m => m.Extras);
+                ;
+                return query.ToList();
+            }
+        }
+
         private void updateLunchList()
         {
             try
             {
-                var allMenus = getMenu();
+                DateTime today = DateTime.Today;
+                int daysToMonday = ((int)DayOfWeek.Monday - (int)today.DayOfWeek + 7) % 7;
+                DateTime monday = today.AddDays(daysToMonday);
 
-                var mondayMenus = allMenus.Where(m => m.Data.DayOfWeek == DayOfWeek.Monday).ToList();
-                var tuesdayMenus = allMenus.Where(m => m.Data.DayOfWeek == DayOfWeek.Tuesday).ToList();
-                var wednesdayMenus = allMenus.Where(m => m.Data.DayOfWeek == DayOfWeek.Wednesday).ToList();
-                var thursdayMenus = allMenus.Where(m => m.Data.DayOfWeek == DayOfWeek.Thursday).ToList();
-                var fridayMenus = allMenus.Where(m => m.Data.DayOfWeek == DayOfWeek.Friday).ToList();
+                listBoxMondayLunch.DataSource = null;
+                listBoxMondayLunch.DataSource = getLunchMenu(monday);
 
-                // Set the data source for each list box
-                listBoxMondayLunch.DataSource = mondayMenus;
-                listBoxTuesdayLunch.DataSource = tuesdayMenus;
-                listBoxWednesdayLunch.DataSource = wednesdayMenus;
-                listBoxThursdayLunch.DataSource = thursdayMenus;
-                listBoxFridayLunch.DataSource = fridayMenus;
+                listBoxTuesdayLunch.DataSource = null;
+                listBoxTuesdayLunch.DataSource = getLunchMenu(monday.AddDays(1));
 
-                // Set the DisplayMember if not already set
-                listBoxMondayLunch.DisplayMember = "Name"; // Replace "Name" with the actual property to display
-                listBoxTuesdayLunch.DisplayMember = "Name";
-                listBoxWednesdayLunch.DisplayMember = "Name";
-                listBoxThursdayLunch.DisplayMember = "Name";
-                listBoxFridayLunch.DisplayMember = "Name";
+                listBoxWednesdayLunch.DataSource = null;
+                listBoxWednesdayLunch.DataSource = getLunchMenu(monday.AddDays(2));
 
-                // Refresh the list boxes to ensure the UI is updated
-                listBoxMondayLunch.Refresh();
-                listBoxTuesdayLunch.Refresh();
-                listBoxWednesdayLunch.Refresh();
-                listBoxThursdayLunch.Refresh();
-                listBoxFridayLunch.Refresh();
+                listBoxThursdayLunch.DataSource = null;
+                listBoxThursdayLunch.DataSource = getLunchMenu(monday.AddDays(3));
+
+                listBoxFridayLunch.DataSource = null;
+                listBoxFridayLunch.DataSource = getLunchMenu(monday.AddDays(4));
             }
             catch (Exception ex)
             {
@@ -121,12 +123,44 @@ namespace iCantine
                 listBoxFridayLunch.DataSource = null;
             }
         }
+        private void updateDinnerList()
+        {
+            try
+            {
+                DateTime today = DateTime.Today;
+                int daysToMonday = ((int)DayOfWeek.Monday - (int)today.DayOfWeek + 7) % 7;
+                DateTime monday = today.AddDays(daysToMonday);
 
+                listBoxMondayDinner.DataSource = null;
+                listBoxMondayDinner.DataSource = getDinnerMenu(monday);
+
+                listBoxTuesdayDinner.DataSource = null;
+                listBoxTuesdayDinner.DataSource = getDinnerMenu(monday.AddDays(1));
+
+                listBoxWednesdayDinner.DataSource = null;
+                listBoxWednesdayDinner.DataSource = getDinnerMenu(monday.AddDays(2));
+
+                listBoxThursdayDinner.DataSource = null;
+                listBoxThursdayDinner.DataSource = getDinnerMenu(monday.AddDays(3));
+
+                listBoxFridayDinner.DataSource = null;
+                listBoxFridayDinner.DataSource = getDinnerMenu(monday.AddDays(4));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nenhum menu nesta semana");
+                listBoxMondayDinner.DataSource = null;
+                listBoxTuesdayDinner.DataSource = null;
+                listBoxWednesdayDinner.DataSource = null;
+                listBoxThursdayDinner.DataSource = null;
+                listBoxFridayDinner.DataSource = null;
+            }
+        }
 
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-          
+
             FormLogin loginForm = new FormLogin();
             FormController.changeForm(loginForm, this);
         }

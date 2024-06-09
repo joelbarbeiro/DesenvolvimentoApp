@@ -383,7 +383,7 @@ namespace iCantine.Views
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            string userToSearch = textBoxSearch.Text.Trim(); // Trim any leading/trailing whitespace
+            string userToSearch = textBoxSearch.Text.Trim();
             int nifToSearch;
             bool isNifValid = int.TryParse(textBoxSearch.Text, out nifToSearch);
 
@@ -391,7 +391,6 @@ namespace iCantine.Views
             {
                 using (var context = new models.Context())
                 {
-                    // Perform the query
                     var clients = context.Users
                         .OfType<Client>()
                         .Where(c => c.name.Contains(userToSearch) || (isNifValid && c.nif == nifToSearch))
