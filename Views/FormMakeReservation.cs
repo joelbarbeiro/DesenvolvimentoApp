@@ -28,29 +28,23 @@ namespace iCantine.Views
         public FormMakeReservation(string user)
         {
             InitializeComponent();
+            this.Load += FormMakeAReservation_Load;
             this.user = user;
             this.plates = CRUDController.loadPlatesMenu();
             this.extra = CRUDController.loadExtrasMenu();
             this.radioButtonLunch.CheckedChanged += new System.EventHandler(this.radioButtonLunch_CheckedChanged);
             this.radioButtonDinner.CheckedChanged += new System.EventHandler(this.radioButtonDinner_CheckedChanged);
+            listBoxMenus.SelectedIndexChanged += listBoxMenus_SelectedIndexChanged;
             changeUserLabel(user);
             updateListBoxExtras();
-            updateListBoxPlates();
             updateComboBox();
             updatelistBoxMenus();
-            updateListBoxReservations();
-            listBoxReservations.DataSource = null;
         }
         public void updatelistBoxMenus()
         {
             using (var context = new models.Context())
             {
                 DateTime selectedDate = dateTimePicker.Value;
-                /*var menus = context.Menus
-                    .OfType<models.Menu>()
-                    .ToList();
-                listBoxMenus.DataSource = menus;
-                listBoxMenus.DisplayMember = "DisplayName";*/
                 var query = context.Menus.Where(
                     menu =>
                     menu.Data.Year == selectedDate.Year &&
@@ -58,19 +52,11 @@ namespace iCantine.Views
                     menu.Data.Day == selectedDate.Day).Include(m => m.Plates).Include(m => m.Extras);
                 listBoxMenus.DataSource = null;
                 listBoxMenus.DataSource = query.ToList();
+                listBoxMenus.ValueMember = "idMenu";
+                
             }
         }
-        public void updateListBoxPlates()
-        {
-            using (var context = new models.Context())
-            {
-                var plates = context.Plates
-                    .OfType<Plate>()
-                    .ToList();
-                listBoxPlates.DataSource = plates;
-                listBoxPlates.DisplayMember = "ReservationName";
-            }
-        }
+        
         public void updateListBoxExtras()
         {
             using (var context = new models.Context())
@@ -97,52 +83,7 @@ namespace iCantine.Views
 
         private void buttonReserve_Click(object sender, EventArgs e)
         {
-            if (listBoxReservations.SelectedItem == null)
-            {
-                MessageBox.Show("Nenhuma reserva selecionada");
-                return;
-            }
-
-            string reservationString = listBoxReservations.SelectedItem.ToString();
-            
-            string[] reservationItems = reservationString.Split(' ');
-
-            if(reservationItems.Length < 5)
-            {
-                MessageBox.Show("Formato da reserva inválido");
-                return;
-            }
-            for(int i=0; i<5; i++)
-            {
-                MessageBox.Show(reservationItems[i]);
-            }
-            string reservationPlate = reservationItems[0];
-            string reservationExtra = reservationItems[1];
-            string reservationClient = reservationItems[2];
-            string reservationMenu = reservationItems[3];
-            string reservationDate = reservationItems[4];
-            string reservationHour = reservationItems[5];
-
-            //DateTime parsedDate = DateTime.Parse(reservationDate);
-
-
-            var reservation = new Reservation(reservationPlate, reservationExtra, reservationClient, DateTime.Parse(reservationDate), reservationHour);
-            using (var context = new models.Context())
-            {
-                try
-                {
-                    context.Reservations.Add(reservation);
-                    context.SaveChanges();
-                    MessageBox.Show("Reserva guardada com sucesso");
-                    updateListBoxReservations();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro: " + ex.Message);
-                }
-            }
-
-
+            saveReservations();
             /*
             string plate = listBoxPlates.SelectedItem.ToString();
             string extra = listBoxExtras.SelectedItem.ToString();
@@ -238,10 +179,11 @@ namespace iCantine.Views
                 listBoxReservations.DisplayMember = "DisplayName";
             }
         }
-    
+
 
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
+            
             updatelistBoxMenus();
             DateTime selectedDate = dateTimePicker.Value;
             DateTime MaxAllowedDate = DateTime.Now.AddDays(7);
@@ -251,14 +193,14 @@ namespace iCantine.Views
                 dateTimePicker.Value = DateTime.Now;
                 return;
             }
-            if(selectedDate < DateTime.Now.AddDays(-1))
+            if (selectedDate < DateTime.Now.AddDays(-1))
             {
                 MessageBox.Show("Data inválida");
                 dateTimePicker.Value = DateTime.Now;
                 return;
             }
         }
-        
+
         private void radioButtonLunch_CheckedChanged(object sender, EventArgs e)
         {
             UpdateHour();
@@ -271,33 +213,95 @@ namespace iCantine.Views
 
         private void addReserve()
         {
-            /*Plate plate = (Plate)listBoxPlates.SelectedItem;
+            Plate plate = (Plate)listBoxPlates.SelectedItem;
             Extra extra = (Extra)listBoxExtras.SelectedItem;
             User client = (User)comboBoxClient.SelectedItem;
-            DateTime date = (DateTime)dateTimePicker.Value.Date;
-            
-            var finalItems = plate + " " + extra + " " + client + " " + date + " " + hour;
-            listBoxReservations.Items.Add(finalItems);*/
-
-            var selectedPlate = listBoxPlates.SelectedItem as Plate;
-            List<Extra> selectedExtra = listBoxExtras.SelectedItem as List<Extra>;
-            var selectedClient = comboBoxClient.SelectedItem as Client;
-            var selectedMenu = listBoxMenus.SelectedItem as models.Menu;
-            DateTime date = (DateTime)dateTimePicker.Value.Date;
-
+            DateTime date = dateTimePicker.Value.Date;
             UpdateHour();
 
-            if (validationControl(selectedPlate, selectedExtra, selectedClient, selectedMenu))
-            {
-                string dateString = date.ToString("d");
-                var finalItems = selectedPlate + " " + selectedExtra + " " + selectedClient + " " + selectedMenu + " " + dateTimePicker.Value.Date + " " + hour;
-                listBoxReservations.Items.Add(finalItems);
-            }
+            var finalItem = $"{date.ToShortDateString()}, {plate.Description}, {extra.Description},{client.name}, {hour}";
+            listBoxReservations.Items.Add(finalItem);
         }
 
-        private void buttonAddReserve_Click_1(object sender, EventArgs e)
+
+        private void buttonAddReserve_Click(object sender, EventArgs e)
         {
             addReserve();
         }
+
+        private void saveReservations()
+        {
+            using (var context = new models.Context())
+            {
+                foreach (var selectedItem in listBoxReservations.SelectedItems)
+                {
+                    var parts = selectedItem.ToString().Split(',');
+
+                    DateTime date = DateTime.Parse(parts[0].Trim());
+                    string plateName = parts[1].Trim();
+                    string clientName = parts[2].Trim();
+                    string extraName = parts[3].Trim();
+                    string hour = parts[4].Trim();
+
+                    Plate plate = context.Plates.FirstOrDefault(p => p.Description == plateName);
+                    User client = context.Users.FirstOrDefault(c => c.name == clientName);
+                    Extra extra = context.Extras.FirstOrDefault(e => e.Description == extraName);
+
+                    if (plate != null & client != null && extra != null)
+                    {
+                        var reservation = new Reservation
+                        {
+                            Date = date,
+                            Hour = hour,
+                            Client = client.name,
+                            Plate = plate.Description,
+                            Extra = extra.Description
+                        };
+
+                        context.Reservations.Add(reservation);
+                    }
+                }
+
+                context.SaveChanges();
+                MessageBox.Show("Reserva guardada com sucesso");
+                listBoxReservations.Items.Clear();
+            }
+
+        }
+        public List<Plate> loadPlatesMenu(int menuId)
+        {
+            using (var context = new models.Context())
+            {
+                var menu = context.Menus
+                                  .Include(m => m.Plates)
+                                  .FirstOrDefault(m => m.idMenu == menuId);
+
+                return menu?.Plates.Where(p => p.Active).ToList() ?? new List<Plate>();
+            }
+        }
+
+
+        private void listBoxMenus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxMenus.SelectedItem is models.Menu selectedMenu)
+            {
+                int menuId = selectedMenu.idMenu;
+                var plates = loadPlatesMenu(menuId);
+                listBoxPlates.DataSource = plates;
+                listBoxPlates.DisplayMember = "ReservationName";
+            }
+        }
+
+        private void FormMakeAReservation_Load(object sender, EventArgs e)
+        {
+            if (listBoxMenus.Items.Count > 0)
+            {
+                listBoxMenus.SelectedIndex = 0;
+                                                
+                listBoxMenus_SelectedIndexChanged(this, EventArgs.Empty);
+            }
+        }
+
     }
+    
 }

@@ -21,14 +21,14 @@ namespace iCantine.models
         public List<Extra> loadExtrasMenu()
         {
             List<Extra> extras = new List<Extra>();
-                var query = this.Context.Extras.Where(
-                    extra =>
-                    extra.Active == true);
-                if (query.Count() > 0)
-                {
-                    extras = query.ToList();
-                    return extras;
-                }
+            var query = this.Context.Extras.Where(
+                extra =>
+                extra.Active == true);
+            if (query.Count() > 0)
+            {
+                extras = query.ToList();
+                return extras;
+            }
             return null;
         }
 
@@ -38,32 +38,32 @@ namespace iCantine.models
         {
             List<Plate> plates = new List<Plate>();
 
-                var query = Context.Plates.Where(
-                    plate =>
-                    plate.Active == true);
-                if (type != "Todos")
-                {
-                    query = Context.Plates.Where(
-                    plate =>
-                    plate.Type == type &&
-                    plate.Active == true);
-                }
+            var query = Context.Plates.Where(
+                plate =>
+                plate.Active == true);
+            if (type != "Todos")
+            {
+                query = Context.Plates.Where(
+                plate =>
+                plate.Type == type &&
+                plate.Active == true);
+            }
 
-                if (query.Count() > 0)
-                {
-                    plates = query.ToList();
-                    return plates;
-                }
+            if (query.Count() > 0)
+            {
+                plates = query.ToList();
+                return plates;
+            }
             return null;
         }
 
         public bool saveMenu(models.Menu items, List<Plate> plate, List<Extra> extra)
         {
-                items.Plates = plate;
-                items.Extras = extra;
+            items.Plates = plate;
+            items.Extras = extra;
 
-                Context.Menus.Add(items);
-                Context.SaveChanges();
+            Context.Menus.Add(items);
+            Context.SaveChanges();
             return true;
         }
 
@@ -108,7 +108,7 @@ namespace iCantine.models
                     menu.Data.Year == date.Year &&
                     menu.Data.Month == date.Month &&
                     menu.Data.Day == date.Day).Include(m => m.Plates).Include(m => m.Extras);
-            
+
             if (query.Count() > 0)
             {
                 return query.ToList();

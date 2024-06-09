@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,6 +23,7 @@ namespace iCantine.models
         public List<Plate> Plates;
         public List<Menu> Menus;
         public List<Extra> Extras;
+        public ICollection<Reservation> Reservations;
 
         public Reservation()
         {
@@ -35,6 +37,7 @@ namespace iCantine.models
             Client = client;
             Date = date;
             Hour = hour;
+
         }
 
         public override string ToString()

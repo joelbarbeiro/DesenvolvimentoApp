@@ -194,6 +194,7 @@ namespace iCantine.Views
             this.listBoxMenus.Name = "listBoxMenus";
             this.listBoxMenus.Size = new System.Drawing.Size(154, 303);
             this.listBoxMenus.TabIndex = 38;
+            this.listBoxMenus.SelectedIndexChanged += new System.EventHandler(this.listBoxMenus_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -252,13 +253,13 @@ namespace iCantine.Views
             // 
             // buttonAddReserve
             // 
-            this.buttonAddReserve.Location = new System.Drawing.Point(578, 191);
+            this.buttonAddReserve.Location = new System.Drawing.Point(580, 191);
             this.buttonAddReserve.Name = "buttonAddReserve";
             this.buttonAddReserve.Size = new System.Drawing.Size(42, 44);
             this.buttonAddReserve.TabIndex = 44;
             this.buttonAddReserve.Text = ">";
             this.buttonAddReserve.UseVisualStyleBackColor = true;
-            this.buttonAddReserve.Click += new System.EventHandler(this.buttonAddReserve_Click_1);
+            this.buttonAddReserve.Click += new System.EventHandler(this.buttonAddReserve_Click);
             // 
             // FormMakeReservation
             // 

@@ -57,7 +57,7 @@ namespace iCantine
                 }
                 addedDays++;
             }
-            labelSelectedWeek.Text = $"Semana de: {selectedDates.First().ToShortDateString()} até {selectedDates.Last().ToShortDateString()}";
+            labelSelectedWeek.Text = $"Semana de: {selectedDates.First().ToShortDateString()} atï¿½ {selectedDates.Last().ToShortDateString()}";
         }
         public List<models.Menu> getLunchMenu(DateTime selectedDate)
         {
