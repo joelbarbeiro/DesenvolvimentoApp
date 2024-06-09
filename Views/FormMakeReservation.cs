@@ -22,6 +22,7 @@ namespace iCantine.Views
         public FormMakeReservation(string user)
         {
             InitializeComponent();
+            this.Load += FormMakeAReservation_Load;
             this.user = user;
             this.radioButtonLunch.CheckedChanged += new System.EventHandler(this.radioButtonLunch_CheckedChanged);
             this.radioButtonDinner.CheckedChanged += new System.EventHandler(this.radioButtonDinner_CheckedChanged);
@@ -135,6 +136,7 @@ namespace iCantine.Views
             }
             return true;
         }
+
 
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
@@ -419,4 +421,5 @@ namespace iCantine.Views
             return true;
         }
     }
+    
 }
