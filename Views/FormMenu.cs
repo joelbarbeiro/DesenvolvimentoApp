@@ -30,7 +30,7 @@ namespace iCantine.Views
             this.user = user;
             labelUsername.Text = user;
 
-            menuItems = menuController.loadMenu();
+            menuItems = menuController.getMenusOnDate(dateTimePicker1.Value);
             plates = menuController.loadPlatesMenu();
             extra = menuController.loadExtrasMenu();
 
@@ -105,7 +105,7 @@ namespace iCantine.Views
 
                     numSaves++;
                 }
-                menuItems = menuController.loadMenu();
+                menuItems = menuController.getMenusOnDate(dateTimePicker1.Value);
                 updateMenuListBox();
                 buttonCreateMenu.Text = "Adicionar";
             }
@@ -171,7 +171,7 @@ namespace iCantine.Views
                 {
                     MessageBox.Show("Falha ao gravar!");
                 }
-                menuItems = menuController.loadMenu();
+                menuItems = menuController.getMenusOnDate(dateTimePicker1.Value);
                 updateMenuListBox();
                 editButtonState();
             }
@@ -255,13 +255,14 @@ namespace iCantine.Views
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            if(dateTimePicker1.Value < DateTime.Now)
+            if(dateTimePicker1.Value < DateTime.Now.AddDays(-1) || dateTimePicker1.Value > DateTime.Now.AddDays(7))
             {
-                MessageBox.Show("Não pode criar menus com a data anterior ao dia de hoje.");
+                MessageBox.Show("Não pode selecionar um dia num range superior ou inferior a 7 dias.");
             }
-            if(dateTimePicker1.Value > DateTime.Now.AddDays(7))
-            {
-                MessageBox.Show("Não pode selecionar um dia num range superior a 7 dias.");
+            else
+            {    
+                menuItems = menuController.getMenusOnDate(dateTimePicker1.Value);
+                updateMenuListBox();
             }
         }
         private string isLunch()
@@ -417,14 +418,17 @@ namespace iCantine.Views
         {
             var selectedMenu = new models.Menu();
             selectedMenu = (models.Menu)listBoxMenu.SelectedItem;
-            if (selectedMenu != null)
+            if (selectedMenu != null && menuItems != null)
             {
                 listBoxPlate.ClearSelected();
                 listBoxExtras.ClearSelected();
+
                 textBoxQuantity.Text = selectedMenu.QuantAvailable.ToString();
                 textBoxPriceStudent.Text = selectedMenu.PriceStudent.ToString();
                 textBoxPriceProfessor.Text = selectedMenu.PriceProf.ToString();
+
                 checkCheckBox(getSavedHour(selectedMenu.Data));
+
                 if (listBoxPlate.Items.Count > 0)
                 {
                     foreach (var item in selectedMenu.Plates)

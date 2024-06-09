@@ -101,5 +101,19 @@ namespace iCantine.models
             }
             return false;
         }
+        public List<models.Menu> getMenusOnDate(DateTime date)
+        {
+            var query = Context.Menus.Where(
+                    menu =>
+                    menu.Data.Year == date.Year &&
+                    menu.Data.Month == date.Month &&
+                    menu.Data.Day == date.Day).Include(m => m.Plates).Include(m => m.Extras);
+            
+            if (query.Count() > 0)
+            {
+                return query.ToList();
+            }
+            return null;
+        }
     }
 }
