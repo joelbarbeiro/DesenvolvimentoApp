@@ -22,6 +22,7 @@ namespace iCantine.Views
         public FormMakeReservation(string user)
         {
             InitializeComponent();
+            this.Load += FormMakeAReservation_Load;
             this.user = user;
             this.radioButtonLunch.CheckedChanged += new System.EventHandler(this.radioButtonLunch_CheckedChanged);
             this.radioButtonDinner.CheckedChanged += new System.EventHandler(this.radioButtonDinner_CheckedChanged);
@@ -136,6 +137,7 @@ namespace iCantine.Views
             return true;
         }
 
+
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             updatelistBoxExtras();
@@ -206,7 +208,15 @@ namespace iCantine.Views
                 return plates?.Plates.Where(p => p.Active).ToList() ?? new List<Plate>();
 
             }
+
         }
+        public List<Plate> loadPlatesMenu(int menuId)
+        {
+            using (var context = new models.Context())
+            {
+                var menu = context.Menus
+                                  .Include(m => m.Plates)
+                                  .FirstOrDefault(m => m.idMenu == menuId);
 
 
         private decimal calcTotal()
@@ -406,4 +416,5 @@ namespace iCantine.Views
             return true;
         }
     }
+    
 }
