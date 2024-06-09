@@ -38,8 +38,7 @@ namespace iCantine.Views
             updateMenuListBox();
             updatePlateListBox();
             updateExtraListBox();
-            changeTextBoxState();
-            
+            changeCreateMenuState();
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -64,7 +63,7 @@ namespace iCantine.Views
 
         private void buttonCreateMenu_Click(object sender, EventArgs e)
         {
-            if (validateDataMenu())
+            if (validateDataMenu() && buttonCreateMenu.Text == "Gravar")
             {
                 List<Plate> selectedPlates = new List<Plate>();
                 List<Extra> selectedExtras = new List<Extra>();
@@ -108,7 +107,14 @@ namespace iCantine.Views
                 }
                 menuItems = menuController.loadMenu();
                 updateMenuListBox();
+                buttonCreateMenu.Text = "Adicionar";
             }
+            else if(buttonCreateMenu.Text == "Adicionar")
+            {
+                buttonCreateMenu.Text = "Gravar";
+            }
+            changeCreateMenuState();
+
         }
 
         private void buttonEditMenu_Click(object sender, EventArgs e)
@@ -171,72 +177,52 @@ namespace iCantine.Views
             }
         }
 
-        private void listBoxTime_SelectedIndexChanged(object sender, EventArgs e)
+        private void changeCreateMenuState()
         {
-            changeTextBoxState();
-        }
-
-        private void listBoxPlate_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            changeTextBoxState();
-        }
-
-        private void listBoxExtras_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            changeTextBoxState();
-        }
-
-        private void changeTextBoxState()
-        {
-            if (checkBoxLunch.Checked == true || checkBoxDinner.Checked == true && listBoxPlate.SelectedItem != null)
+            if (buttonCreateMenu.Text == "Gravar")
             {
+                listBoxPlate.ClearSelected();
+                listBoxExtras.ClearSelected();
+                textBoxQuantity.Text = string.Empty;
                 textBoxQuantity.Enabled = true;
+                textBoxPriceStudent.Text = string.Empty;
                 textBoxPriceStudent.Enabled = true;
+                textBoxPriceProfessor.Text = string.Empty;
                 textBoxPriceProfessor.Enabled = true;
+                checkBoxLunch.Checked = false;
+                checkBoxDinner.Checked = false;
             }
-            else
+            else if (buttonCreateMenu.Text == "Adicionar")
             {
+                
                 textBoxQuantity.Text = string.Empty;
                 textBoxQuantity.Enabled = false;
                 textBoxPriceStudent.Text = string.Empty;
                 textBoxPriceStudent.Enabled = false;
                 textBoxPriceProfessor.Text = string.Empty;
                 textBoxPriceProfessor.Enabled = false;
+                checkBoxLunch.Checked = false;
+                checkBoxDinner.Checked = false;
             }
         }
         
         private bool validateDataMenu()
         {
             int tester = 0;
-            if(textBoxQuantity.Text == string.Empty) 
-            {
-                MessageBox.Show("Não introduziu valor na quantidade");
-                return false;
-            }
-            if(textBoxPriceStudent.Text == string.Empty)
-            {
-                MessageBox.Show("Preço de estudante não foi introduzido");
-                return false;
-            }
-            if(textBoxPriceProfessor.Text == string.Empty)
-            {
-                MessageBox.Show("Preço do professor não foi introduzido");
-                return false;
-            }
             int.TryParse(textBoxQuantity.Text, out tester);
-            if (tester < 0)
+            if (textBoxQuantity.Text == string.Empty || tester < 0)
             {
                 MessageBox.Show("Não introduziu valor na quantidade");
                 return false;
             }
             int.TryParse(textBoxPriceStudent.Text, out tester);
-            if (tester < 0)
+            if(textBoxPriceStudent.Text == string.Empty || tester < 0)
             {
                 MessageBox.Show("Preço de estudante não foi introduzido");
                 return false;
             }
             int.TryParse(textBoxPriceProfessor.Text, out tester);
-            if (tester < 0)
+            if(textBoxPriceProfessor.Text == string.Empty || tester < 0)
             {
                 MessageBox.Show("Preço do professor não foi introduzido");
                 return false;
@@ -347,6 +333,7 @@ namespace iCantine.Views
                     student = student * 1.2m;
                     textBoxPriceProfessor.Text = student.ToString();
                 }
+                
             }
             catch 
             {
@@ -355,29 +342,6 @@ namespace iCantine.Views
                 textBoxPriceProfessor.Text = string.Empty;
             }
         }
-
-        private void checkBoxLunch_CheckedChanged(object sender, EventArgs e)
-        {
-            changeTextBoxState();
-        }
-
-        private void checkBoxDinner_CheckedChanged(object sender, EventArgs e)
-        {
-            changeTextBoxState();
-        }
-        private void changeButtonAddState()
-        {
-            if(textBoxQuantity.Text != string.Empty && textBoxPriceStudent.Text != string.Empty && textBoxPriceProfessor.Text != string.Empty)
-            {
-                buttonCreateMenu.Enabled = true;
-            }
-            else
-            {
-                buttonCreateMenu.Enabled = false;
-            }
-        }
-
-        
 
         private void editButtonState()
         {
@@ -446,6 +410,37 @@ namespace iCantine.Views
                     MessageBox.Show("Erro ao eliminar o menu!");
                 }
             }
+            updateMenuListBox();
         }
+
+        private void listBoxMenu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedMenu = new models.Menu();
+            selectedMenu = (models.Menu)listBoxMenu.SelectedItem;
+            if (selectedMenu != null)
+            {
+                listBoxPlate.ClearSelected();
+                listBoxExtras.ClearSelected();
+                textBoxQuantity.Text = selectedMenu.QuantAvailable.ToString();
+                textBoxPriceStudent.Text = selectedMenu.PriceStudent.ToString();
+                textBoxPriceProfessor.Text = selectedMenu.PriceProf.ToString();
+                checkCheckBox(getSavedHour(selectedMenu.Data));
+                if (listBoxPlate.Items.Count > 0)
+                {
+                    foreach (var item in selectedMenu.Plates)
+                    {
+                        listBoxPlate.SetSelected(item.idPlate-1, true);
+                    }
+                }
+                if (listBoxExtras.Items.Count > 0)
+                {
+                    foreach (var item in selectedMenu.Extras)
+                    {
+                        listBoxExtras.SetSelected(item.idExtra-1, true);
+                    }
+                }
+            }
+        }
+
     }
 }

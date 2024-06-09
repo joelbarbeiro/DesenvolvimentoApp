@@ -43,8 +43,7 @@ namespace iCantine.models
         public override string ToString()
         {
             return $"Prato: {string.Join(", ", Plates.Select(p => p.ToString()))}" +
-        $" Extras: {string.Join(", ", Extras.Select(e => e.ToString()))}" +
-        $" Quantidade: {QuantAvailable}";
+        $" Extras: {string.Join(", ", Extras.Select(e => e.ToString()))}";
         }
     }
 }

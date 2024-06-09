@@ -71,7 +71,6 @@ namespace iCantine.Views
             this.listBoxPlate.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxPlate.Size = new System.Drawing.Size(125, 199);
             this.listBoxPlate.TabIndex = 2;
-            this.listBoxPlate.SelectedIndexChanged += new System.EventHandler(this.listBoxPlate_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -100,6 +99,7 @@ namespace iCantine.Views
             this.listBoxMenu.Name = "listBoxMenu";
             this.listBoxMenu.Size = new System.Drawing.Size(418, 225);
             this.listBoxMenu.TabIndex = 7;
+            this.listBoxMenu.SelectedIndexChanged += new System.EventHandler(this.listBoxMenu_SelectedIndexChanged);
             // 
             // buttonBack
             // 
@@ -244,7 +244,6 @@ namespace iCantine.Views
             this.checkBoxDinner.TabIndex = 23;
             this.checkBoxDinner.Text = "Jantar";
             this.checkBoxDinner.UseVisualStyleBackColor = true;
-            this.checkBoxDinner.CheckedChanged += new System.EventHandler(this.checkBoxDinner_CheckedChanged);
             // 
             // checkBoxLunch
             // 
@@ -256,7 +255,6 @@ namespace iCantine.Views
             this.checkBoxLunch.TabIndex = 22;
             this.checkBoxLunch.Text = "Almoço";
             this.checkBoxLunch.UseVisualStyleBackColor = true;
-            this.checkBoxLunch.CheckedChanged += new System.EventHandler(this.checkBoxLunch_CheckedChanged);
             // 
             // listBoxExtras
             // 
