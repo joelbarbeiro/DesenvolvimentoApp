@@ -13,10 +13,11 @@ namespace iCantine.models
         [Key]
         public int idExtra { get; set; }
         public string Description { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public bool Active { get; set; }
         public int Stock { get; set; }
         public virtual ICollection<Menu> Menu { get; set; }
+        public virtual ICollection<Reservation> Reservations { get; set; }
         public virtual string DisplayName => $"{Description} - Preço: {Price}€ - Stock: {Stock}";
         public virtual string ReservationName => $"{Description} - {Price}";
       
@@ -24,7 +25,7 @@ namespace iCantine.models
         {
         }
 
-        public Extra(string description, double price, int stock)
+        public Extra(string description, decimal price, int stock)
         {
             Description = description;
             Price = price;

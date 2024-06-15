@@ -29,7 +29,7 @@ namespace iCantine.Views
         private void buttonAddExtra_Click(object sender, EventArgs e)
         {
             string description = textBoxDescription.Text;
-            double price = (double)priceUpDown.Value;
+            decimal price = (decimal)priceUpDown.Value;
             int stock = (int)stockUpDown.Value;
 
             if(validationControl(price, description))
@@ -126,7 +126,7 @@ namespace iCantine.Views
                 var selectedExtra = (Extra)listBoxExtras.SelectedItem;
 
                 selectedExtra.Description = textBoxDescription.Text;
-                selectedExtra.Price = (double)priceUpDown.Value;
+                selectedExtra.Price = (decimal)priceUpDown.Value;
                 selectedExtra.Stock = (int)stockUpDown.Value;
 
                 if (negativeStockControl(selectedExtra.Stock))
@@ -146,7 +146,7 @@ namespace iCantine.Views
             }
         }
 
-        private bool validationControl(double price, string description)
+        private bool validationControl(decimal price, string description)
         {
             if (string.IsNullOrEmpty(description))
             {

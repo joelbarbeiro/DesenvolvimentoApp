@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +13,7 @@ namespace iCantine.models
         public virtual string DisplayName => $"{name} (Balance: {Balance:C})";
         public virtual string Name => $"{name}";
         public virtual Receipt Receipt { get; set; }
+        public virtual ICollection<Reservation> Reservations { get; set; }
         public Client()
         {
         }

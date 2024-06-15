@@ -12,37 +12,20 @@ namespace iCantine.models
     {
         [Key]
         public int idReservation { get; set; }
-        public DateTime Date { get; set; }
-        public string Plate { get; set; }
-        public string Extra { get; set; }
-        public string Client { get; set; }
-        public string Hour { get; set; }
-        public virtual string ReservationName => $"{Date},{Plate},{Client},{Extra}";
-        public List<Client> Clients;
-        public List<Ticket> Tickets;
-        public List<Plate> Plates;
-        public List<Menu> Menus;
-        public List<Extra> Extras;
-        public ICollection<Reservation> Reservations;
+
+        public virtual Client Clients { get; set; }
+        public virtual Ticket Tickets { get; set; }
+        public virtual Plate Plates { get; set; }
+        public virtual Menu Menus { get; set; }
+        public virtual List<Extra> Extras { get; set; }
 
         public Reservation()
         {
         }
 
-
-        public Reservation(string plate, string extra, string client, DateTime date, string hour)
-        {
-            Plate = plate;
-            Extra = extra;
-            Client = client;
-            Date = date;
-            Hour = hour;
-
-        }
-
         public override string ToString()
         {
-            return Date + "-" + Hour + ":" + Plate + "," + Extra + "," + Client;
+            return base.ToString();
         }
     }
 }

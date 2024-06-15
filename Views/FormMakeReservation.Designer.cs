@@ -76,8 +76,10 @@ namespace iCantine.Views
             this.listBoxExtras.FormattingEnabled = true;
             this.listBoxExtras.Location = new System.Drawing.Point(435, 75);
             this.listBoxExtras.Name = "listBoxExtras";
+            this.listBoxExtras.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxExtras.Size = new System.Drawing.Size(141, 303);
             this.listBoxExtras.TabIndex = 5;
+            this.listBoxExtras.SelectedIndexChanged += new System.EventHandler(this.listBoxExtras_SelectedIndexChanged_1);
             // 
             // listBoxReservations
             // 
@@ -127,6 +129,7 @@ namespace iCantine.Views
             this.comboBoxClient.Name = "comboBoxClient";
             this.comboBoxClient.Size = new System.Drawing.Size(152, 21);
             this.comboBoxClient.TabIndex = 11;
+            this.comboBoxClient.SelectedIndexChanged += new System.EventHandler(this.comboBoxClient_SelectedIndexChanged);
             // 
             // label7
             // 

@@ -221,7 +221,7 @@ namespace iCantine.Views
         }
         private bool negativeStockControl(int stock)
         {
-            if (stock < 1)
+            if (stock <= 0)
             {
                 MessageBox.Show("Quantidade em stock têm de ser um numero inteiro");
                 return false;
@@ -230,34 +230,32 @@ namespace iCantine.Views
         }
         private void saveData(Plate selectedPlate)
         {
-            /*using (var context = new models.Context())
+            using (var context = new models.Context())
             {
                 var dbPlate = context.Plates.SingleOrDefault(b => b.idPlate == selectedPlate.idPlate);
                 if (dbPlate != null)
                 {
+                    if(selectedPlate.Stock <= 0)
+                    {
+                        dbPlate.Active = false;
+                    }
+                    else
+                    {
+                        dbPlate.Active = true;
+                    }
+
                     dbPlate.Description = selectedPlate.Description;
-                    dbPlate.Price = selectedPlate.Price;
                     dbPlate.Stock = selectedPlate.Stock;
                     dbPlate.Type = selectedPlate.Type;
 
                     context.SaveChanges();
                 }
-                var menuPlate = context.Menus.Plate.SingleOrDefault(mp => mp.idPlates == selectedPlate.idPlate);
-                if (menuPlate == null)
-                {
-                    menuPlate = new MenuPlate
-                    {
-                        idPlates = selectedPlate.idPlate,
-                        idExtras = 0
-                    };
-                    context.MenuPlates.Add(menuPlate);
-                }
                 else
                 {
-                    menuPlate.idPlates = selectedPlate.idPlate;
+                    MessageBox.Show("Pratos não guardados");
                 }
-                context.SaveChanges();
-            }*/
+               
+            }
         }
         private void addControl()
         {
