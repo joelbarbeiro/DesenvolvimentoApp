@@ -448,11 +448,15 @@ namespace iCantine.Views
             }
         }
 
-        private void listBoxPlate_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxPlate_SelectedIndexChanged(object sender, ItemCheckEventArgs e)
         {
-            if (listBoxPlate.SelectedItems.Count <= 3)
+            if (listBoxPlate.SelectedItems.Count > 3)
             {
-            }
+                e.NewValue = CheckState.Unchecked;
+
+                // Optionally, provide feedback to the user
+                MessageBox.Show($"You can only check up to items.");
+            } 
         }
     }
 }

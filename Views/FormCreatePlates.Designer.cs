@@ -212,7 +212,7 @@ namespace iCantine.Views
             this.Controls.Add(this.textBoxDescription);
             this.Controls.Add(this.label5);
             this.Name = "FormCreatePlates";
-            this.Text = "FormCreatePlates";
+            this.Text = "  ";
             ((System.ComponentModel.ISupportInitialize)(this.stockUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
