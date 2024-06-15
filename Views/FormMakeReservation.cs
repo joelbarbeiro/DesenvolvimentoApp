@@ -45,11 +45,19 @@ namespace iCantine.Views
         {
             using (var context = new models.Context())
             {
-                var menus = context.Menus
+                DateTime selectedDate = dateTimePicker.Value;
+                /*var menus = context.Menus
                     .OfType<models.Menu>()
                     .ToList();
                 listBoxMenus.DataSource = menus;
-                listBoxMenus.DisplayMember = "DisplayName";
+                listBoxMenus.DisplayMember = "DisplayName";*/
+                var query = context.Menus.Where(
+                    menu =>
+                    menu.Data.Year == selectedDate.Year &&
+                    menu.Data.Month == selectedDate.Month &&
+                    menu.Data.Day == selectedDate.Day).Include(m => m.Plates).Include(m => m.Extras);
+                listBoxMenus.DataSource = null;
+                listBoxMenus.DataSource = query.ToList();
             }
         }
         public void updateListBoxPlates()
@@ -234,6 +242,7 @@ namespace iCantine.Views
 
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
+            updatelistBoxMenus();
             DateTime selectedDate = dateTimePicker.Value;
             DateTime MaxAllowedDate = DateTime.Now.AddDays(7);
             if (selectedDate > MaxAllowedDate)
@@ -242,7 +251,7 @@ namespace iCantine.Views
                 dateTimePicker.Value = DateTime.Now;
                 return;
             }
-            if(selectedDate < DateTime.Now)
+            if(selectedDate < DateTime.Now.AddDays(-1))
             {
                 MessageBox.Show("Data inválida");
                 dateTimePicker.Value = DateTime.Now;

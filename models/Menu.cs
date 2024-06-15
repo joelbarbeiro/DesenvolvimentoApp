@@ -19,8 +19,9 @@ namespace iCantine.models
         public int QuantAvailable { get; set; }
         public decimal PriceStudent { get; set; }
         public decimal PriceProf { get; set; }
-        public List<Plate> Plates { get; set; }
-        public List<Extra> Extras { get; set; }
+        public virtual List<Plate> Plates { get; set; }
+        public virtual List<Extra> Extras { get; set; }
+        public virtual Receipt Receipt { get; set; }
 
         public virtual string DisplayMenu =>
         $"Prato: {string.Join(", ", Plates.Select(p => p.DisplayName))}\n" +

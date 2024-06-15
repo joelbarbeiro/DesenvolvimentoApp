@@ -19,6 +19,7 @@ namespace iCantine.models
         public DbSet<Receipt> Receipts { get; set; }
         public DbSet<Extra> Extras { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<ItemReceipt> ItemReceipts { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

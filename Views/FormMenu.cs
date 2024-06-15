@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -63,51 +64,53 @@ namespace iCantine.Views
 
         private void buttonCreateMenu_Click(object sender, EventArgs e)
         {
-            if (validateDataMenu() && buttonCreateMenu.Text == "Gravar")
+            if (buttonCreateMenu.Text == "Gravar")
             {
-                List<Plate> selectedPlates = new List<Plate>();
-                List<Extra> selectedExtras = new List<Extra>();
-
-                int numSaves = 0;
-                while (numSaves < checkHours())
+                if (validateDataMenu())
                 {
-                    string[] hours = getHours();
-                    DateTime day = dateTimePicker1.Value.ToUniversalTime();
-                    //DateTime hour = convertTimeFromString(hours[numSaves]);
-                    DateTime dateToSave = convertTimeFromString(day, hours, numSaves);
-                    
-                    foreach (var itemPlate in listBoxPlate.SelectedItems)
-                    {
-                        selectedPlates.Add((Plate)itemPlate);
-                    }
-                    foreach (var itemExtra in listBoxExtras.SelectedItems)
-                    {
-                        selectedExtras.Add((Extra)itemExtra);
-                    }
+                    List<Plate> selectedPlates = new List<Plate>();
+                    List<Extra> selectedExtras = new List<Extra>();
 
-                    int quantity = 0;
-                    decimal studentPrice = 0;
-                    decimal professorPrice = 0;
-                    int.TryParse(textBoxQuantity.Text, out quantity);
-                    decimal.TryParse(textBoxPriceStudent.Text, out studentPrice);
-                    decimal.TryParse(textBoxPriceProfessor.Text, out professorPrice);
-
-                    models.Menu menu = new models.Menu(dateToSave, quantity, studentPrice, professorPrice);
-
-                    if(menuController.saveMenu(menu, selectedPlates, selectedExtras))
+                    int numSaves = 0;
+                    while (numSaves < checkHours())
                     {
-                        MessageBox.Show("Menu gravado com sucesso!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Falha ao gravar!");
-                    }
+                        string[] hours = getHours();
+                        DateTime day = dateTimePicker1.Value.ToUniversalTime();
+                        DateTime dateToSave = convertTimeFromString(day, hours, numSaves);
 
-                    numSaves++;
+                        foreach (var itemPlate in listBoxPlate.SelectedItems)
+                        {
+                            selectedPlates.Add((Plate)itemPlate);
+                        }
+                        foreach (var itemExtra in listBoxExtras.SelectedItems)
+                        {
+                            selectedExtras.Add((Extra)itemExtra);
+                        }
+
+                        int quantity = 0;
+                        decimal studentPrice = 0;
+                        decimal professorPrice = 0;
+                        int.TryParse(textBoxQuantity.Text, out quantity);
+                        decimal.TryParse(textBoxPriceStudent.Text, out studentPrice);
+                        decimal.TryParse(textBoxPriceProfessor.Text, out professorPrice);
+
+                        models.Menu menu = new models.Menu(dateToSave, quantity, studentPrice, professorPrice);
+
+                        if (menuController.saveMenu(menu, selectedPlates, selectedExtras))
+                        {
+                            MessageBox.Show("Menu gravado com sucesso!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Falha ao gravar!");
+                        }
+
+                        numSaves++;
+                    }
+                    menuItems = menuController.getMenusOnDate(dateTimePicker1.Value);
+                    updateMenuListBox();
+                    buttonCreateMenu.Text = "Adicionar";
                 }
-                menuItems = menuController.getMenusOnDate(dateTimePicker1.Value);
-                updateMenuListBox();
-                buttonCreateMenu.Text = "Adicionar";
             }
             else if(buttonCreateMenu.Text == "Adicionar")
             {
@@ -138,7 +141,6 @@ namespace iCantine.Views
 
                 string[] hours = getHours();
                 DateTime day = dateTimePicker1.Value.ToUniversalTime();
-                //DateTime hour = convertTimeFromString(hours[numSaves]);
                 DateTime dateToSave = convertTimeFromString(day, hours);
 
                 int quantity = 0;
@@ -183,11 +185,11 @@ namespace iCantine.Views
             {
                 listBoxPlate.ClearSelected();
                 listBoxExtras.ClearSelected();
-                textBoxQuantity.Text = string.Empty;
+                textBoxQuantity.Text = "0";
                 textBoxQuantity.Enabled = true;
-                textBoxPriceStudent.Text = string.Empty;
+                textBoxPriceStudent.Text = "0";
                 textBoxPriceStudent.Enabled = true;
-                textBoxPriceProfessor.Text = string.Empty;
+                textBoxPriceProfessor.Text = "0";
                 textBoxPriceProfessor.Enabled = true;
                 checkBoxLunch.Checked = false;
                 checkBoxDinner.Checked = false;
@@ -445,6 +447,5 @@ namespace iCantine.Views
                 }
             }
         }
-
     }
 }

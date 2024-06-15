@@ -13,7 +13,7 @@ namespace iCantine.models
         public int idItemReceipt {  get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
-
+        public virtual ICollection<Receipt> Receipts { get; set; }
         public ItemReceipt()
         {
         }
