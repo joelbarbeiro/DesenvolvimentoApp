@@ -15,7 +15,6 @@ namespace iCantine.models
         [Key]
         public int idMenu { get; set; }
         public DateTime Data { get; set; }
-        //public DateTime Hour { get; set; }
         public int QuantAvailable { get; set; }
         public decimal PriceStudent { get; set; }
         public decimal PriceProf { get; set; }

@@ -447,5 +447,12 @@ namespace iCantine.Views
                 }
             }
         }
+
+        private void listBoxPlate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxPlate.SelectedItems.Count <= 3)
+            {
+            }
+        }
     }
 }

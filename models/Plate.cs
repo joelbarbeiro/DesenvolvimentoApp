@@ -17,20 +17,18 @@ namespace iCantine.models
         public string Type { get; set; }
         public int Stock { get; set; }
         public bool Active { get; set; }
-        public double Price { get; set; }
         public virtual ICollection<Menu> Menu { get; set; }
-        public virtual string DisplayName => $"Prato: {Description}€ - Tipo: {Type} - Stock: {Stock} - Price: {Price}";
-        public virtual string ReservationName => $"{Description} - {Price}";
+        public virtual string DisplayName => $"Prato: {Description}€ - Tipo: {Type} - Stock: {Stock}";
+        public virtual string ReservationName => $"{Description} ";
         public Plate()
         {
 
         }
-        public Plate(string description, string type, int stock, double price)
+        public Plate(string description, string type, int stock)
         {
             this.Description = description;
             this.Type = type;
             this.Stock = stock;
-            this.Price = price;
         }
 
         public override string ToString()

@@ -5,7 +5,6 @@
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
     internal sealed class Configuration : DbMigrationsConfiguration<iCantine.models.Context>
     {
@@ -24,16 +23,16 @@
             );
             context.Plates.AddOrUpdate(
             p => p.idPlate,
-                new Plate("Feijoada", "Carne", 20, 25.00),
-                new Plate("Bacalhau à Brás", "Peixe", 15, 30.00),
-                new Plate("Moqueca de Camarão", "Peixe", 10, 35.00),
-                new Plate("Lasanha de Legumes", "Vegetariano", 12, 22.00),
-                new Plate("Strogonoff de Frango", "Carne", 18, 20.00),
-                new Plate("Risoto de Funghi", "Vegetariano", 15, 28.00),
-                new Plate("Salada Grega", "Vegetariano", 25, 18.00),
-                new Plate("Picanha na Brasa", "Carne", 8, 40.00),
-                new Plate("Filete de Salmão", "Peixe", 12, 38.00),
-                new Plate("Quiche de Espinafres e Requeijão", "Vegetariano", 20, 15.00)
+                new Plate("Feijoada", "Carne", 20),
+                new Plate("Bacalhau à Brás", "Peixe", 15),
+                new Plate("Moqueca de Camarão", "Peixe", 10),
+                new Plate("Lasanha de Legumes", "Vegetariano", 12),
+                new Plate("Strogonoff de Frango", "Carne", 18),
+                new Plate("Risoto de Funghi", "Vegetariano", 15),
+                new Plate("Salada Grega", "Vegetariano", 25),
+                new Plate("Picanha na Brasa", "Carne", 8),
+                new Plate("Filete de Salmão", "Peixe", 12),
+                new Plate("Quiche de Espinafres e Requeijão", "Vegetariano", 20)
 
                 );
             context.Extras.AddOrUpdate(

@@ -34,7 +34,6 @@ namespace iCantine.Views
             this.label4 = new System.Windows.Forms.Label();
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -42,11 +41,9 @@ namespace iCantine.Views
             this.label6 = new System.Windows.Forms.Label();
             this.labelUsername = new System.Windows.Forms.Label();
             this.stockUpDown = new System.Windows.Forms.NumericUpDown();
-            this.priceUpDown = new System.Windows.Forms.NumericUpDown();
             this.comboBoxType = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.stockUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priceUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonDelete
@@ -103,23 +100,13 @@ namespace iCantine.Views
             // buttonAdd
             // 
             this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd.Location = new System.Drawing.Point(121, 305);
+            this.buttonAdd.Location = new System.Drawing.Point(121, 223);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(132, 23);
             this.buttonAdd.TabIndex = 16;
             this.buttonAdd.Text = "Adicionar";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click_1);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(50, 128);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 24);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Preço:";
             // 
             // label2
             // 
@@ -152,7 +139,7 @@ namespace iCantine.Views
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(50, 186);
+            this.label1.Location = new System.Drawing.Point(50, 120);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 24);
             this.label1.TabIndex = 22;
@@ -162,7 +149,7 @@ namespace iCantine.Views
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(50, 236);
+            this.label6.Location = new System.Drawing.Point(50, 170);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 24);
             this.label6.TabIndex = 25;
@@ -180,23 +167,16 @@ namespace iCantine.Views
             // 
             // stockUpDown
             // 
-            this.stockUpDown.Location = new System.Drawing.Point(54, 263);
+            this.stockUpDown.Location = new System.Drawing.Point(54, 197);
             this.stockUpDown.Name = "stockUpDown";
             this.stockUpDown.Size = new System.Drawing.Size(199, 20);
             this.stockUpDown.TabIndex = 27;
-            // 
-            // priceUpDown
-            // 
-            this.priceUpDown.Location = new System.Drawing.Point(54, 155);
-            this.priceUpDown.Name = "priceUpDown";
-            this.priceUpDown.Size = new System.Drawing.Size(199, 20);
-            this.priceUpDown.TabIndex = 29;
             // 
             // comboBoxType
             // 
             this.comboBoxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxType.FormattingEnabled = true;
-            this.comboBoxType.Location = new System.Drawing.Point(54, 212);
+            this.comboBoxType.Location = new System.Drawing.Point(54, 146);
             this.comboBoxType.Name = "comboBoxType";
             this.comboBoxType.Size = new System.Drawing.Size(199, 21);
             this.comboBoxType.TabIndex = 30;
@@ -218,7 +198,6 @@ namespace iCantine.Views
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBoxType);
-            this.Controls.Add(this.priceUpDown);
             this.Controls.Add(this.stockUpDown);
             this.Controls.Add(this.labelUsername);
             this.Controls.Add(this.label6);
@@ -229,14 +208,12 @@ namespace iCantine.Views
             this.Controls.Add(this.label4);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.buttonAdd);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxDescription);
             this.Controls.Add(this.label5);
             this.Name = "FormCreatePlates";
             this.Text = "FormCreatePlates";
             ((System.ComponentModel.ISupportInitialize)(this.stockUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priceUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,7 +227,6 @@ namespace iCantine.Views
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button buttonAdd;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.Label label5;
@@ -258,7 +234,6 @@ namespace iCantine.Views
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label labelUsername;
         private System.Windows.Forms.NumericUpDown stockUpDown;
-        private System.Windows.Forms.NumericUpDown priceUpDown;
         private System.Windows.Forms.ComboBox comboBoxType;
         private System.Windows.Forms.Label label7;
     }

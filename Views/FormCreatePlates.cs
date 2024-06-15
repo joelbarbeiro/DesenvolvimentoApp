@@ -28,13 +28,12 @@ namespace iCantine.Views
         private void buttonAdd_Click_1(object sender, EventArgs e)
         {
             string description = textBoxDescription.Text;
-            double price = (double)priceUpDown.Value;
             int stock = (int)stockUpDown.Value;
             string type = comboBoxType.Text;
 
-            if (validationControl(price, description, type))
+            if (validationControl(description, type))
             {
-                Plate plate = new Plate(description, type, stock, price);
+                Plate plate = new Plate(description, type, stock);
                 Context context = new Context();
                 try
                 {
@@ -102,7 +101,6 @@ namespace iCantine.Views
                 var selectedPlate = (Plate)listBoxPlates.SelectedItem;
 
                 textBoxDescription.Text = selectedPlate.Description;
-                priceUpDown.Value = (decimal)selectedPlate.Price;
                 stockUpDown.Value = selectedPlate.Stock;
                 comboBoxType.Text = selectedPlate.Type;
                 listBoxPlates.Enabled = false;
@@ -124,7 +122,6 @@ namespace iCantine.Views
                 var selectedPlate = (Plate)listBoxPlates.SelectedItem;
 
                 selectedPlate.Description = textBoxDescription.Text;
-                selectedPlate.Price = (double)priceUpDown.Value;
                 selectedPlate.Stock = (int)stockUpDown.Value;
                 selectedPlate.Type = comboBoxType.Text;
 
@@ -163,16 +160,11 @@ namespace iCantine.Views
         }
 
         
-        private bool validationControl(double price, string description, string type)
+        private bool validationControl(string description, string type)
         {
             if (string.IsNullOrEmpty(description))
             {
                 MessageBox.Show("A descrição não pode estar vazia.");
-                return false;
-            }
-            if (price <= 0)
-            {
-                MessageBox.Show("O preço deve ser maior que zero.");
                 return false;
             }
             if(string.IsNullOrEmpty(type))
@@ -193,7 +185,6 @@ namespace iCantine.Views
         private void clearTextBox()
         {
             textBoxDescription.Text = "";
-            priceUpDown.Value = 0;
             stockUpDown.Value = 0;
             comboBoxType.SelectedIndex = 0;
         }
