@@ -2,17 +2,10 @@ using iCantine.Controllers;
 using iCantine.models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
-using System.Drawing;
-using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace iCantine.Views
 {
@@ -145,7 +138,7 @@ namespace iCantine.Views
         {
             updatelistBoxExtras();
             updatelistBoxMenus();
-            
+
             DateTime selectedDate = dateTimePicker.Value;
             DateTime MaxAllowedDate = DateTime.Now.AddDays(7);
             if (selectedDate > MaxAllowedDate || selectedDate < DateTime.Now.AddDays(-1))
@@ -188,6 +181,7 @@ namespace iCantine.Views
             else
             {
                 MessageBox.Show("Falha ao gravar!");
+
             }
 
         }
@@ -214,7 +208,7 @@ namespace iCantine.Views
 
             }
         }
-        
+
 
         private decimal calcTotal()
         {
@@ -225,7 +219,7 @@ namespace iCantine.Views
                 Client client = (Client)comboBoxClient.SelectedItem;
                 if (client != null)
                 {
-                   if (client is Student)
+                    if (client is Student)
                     {
                         totalCost += selectedMenu.PriceStudent;
                     }
@@ -261,12 +255,12 @@ namespace iCantine.Views
         {
             decimal totalCost = calcTotal();
             Client client = (Client)comboBoxClient.SelectedItem;
-            if (client != null)
+            if (client is Client)
             {
                 using (var context = new models.Context())
                 {
                     var dbClient = context.Users.OfType<Client>().FirstOrDefault(c => c.name == client.name);
-                    if (dbClient != null && dbClient.Balance >= totalCost)
+                    if (dbClient.Balance >= totalCost)
                     {
                         dbClient.Balance -= totalCost;
                         context.SaveChanges();
@@ -303,7 +297,7 @@ namespace iCantine.Views
             }
         }
         public void updatelistBoxPlates()
-        { 
+        {
             using (var context = new models.Context())
             {
                 var plates = context.Plates

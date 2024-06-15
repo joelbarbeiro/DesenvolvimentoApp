@@ -71,15 +71,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Include="Migrations\202406151728331_update6.cs" />
-    <Compile Include="Migrations\202406151728331_update6.Designer.cs">
-      <DependentUpon>202406151728331_update6.cs</DependentUpon>
-=======
-    <Compile Include="Migrations\202406151759376_InitialUpdate2.cs" />
-    <Compile Include="Migrations\202406151759376_InitialUpdate2.Designer.cs">
-      <DependentUpon>202406151759376_InitialUpdate2.cs</DependentUpon>
->>>>>>> f8dc36c (Relações extras)
+    <Compile Include="Migrations\202406152059361_InitialUpdate3.cs" />
+    <Compile Include="Migrations\202406152059361_InitialUpdate3.Designer.cs">
+      <DependentUpon>202406152059361_InitialUpdate3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="models\CRUDController.cs" />
@@ -179,13 +173,8 @@
     <Compile Include="Views\FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <EmbeddedResource Include="Migrations\202406151728331_update6.resx">
-      <DependentUpon>202406151728331_update6.cs</DependentUpon>
-=======
-    <EmbeddedResource Include="Migrations\202406151759376_InitialUpdate2.resx">
-      <DependentUpon>202406151759376_InitialUpdate2.cs</DependentUpon>
->>>>>>> f8dc36c (Relações extras)
+    <EmbeddedResource Include="Migrations\202406152059361_InitialUpdate3.resx">
+      <DependentUpon>202406152059361_InitialUpdate3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormEmployee.resx">
       <DependentUpon>FormEmployee.cs</DependentUpon>

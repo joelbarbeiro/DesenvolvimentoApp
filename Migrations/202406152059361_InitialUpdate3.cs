@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialUpdate2 : DbMigration
+    public partial class InitialUpdate3 : DbMigration
     {
         public override void Up()
         {
@@ -19,8 +19,11 @@
                         email = c.String(),
                         studentNumber = c.Int(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
+                        Receipt_idReceipt = c.Int(),
                     })
-                .PrimaryKey(t => t.idUser);
+                .PrimaryKey(t => t.idUser)
+                .ForeignKey("dbo.Receipts", t => t.Receipt_idReceipt)
+                .Index(t => t.Receipt_idReceipt);
             
             CreateTable(
                 "dbo.Extras",
@@ -62,6 +65,19 @@
                 .PrimaryKey(t => t.idPlate);
             
             CreateTable(
+                "dbo.Receipts",
+                c => new
+                    {
+                        idReceipt = c.Int(nullable: false, identity: true),
+                        Total = c.Double(nullable: false),
+                        Date = c.DateTime(nullable: false),
+                        Items_idItemReceipt = c.Int(),
+                    })
+                .PrimaryKey(t => t.idReceipt)
+                .ForeignKey("dbo.ItemReceipts", t => t.Items_idItemReceipt)
+                .Index(t => t.Items_idItemReceipt);
+            
+            CreateTable(
                 "dbo.Reservations",
                 c => new
                     {
@@ -92,27 +108,14 @@
                 .PrimaryKey(t => t.idTicket);
             
             CreateTable(
-                "dbo.Receipts",
-                c => new
-                    {
-                        idReceipt = c.Int(nullable: false, identity: true),
-                        Total = c.Double(nullable: false),
-                        Date = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.idReceipt);
-            
-            CreateTable(
                 "dbo.ItemReceipts",
                 c => new
                     {
                         idItemReceipt = c.Int(nullable: false, identity: true),
                         Description = c.String(),
                         Price = c.Double(nullable: false),
-                        Receipt_idReceipt = c.Int(),
                     })
-                .PrimaryKey(t => t.idItemReceipt)
-                .ForeignKey("dbo.Receipts", t => t.Receipt_idReceipt)
-                .Index(t => t.Receipt_idReceipt);
+                .PrimaryKey(t => t.idItemReceipt);
             
             CreateTable(
                 "dbo.MenuExtras",
@@ -158,13 +161,14 @@
         public override void Down()
         {
             DropForeignKey("dbo.Menus", "Receipt_idReceipt", "dbo.Receipts");
-            DropForeignKey("dbo.ItemReceipts", "Receipt_idReceipt", "dbo.Receipts");
+            DropForeignKey("dbo.Receipts", "Items_idItemReceipt", "dbo.ItemReceipts");
             DropForeignKey("dbo.Reservations", "Tickets_idTicket", "dbo.Tickets");
             DropForeignKey("dbo.Reservations", "Plates_idPlate", "dbo.Plates");
             DropForeignKey("dbo.Reservations", "Menus_idMenu", "dbo.Menus");
             DropForeignKey("dbo.ReservationExtras", "Extra_idExtra", "dbo.Extras");
             DropForeignKey("dbo.ReservationExtras", "Reservation_idReservation", "dbo.Reservations");
             DropForeignKey("dbo.Reservations", "Clients_idUser", "dbo.Users");
+            DropForeignKey("dbo.Users", "Receipt_idReceipt", "dbo.Receipts");
             DropForeignKey("dbo.PlateMenus", "Menu_idMenu", "dbo.Menus");
             DropForeignKey("dbo.PlateMenus", "Plate_idPlate", "dbo.Plates");
             DropForeignKey("dbo.MenuExtras", "Extra_idExtra", "dbo.Extras");
@@ -175,19 +179,20 @@
             DropIndex("dbo.PlateMenus", new[] { "Plate_idPlate" });
             DropIndex("dbo.MenuExtras", new[] { "Extra_idExtra" });
             DropIndex("dbo.MenuExtras", new[] { "Menu_idMenu" });
-            DropIndex("dbo.ItemReceipts", new[] { "Receipt_idReceipt" });
             DropIndex("dbo.Reservations", new[] { "Tickets_idTicket" });
             DropIndex("dbo.Reservations", new[] { "Plates_idPlate" });
             DropIndex("dbo.Reservations", new[] { "Menus_idMenu" });
             DropIndex("dbo.Reservations", new[] { "Clients_idUser" });
+            DropIndex("dbo.Receipts", new[] { "Items_idItemReceipt" });
             DropIndex("dbo.Menus", new[] { "Receipt_idReceipt" });
+            DropIndex("dbo.Users", new[] { "Receipt_idReceipt" });
             DropTable("dbo.ReservationExtras");
             DropTable("dbo.PlateMenus");
             DropTable("dbo.MenuExtras");
             DropTable("dbo.ItemReceipts");
-            DropTable("dbo.Receipts");
             DropTable("dbo.Tickets");
             DropTable("dbo.Reservations");
+            DropTable("dbo.Receipts");
             DropTable("dbo.Plates");
             DropTable("dbo.Menus");
             DropTable("dbo.Extras");

@@ -11,7 +11,7 @@ namespace iCantine.models
     public class Context:DbContext
     {
         public DbSet<User> Users { get; set; }
-        // quando quiserem employees façam: Users.OfType<Employee>()
+        // quando quiserem employees faï¿½am: Users.OfType<Employee>()
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Plate> Plates { get; set; }
         public DbSet<Menu> Menus { get; set; }
