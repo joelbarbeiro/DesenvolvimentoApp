@@ -22,7 +22,6 @@ namespace iCantine.Views
         public FormMakeReservation(string user)
         {
             InitializeComponent();
-            this.Load += FormMakeAReservation_Load;
             this.user = user;
             this.radioButtonLunch.CheckedChanged += new System.EventHandler(this.radioButtonLunch_CheckedChanged);
             this.radioButtonDinner.CheckedChanged += new System.EventHandler(this.radioButtonDinner_CheckedChanged);
@@ -137,7 +136,6 @@ namespace iCantine.Views
             return true;
         }
 
-
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             updatelistBoxExtras();
@@ -195,6 +193,11 @@ namespace iCantine.Views
             {
                 MessageBox.Show("Falha ao gravar! Por favor selecione um cliente");
             }
+        }
+        private void updateListBoxReservations(Reservation reservation)
+        {
+            listBoxReservations.DataSource = null;
+            listBoxReservations.DataSource = reservation;
         }
 
 
@@ -416,5 +419,4 @@ namespace iCantine.Views
             return true;
         }
     }
-    
 }
