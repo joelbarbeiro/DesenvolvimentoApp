@@ -51,11 +51,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -71,14 +77,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202406152059361_InitialUpdate3.cs" />
-    <Compile Include="Migrations\202406152059361_InitialUpdate3.Designer.cs">
-      <DependentUpon>202406152059361_InitialUpdate3.cs</DependentUpon>
+    <Compile Include="Migrations\202406152310441_updt5.cs" />
+    <Compile Include="Migrations\202406152310441_updt5.Designer.cs">
+      <DependentUpon>202406152310441_updt5.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="models\CRUDController.cs" />
     <Compile Include="Controllers\FormController.cs" />
     <Compile Include="models\MenuController.cs" />
+    <Compile Include="models\ReceiptController.cs" />
     <Compile Include="Views\FormEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,8 +180,8 @@
     <Compile Include="Views\FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\202406152059361_InitialUpdate3.resx">
-      <DependentUpon>202406152059361_InitialUpdate3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202406152310441_updt5.resx">
+      <DependentUpon>202406152310441_updt5.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormEmployee.resx">
       <DependentUpon>FormEmployee.cs</DependentUpon>

@@ -48,6 +48,17 @@
                 new Extra("Pão de Alho", 20, 2),
                 new Extra("Queijo Coalho", 15, 3)
             );
+            context.Users.AddOrUpdate(
+                u => u.idUser,
+                new Professor("john.doe@example.com", "John Doe", 123456789),
+                new Professor("jane.smith@example.com", "Jane Smith", 987654321),
+                new Professor("alice.jones@example.com", "Alice Jones", 112233445),
+                new Professor("bob.brown@example.com", "Bob Brown", 223344556),
+                new Student(1001001, "Alice Johnson", 123456789),
+                new Student(1001002, "Bob Smith", 987654321),
+                new Student(1001003, "Charlie Brown", 111222333),
+                new Student(1001004, "David Wilson", 444555666)
+                );
         }
     }
 }

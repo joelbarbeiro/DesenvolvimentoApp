@@ -13,9 +13,9 @@ namespace iCantine.models
         public int idReceipt { get; set; }
         public double Total { get; set; }
         public DateTime Date { get; set; }
-        public virtual ICollection<Menu> Menus { get; set; }
+        public virtual Menu Menus { get; set; }
         public virtual ICollection<Client> Clients { get; set; }
-        public virtual ItemReceipt Items { get; set; }
+        public virtual ICollection<ItemReceipt> Receipts  { get; set; }
 
         public Receipt()
         {
