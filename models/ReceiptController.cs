@@ -11,6 +11,13 @@ namespace iCantine.models
 {
     internal class ReceiptController
     {
+        public Context Context = new Context();
+
+        public bool saveReceipt(Reservation reservation)
+        {
+
+            return false;
+        }
         public void genReceipt(Reservation reservation)
         {
             string filePath = @"../../";
