@@ -20,7 +20,7 @@ namespace iCantine.models
         public decimal PriceProf { get; set; }
         public virtual List<Plate> Plates { get; set; }
         public virtual List<Extra> Extras { get; set; }
-        public virtual Receipt Receipt { get; set; }
+        public virtual ICollection<Receipt> Receipt { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
        
         public virtual string DisplayMenu =>

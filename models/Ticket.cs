@@ -11,14 +11,14 @@ namespace iCantine.models
     {
         [Key]
         public int idTicket { get; set; }
-        public double Value { get; set; }
+        public decimal Value { get; set; }
         public int NumHours { get; set; }
 
         public Ticket()
         {
         }
 
-        public Ticket(double value, int numHours)
+        public Ticket(decimal value, int numHours)
         {
             Value = value;
             NumHours = numHours;
@@ -26,7 +26,7 @@ namespace iCantine.models
 
         public override string ToString()
         {
-            return base.ToString();
+            return "O valor "+Value+"€"+" vai ser adicionado se atrasar "+NumHours+" horas a reservar";
         }
     }
 }
