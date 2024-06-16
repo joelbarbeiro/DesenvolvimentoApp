@@ -18,12 +18,23 @@ namespace iCantine.models
         public FormReservationsOptions(string user)
         {
             InitializeComponent();
-            this.user= user;
+            this.user = user;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             FormMakeReservation formReservations = new FormMakeReservation(user);
+            FormController.changeForm(formReservations, this);
+        }
+
+        private void FormReservationsOptions_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormReservationsMade formReservations = new FormReservationsMade(user);
             FormController.changeForm(formReservations, this);
         }
     }

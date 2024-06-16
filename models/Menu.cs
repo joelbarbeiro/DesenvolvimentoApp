@@ -21,7 +21,8 @@ namespace iCantine.models
         public virtual List<Plate> Plates { get; set; }
         public virtual List<Extra> Extras { get; set; }
         public virtual Receipt Receipt { get; set; }
-
+        public virtual ICollection<Reservation> Reservations { get; set; }
+       
         public virtual string DisplayMenu =>
         $"Prato: {string.Join(", ", Plates.Select(p => p.DisplayName))}\n" +
         $"Extras: {string.Join(", ", Extras.Select(e => e.DisplayName))}\n" +

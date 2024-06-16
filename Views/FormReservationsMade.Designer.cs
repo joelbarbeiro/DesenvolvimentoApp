@@ -51,7 +51,7 @@ namespace iCantine.Views
             this.listBoxReserveMade.FormattingEnabled = true;
             this.listBoxReserveMade.Location = new System.Drawing.Point(16, 46);
             this.listBoxReserveMade.Name = "listBoxReserveMade";
-            this.listBoxReserveMade.Size = new System.Drawing.Size(328, 316);
+            this.listBoxReserveMade.Size = new System.Drawing.Size(328, 342);
             this.listBoxReserveMade.TabIndex = 1;
             // 
             // listBoxReserveDone
@@ -59,7 +59,7 @@ namespace iCantine.Views
             this.listBoxReserveDone.FormattingEnabled = true;
             this.listBoxReserveDone.Location = new System.Drawing.Point(438, 46);
             this.listBoxReserveDone.Name = "listBoxReserveDone";
-            this.listBoxReserveDone.Size = new System.Drawing.Size(328, 316);
+            this.listBoxReserveDone.Size = new System.Drawing.Size(328, 342);
             this.listBoxReserveDone.TabIndex = 2;
             // 
             // buttonAddReservaEf
@@ -71,16 +71,18 @@ namespace iCantine.Views
             this.buttonAddReservaEf.TabIndex = 3;
             this.buttonAddReservaEf.Text = ">";
             this.buttonAddReservaEf.UseVisualStyleBackColor = true;
+            this.buttonAddReservaEf.Click += new System.EventHandler(this.buttonAddReservaEf_Click);
             // 
             // buttonBack
             // 
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBack.Location = new System.Drawing.Point(16, 384);
+            this.buttonBack.Location = new System.Drawing.Point(12, 394);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(90, 44);
             this.buttonBack.TabIndex = 4;
             this.buttonBack.Text = "Voltar";
             this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
             // label2
             // 
@@ -92,7 +94,7 @@ namespace iCantine.Views
             this.label2.TabIndex = 5;
             this.label2.Text = "Reservas Utilizadas";
             // 
-            // FormReservasEfetuadas
+            // FormReservationsMade
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -103,7 +105,7 @@ namespace iCantine.Views
             this.Controls.Add(this.listBoxReserveDone);
             this.Controls.Add(this.listBoxReserveMade);
             this.Controls.Add(this.label1);
-            this.Name = "FormReservasEfetuadas";
+            this.Name = "FormReservationsMade";
             this.Text = "FormReservasEfetuadas";
             this.Load += new System.EventHandler(this.FormReservasEfetuadas_Load);
             this.ResumeLayout(false);

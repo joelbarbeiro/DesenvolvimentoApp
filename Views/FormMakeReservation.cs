@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace iCantine.Views
 {
@@ -72,6 +73,7 @@ namespace iCantine.Views
         private void buttonReserve_Click(object sender, EventArgs e)
         {
             UpdateClientBalance();
+            saveReservationData();
         }
 
         private string UpdateHour()
@@ -138,7 +140,6 @@ namespace iCantine.Views
         {
             updatelistBoxExtras();
             updatelistBoxMenus();
-
             DateTime selectedDate = dateTimePicker.Value;
             DateTime MaxAllowedDate = DateTime.Now.AddDays(7);
             if (selectedDate > MaxAllowedDate || selectedDate < DateTime.Now.AddDays(-1))
@@ -158,7 +159,18 @@ namespace iCantine.Views
             UpdateHour();
         }
 
-        private void addReserve()
+        private void sendToReservationList()
+        {
+            
+        }
+
+        private void addToListBoxReservations(Plate plate, List<Extra> selectedExtras)
+        {
+            string extrasNames = string.Join(", ", selectedExtras.Select(e => e.Description));
+            string reservationDetails = $"Prato: {plate.Description}, Extras: {extrasNames}";
+            listBoxReservations.Items.Add(reservationDetails);
+        }
+        private void saveReservationData()
         {
             Plate plate = (Plate)listBoxPlates.SelectedItem;
             List<Extra> selectedExtras = new List<Extra>();
@@ -172,30 +184,17 @@ namespace iCantine.Views
             {
                 selectedExtras.Add((Extra)itemExtra);
             }
-            Reservation reservation = new Reservation();
-
-            if (saveReservations(reservation, menu, plate, selectedExtras, client))
+            if (client is Client)
             {
-                MessageBox.Show("Menu gravado com sucesso!");
+                saveReservations(menu, plate, selectedExtras, client);
+                MessageBox.Show("Reserva guardada com sucesso");
             }
             else
             {
-                MessageBox.Show("Falha ao gravar!");
-
+                MessageBox.Show("Falha ao gravar! Por favor selecione um cliente");
             }
-
-        }
-        private void updateListBoxReservations(Reservation reservation)
-        {
-            listBoxReservations.DataSource = null;
-            listBoxReservations.DataSource = reservation;
         }
 
-        private void buttonAddReserve_Click(object sender, EventArgs e)
-        {
-            UpdateClientBalance();
-            addReserve();
-        }
 
         public List<Plate> loadPlatesMenu(int menuId)
         {
@@ -268,14 +267,14 @@ namespace iCantine.Views
                     }
                     else
                     {
-                        MessageBox.Show("Insufficient balance to make the reservation.");
+                        MessageBox.Show("Não tem dinheiro suficiente");
                         return;
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Please select a client.");
+                MessageBox.Show("Por favor selecione um cliente");
                 return;
             }
         }
@@ -292,6 +291,7 @@ namespace iCantine.Views
                 var extras = context.Extras
                     .OfType<Extra>()
                     .ToList();
+                listBoxExtras.DataSource = null;
                 listBoxExtras.DataSource = extras;
                 listBoxExtras.DisplayMember = "DisplayName";
             }
@@ -303,6 +303,7 @@ namespace iCantine.Views
                 var plates = context.Plates
                     .OfType<Plate>()
                     .ToList();
+                listBoxPlates.DataSource = null;
                 listBoxPlates.DataSource = plates;
                 listBoxPlates.DisplayMember = "DisplayName";
             }
@@ -322,7 +323,7 @@ namespace iCantine.Views
                 else
                 {
                     listBoxPlates.DataSource = null;
-                    MessageBox.Show("No plates available for the selected menu.");
+                    MessageBox.Show("Sem pratos disponiveis para o menu");
                 }
                 calcTotal();
             }
@@ -350,21 +351,59 @@ namespace iCantine.Views
 
         }
 
-        public bool saveReservations(Reservation reservation, models.Menu menu, Plate plate, List<Extra> extras, Client client)
+        public void saveReservations(models.Menu menu, Plate plate, List<Extra> extras, Client client)
         {
+
+            var reservation = new Reservation
+            {
+                Plates = plate,
+                Extras = extras,
+                Clients = client,
+                Menus = menu
+
+            };
+
+            Context.Reservations.Add(reservation);
+            Context.SaveChanges();
+            
+            /*Reservation reservation = new Reservation();
             reservation.Plates = plate;
             reservation.Extras = extras;
-            reservation.Extras = extras;
+            reservation.Clients = client;
             reservation.Menus = menu;
 
             Context.Reservations.Add(reservation);
             Context.SaveChanges();
-            return true;
+            return true;*/
         }
 
         private void listBoxExtras_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             calcTotal();
+        }
+
+        private void buttonAddReserve_Click(object sender, EventArgs e)
+        {
+            if(!ValidateExtrasSelection(listBoxExtras))
+            {
+                return;
+            }
+            Plate plate = (Plate)listBoxPlates.SelectedItem;
+            List<Extra> selectedExtras = new List<Extra>();
+            foreach (var item in listBoxExtras.SelectedItems)
+            {
+                selectedExtras.Add((Extra)item);
+            }
+            addToListBoxReservations(plate, selectedExtras);
+        }
+        private bool ValidateExtrasSelection(ListBox listBoxExtras)
+        {
+            if (listBoxExtras.SelectedItems.Count > 3)
+            {
+                MessageBox.Show("Só pode selecionar no máximo 3 extras", "Limite de seleção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -50,16 +50,18 @@ namespace iCantine.models
             this.button2.TabIndex = 1;
             this.button2.Text = "Reservas Efetuadas";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // ReservationsOptions
+            // FormReservationsOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(514, 214);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Name = "ReservationsOptions";
+            this.Name = "FormReservationsOptions";
             this.Text = "ReservationsOptions";
+            this.Load += new System.EventHandler(this.FormReservationsOptions_Load);
             this.ResumeLayout(false);
 
         }
