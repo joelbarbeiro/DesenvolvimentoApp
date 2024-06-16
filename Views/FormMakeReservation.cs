@@ -15,8 +15,9 @@ namespace iCantine.Views
         private Context Context = new Context();
         public string user;
         public List<models.Menu> menuItems;
-        public List<Plate> plates;
-        public List<Extra> extra;
+        public List<Plate> plates = new List<Plate>();
+        public List<Extra> extras = new List<Extra>();
+        public Ticket relevantTicket;
         private string hour;
 
         public FormMakeReservation(string user)
@@ -28,9 +29,10 @@ namespace iCantine.Views
             listBoxMenus.SelectedIndexChanged += listBoxMenus_SelectedIndexChanged;
             listBoxExtras.SelectedIndexChanged += listBoxExtras_SelectedIndexChanged;
             listBoxExtras.SelectionMode = SelectionMode.MultiSimple;
+
             changeUserLabel(user);
-            updatelistBoxExtras();
-            updatelistBoxPlates();
+            //updatelistBoxExtras();
+            //updatelistBoxPlates();
             updateComboBox();
             updatelistBoxMenus();
         }
@@ -57,9 +59,24 @@ namespace iCantine.Views
                     menu.Data.Day == selectedDate.Day).Include(m => m.Plates).Include(m => m.Extras);
 
                 var menus = query.ToList();
+                foreach (models.Menu menu in menus ) 
+                {
+                    foreach(Plate plate in menu.Plates)
+                    {
+                        plates.Add(plate);
+                    }
+                    foreach(Extra extra in menu.Extras)
+                    {
+                        extras.Add(extra);
+                    }
+                }
                 listBoxMenus.DataSource = null;
                 listBoxMenus.DataSource = menus;
                 listBoxMenus.ValueMember = "DisplayMenu";
+                listBoxPlates.DataSource = null;
+                listBoxPlates.DataSource = plates;
+                listBoxExtras.DataSource = null;
+                listBoxExtras.DataSource = extras;
 
                 if (menus.Count == 0)
                 {
@@ -138,7 +155,7 @@ namespace iCantine.Views
 
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            updatelistBoxExtras();
+            //updatelistBoxExtras();
             updatelistBoxMenus();
             DateTime selectedDate = dateTimePicker.Value;
             DateTime MaxAllowedDate = DateTime.Now.AddDays(7);
@@ -187,7 +204,7 @@ namespace iCantine.Views
             }
             if (client is Client)
             {
-                saveReservations(menu, plate, selectedExtras, client);
+                saveReservations(menu, plate, selectedExtras, client, relevantTicket);
                 MessageBox.Show("Reserva guardada com sucesso");
             }
             else
@@ -239,7 +256,7 @@ namespace iCantine.Views
             DateTime reservationTime = convertTimeFromString(dateTimePicker.Value, UpdateHour());
             double hoursUntilReservation = (reservationTime - DateTime.Now).TotalHours;
 
-            Ticket relevantTicket = Context.Tickets.FirstOrDefault(t => hoursUntilReservation <= t.NumHours);
+            relevantTicket = Context.Tickets.FirstOrDefault(t => hoursUntilReservation <= t.NumHours);
             if (relevantTicket != null)
             {
                 totalCost += relevantTicket.Value;
@@ -361,32 +378,34 @@ namespace iCantine.Views
 
         }
 
-        public void saveReservations(models.Menu menu, Plate plate, List<Extra> extras, Client client)
+        public void saveReservations(models.Menu menu, Plate plate, List<Extra> extras, Client client, Ticket relevantTicket)
         {
-
-<<<<<<< Updated upstream
-            var reservation = new Reservation
+            using (models.Context context = new models.Context())
             {
-                Plates = plate,
-                Extras = extras,
-                Clients = client,
-                Menus = menu
+                // Assuming client is the entity you want to attach and is already defined
+                context.Users.Attach(client); // Correctly attach the client entity to the context
 
-            };
-            Context.Reservations.Add(reservation);
-            Context.SaveChanges();
+                Reservation reservation = new Reservation();
+                reservation.Plates = context.Plates.Attach(plate); // Attach plate to context
+                reservation.Extras = new List<Extra>(); // Initialize the list to avoid direct assignment
 
-            /*Reservation reservation = new Reservation();
-=======
-            Reservation reservation = new Reservation();
->>>>>>> Stashed changes
-            reservation.Plates = plate;
-            reservation.Extras = extras;
-            reservation.Clients = client;
-            reservation.Menus = menu;
+                foreach (var extra in extras)
+                {
+                    reservation.Extras.Add(context.Extras.Attach(extra)); // Attach each extra to context
+                }
 
-            Context.Reservations.Add(reservation);
-            Context.SaveChanges();
+                // Assuming reservation.Clients is meant to be a single Client, not a collection
+                reservation.Clients = client; // Directly assign the attached client to the reservation
+
+                // Attach menu to context, assuming reservation.Menus is meant to be a single Menu, not a collection
+                reservation.Menus = menu;
+
+                // Assuming you want to assign a Ticket to the reservation, ensure you have the logic to select the correct Ticket
+                reservation.Tickets = Context.Tickets.Attach(relevantTicket); // Example logic
+
+                context.Reservations.Add(reservation);
+                context.SaveChanges();
+            }
         }
 
         private void listBoxExtras_SelectedIndexChanged_1(object sender, EventArgs e)

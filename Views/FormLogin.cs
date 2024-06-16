@@ -35,7 +35,7 @@ namespace iCantine.Views
                 return;
             }
             Context context = new Context();
-            var query_result = context.Employees.Where(
+            var query_result = context.Users.OfType<Employee>().Where(
                 employee =>
                 employee.username == username);
             if (query_result.Count() == 0)

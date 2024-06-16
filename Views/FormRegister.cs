@@ -34,7 +34,7 @@ namespace iCantine.Views
                 {
                     Employee employee = new Employee(username, name, nif);
                     Context context = new Context();
-                    context.Employees.Add(employee);
+                    context.Users.Add(employee);
                     try
                     {
                         context.SaveChanges();

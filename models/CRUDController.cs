@@ -16,7 +16,7 @@ namespace iCantine.Controllers
         {
             models.Context context = new models.Context();
 
-            var query_result = context.Employees.Where(
+            var query_result = context.Users.OfType<Employee>().Where(
                 employee =>
                 employee.username == user ||
                 employee.nif == nif

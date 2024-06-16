@@ -15,7 +15,7 @@
 
         protected override void Seed(iCantine.models.Context context)
         {
-            context.Employees.AddOrUpdate(
+            context.Users.AddOrUpdate(
                 e => e.idUser,
                 new Employee("aeb", "aeb", 123123123),
                 new Employee("joel", "joel", 321321321),
