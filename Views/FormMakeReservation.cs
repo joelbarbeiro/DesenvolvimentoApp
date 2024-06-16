@@ -161,7 +161,7 @@ namespace iCantine.Views
 
         private void sendToReservationList()
         {
-            
+
         }
 
         private void addToListBoxReservations(Plate plate, List<Extra> selectedExtras)
@@ -194,11 +194,6 @@ namespace iCantine.Views
                 MessageBox.Show("Falha ao gravar! Por favor selecione um cliente");
             }
         }
-        private void updateListBoxReservations(Reservation reservation)
-        {
-            listBoxReservations.DataSource = null;
-            listBoxReservations.DataSource = reservation;
-        }
 
 
         public List<Plate> loadPlatesMenu(int menuId)
@@ -211,15 +206,7 @@ namespace iCantine.Views
                 return plates?.Plates.Where(p => p.Active).ToList() ?? new List<Plate>();
 
             }
-
         }
-        public List<Plate> loadPlatesMenu(int menuId)
-        {
-            using (var context = new models.Context())
-            {
-                var menu = context.Menus
-                                  .Include(m => m.Plates)
-                                  .FirstOrDefault(m => m.idMenu == menuId);
 
 
         private decimal calcTotal()
@@ -378,7 +365,7 @@ namespace iCantine.Views
 
             Context.Reservations.Add(reservation);
             Context.SaveChanges();
-            
+
             /*Reservation reservation = new Reservation();
             reservation.Plates = plate;
             reservation.Extras = extras;
@@ -397,7 +384,7 @@ namespace iCantine.Views
 
         private void buttonAddReserve_Click(object sender, EventArgs e)
         {
-            if(!ValidateExtrasSelection(listBoxExtras))
+            if (!ValidateExtrasSelection(listBoxExtras))
             {
                 return;
             }
