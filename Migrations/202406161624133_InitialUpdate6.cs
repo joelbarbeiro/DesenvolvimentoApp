@@ -4,10 +4,14 @@
     using System.Data.Entity.Migrations;
     
 <<<<<<<< HEAD:Migrations/202406161624133_InitialUpdate6.cs
+<<<<<<<< HEAD:Migrations/202406161624133_InitialUpdate6.cs
     public partial class InitialUpdate6 : DbMigration
 ========
     public partial class InitialUpdate2 : DbMigration
 >>>>>>>> f8dc36c (Relações extras):Migrations/202406151759376_InitialUpdate2.cs
+========
+    public partial class updt5 : DbMigration
+>>>>>>>> ReceiptController:Migrations/202406152310441_updt5.cs
     {
         public override void Up()
         {
@@ -50,11 +54,8 @@
                         QuantAvailable = c.Int(nullable: false),
                         PriceStudent = c.Decimal(nullable: false, precision: 18, scale: 2),
                         PriceProf = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Receipt_idReceipt = c.Int(),
                     })
-                .PrimaryKey(t => t.idMenu)
-                .ForeignKey("dbo.Receipts", t => t.Receipt_idReceipt)
-                .Index(t => t.Receipt_idReceipt);
+                .PrimaryKey(t => t.idMenu);
             
             CreateTable(
                 "dbo.Plates",
@@ -69,6 +70,22 @@
                 .PrimaryKey(t => t.idPlate);
             
             CreateTable(
+<<<<<<<< HEAD:Migrations/202406161624133_InitialUpdate6.cs
+========
+                "dbo.Receipts",
+                c => new
+                    {
+                        idReceipt = c.Int(nullable: false, identity: true),
+                        Total = c.Double(nullable: false),
+                        Date = c.DateTime(nullable: false),
+                        Menus_idMenu = c.Int(),
+                    })
+                .PrimaryKey(t => t.idReceipt)
+                .ForeignKey("dbo.Menus", t => t.Menus_idMenu)
+                .Index(t => t.Menus_idMenu);
+            
+            CreateTable(
+>>>>>>>> ReceiptController:Migrations/202406152310441_updt5.cs
                 "dbo.Reservations",
                 c => new
                     {
@@ -125,9 +142,16 @@
                         idItemReceipt = c.Int(nullable: false, identity: true),
                         Description = c.String(),
                         Price = c.Double(nullable: false),
+                        Receipts_idReceipt = c.Int(),
                     })
 <<<<<<<< HEAD:Migrations/202406161624133_InitialUpdate6.cs
+<<<<<<<< HEAD:Migrations/202406161624133_InitialUpdate6.cs
                 .PrimaryKey(t => t.idItemReceipt);
+========
+                .PrimaryKey(t => t.idItemReceipt)
+                .ForeignKey("dbo.Receipts", t => t.Receipts_idReceipt)
+                .Index(t => t.Receipts_idReceipt);
+>>>>>>>> ReceiptController:Migrations/202406152310441_updt5.cs
             
             CreateTable(
                 "dbo.Tickets",
@@ -187,6 +211,11 @@
         
         public override void Down()
         {
+<<<<<<<< HEAD:Migrations/202406161624133_InitialUpdate6.cs
+========
+            DropForeignKey("dbo.ItemReceipts", "Receipts_idReceipt", "dbo.Receipts");
+            DropForeignKey("dbo.Receipts", "Menus_idMenu", "dbo.Menus");
+>>>>>>>> ReceiptController:Migrations/202406152310441_updt5.cs
             DropForeignKey("dbo.Reservations", "Tickets_idTicket", "dbo.Tickets");
             DropForeignKey("dbo.Reservations", "Plates_idPlate", "dbo.Plates");
             DropForeignKey("dbo.Reservations", "Menus_idMenu", "dbo.Menus");
@@ -217,16 +246,24 @@
             DropIndex("dbo.MenuExtras", new[] { "Extra_idExtra" });
             DropIndex("dbo.MenuExtras", new[] { "Menu_idMenu" });
 <<<<<<<< HEAD:Migrations/202406161624133_InitialUpdate6.cs
+<<<<<<<< HEAD:Migrations/202406161624133_InitialUpdate6.cs
             DropIndex("dbo.Receipts", new[] { "Items_idItemReceipt" });
 ========
             DropIndex("dbo.ItemReceipts", new[] { "Receipt_idReceipt" });
 >>>>>>>> f8dc36c (Relações extras):Migrations/202406151759376_InitialUpdate2.cs
+========
+            DropIndex("dbo.ItemReceipts", new[] { "Receipts_idReceipt" });
+>>>>>>>> ReceiptController:Migrations/202406152310441_updt5.cs
             DropIndex("dbo.Reservations", new[] { "Tickets_idTicket" });
             DropIndex("dbo.Reservations", new[] { "Plates_idPlate" });
             DropIndex("dbo.Reservations", new[] { "Menus_idMenu" });
             DropIndex("dbo.Reservations", new[] { "Clients_idUser" });
+<<<<<<<< HEAD:Migrations/202406161624133_InitialUpdate6.cs
             DropIndex("dbo.Menus", new[] { "Receipt_idReceipt" });
 <<<<<<<< HEAD:Migrations/202406161624133_InitialUpdate6.cs
+========
+            DropIndex("dbo.Receipts", new[] { "Menus_idMenu" });
+>>>>>>>> ReceiptController:Migrations/202406152310441_updt5.cs
             DropIndex("dbo.Users", new[] { "Receipt_idReceipt" });
             DropTable("dbo.ReservationExtras");
             DropTable("dbo.PlateMenus");

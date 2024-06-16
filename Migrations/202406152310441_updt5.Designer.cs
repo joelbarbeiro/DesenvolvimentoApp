@@ -7,7 +7,11 @@ namespace iCantine.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
+<<<<<<< HEAD
 <<<<<<<< HEAD:Migrations/202406151759376_InitialUpdate2.Designer.cs
+=======
+<<<<<<<< HEAD:Migrations/202406161624133_InitialUpdate6.Designer.cs
+>>>>>>> ReceiptController
 <<<<<<<< HEAD:Migrations/202406161624133_InitialUpdate6.Designer.cs
     public sealed partial class InitialUpdate6 : IMigrationMetadata
     {
@@ -33,7 +37,11 @@ namespace iCantine.Migrations
         string IMigrationMetadata.Id
         {
             get { return "202406152310441_updt5"; }
+<<<<<<< HEAD
 >>>>>>>> a66022f (Funcoes principais para a criacao de recibos):Migrations/202406152310441_updt5.Designer.cs
+=======
+>>>>>>>> ReceiptController:Migrations/202406152310441_updt5.Designer.cs
+>>>>>>> ReceiptController
         }
         
         string IMigrationMetadata.Source

@@ -8,6 +8,7 @@ namespace iCantine.Migrations
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
 <<<<<<<< HEAD:Migrations/202406161624133_InitialUpdate6.Designer.cs
+<<<<<<<< HEAD:Migrations/202406161624133_InitialUpdate6.Designer.cs
     public sealed partial class InitialUpdate6 : IMigrationMetadata
     {
         private readonly ResourceManager Resources = new ResourceManager(typeof(InitialUpdate6));
@@ -24,6 +25,15 @@ namespace iCantine.Migrations
         {
             get { return "202406151759376_InitialUpdate2"; }
 >>>>>>>> f8dc36c (Relações extras):Migrations/202406151759376_InitialUpdate2.Designer.cs
+========
+    public sealed partial class updt5 : IMigrationMetadata
+    {
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updt5));
+        
+        string IMigrationMetadata.Id
+        {
+            get { return "202406152310441_updt5"; }
+>>>>>>>> ReceiptController:Migrations/202406152310441_updt5.Designer.cs
         }
         
         string IMigrationMetadata.Source
