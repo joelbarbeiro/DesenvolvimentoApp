@@ -23,7 +23,6 @@ namespace iCantine.models
         public virtual string ReservationName => $"{Description}";
         public Plate()
         {
-
         }
         public Plate(string description, string type, int stock)
         {

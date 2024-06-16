@@ -364,6 +364,7 @@ namespace iCantine.Views
         public void saveReservations(models.Menu menu, Plate plate, List<Extra> extras, Client client)
         {
 
+<<<<<<< Updated upstream
             var reservation = new Reservation
             {
                 Plates = plate,
@@ -376,6 +377,9 @@ namespace iCantine.Views
             Context.SaveChanges();
 
             /*Reservation reservation = new Reservation();
+=======
+            Reservation reservation = new Reservation();
+>>>>>>> Stashed changes
             reservation.Plates = plate;
             reservation.Extras = extras;
             reservation.Clients = client;
@@ -383,7 +387,6 @@ namespace iCantine.Views
 
             Context.Reservations.Add(reservation);
             Context.SaveChanges();
-            return true;*/
         }
 
         private void listBoxExtras_SelectedIndexChanged_1(object sender, EventArgs e)

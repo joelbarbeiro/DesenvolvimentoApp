@@ -77,9 +77,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< Updated upstream
     <Compile Include="Migrations\202406161736576_initial-migration.cs" />
     <Compile Include="Migrations\202406161736576_initial-migration.Designer.cs">
       <DependentUpon>202406161736576_initial-migration.cs</DependentUpon>
+=======
+    <Compile Include="Migrations\202406161737549_updt7.cs" />
+    <Compile Include="Migrations\202406161737549_updt7.Designer.cs">
+      <DependentUpon>202406161737549_updt7.cs</DependentUpon>
+>>>>>>> Stashed changes
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="models\CRUDController.cs" />
@@ -180,8 +186,13 @@
     <Compile Include="Views\FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
+<<<<<<< Updated upstream
     <EmbeddedResource Include="Migrations\202406161736576_initial-migration.resx">
       <DependentUpon>202406161736576_initial-migration.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="Migrations\202406161737549_updt7.resx">
+      <DependentUpon>202406161737549_updt7.cs</DependentUpon>
+>>>>>>> Stashed changes
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormEmployee.resx">
       <DependentUpon>FormEmployee.cs</DependentUpon>
