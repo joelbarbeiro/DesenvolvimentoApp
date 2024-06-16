@@ -149,6 +149,7 @@ namespace iCantine.Views
             }
         }
 
+
         private void radioButtonLunch_CheckedChanged(object sender, EventArgs e)
         {
             UpdateHour();
@@ -235,6 +236,15 @@ namespace iCantine.Views
                     }
                 }
             }
+            DateTime reservationTime = convertTimeFromString(dateTimePicker.Value, UpdateHour());
+            double hoursUntilReservation = (reservationTime - DateTime.Now).TotalHours;
+
+            Ticket relevantTicket = Context.Tickets.FirstOrDefault(t => hoursUntilReservation <= t.NumHours);
+            if (relevantTicket != null)
+            {
+                totalCost += relevantTicket.Value;
+            }
+
             labelPrice.Text = totalCost.ToString("C");
             return totalCost;
         }
@@ -362,7 +372,6 @@ namespace iCantine.Views
                 Menus = menu
 
             };
-
             Context.Reservations.Add(reservation);
             Context.SaveChanges();
 

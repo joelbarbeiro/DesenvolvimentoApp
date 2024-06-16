@@ -37,28 +37,17 @@
                 );
             context.Extras.AddOrUpdate(
                 e => e.idExtra,
-                new Extra("Batata Frita", 50, 3),
-                new Extra("Arroz Branco", 40, 2),
-                new Extra("Feijão Preto", 35, 2),
-                new Extra("Salada Verde", 30, 3),
-                new Extra("Legumes Cozidos", 25, 3),
-                new Extra("Farofa", 20, 1),
-                new Extra("Vinagrete", 20, 1),
-                new Extra("Molho de Pimenta", 15, 1),
-                new Extra("Pão de Alho", 20, 2),
-                new Extra("Queijo Coalho", 15, 3)
+                new Extra("Batata Frita", 1, 30),
+                new Extra("Arroz Branco", 1, 20),
+                new Extra("Feijão Preto", 1, 20),
+                new Extra("Salada Verde", 1, 30),
+                new Extra("Legumes Cozidos", 1, 30),
+                new Extra("Farofa", 1, 10),
+                new Extra("Vinagrete", 1, 10),
+                new Extra("Molho de Pimenta", 1, 10),
+                new Extra("Pão de Alho", 1, 20),
+                new Extra("Queijo Coalho", 1, 30)
             );
-            context.Users.AddOrUpdate(
-                u => u.idUser,
-                new Professor("john.doe@example.com", "John Doe", 123456789),
-                new Professor("jane.smith@example.com", "Jane Smith", 987654321),
-                new Professor("alice.jones@example.com", "Alice Jones", 112233445),
-                new Professor("bob.brown@example.com", "Bob Brown", 223344556),
-                new Student(1001001, "Alice Johnson", 123456789),
-                new Student(1001002, "Bob Smith", 987654321),
-                new Student(1001003, "Charlie Brown", 111222333),
-                new Student(1001004, "David Wilson", 444555666)
-                );
         }
     }
 }
