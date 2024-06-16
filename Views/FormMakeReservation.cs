@@ -12,12 +12,19 @@ namespace iCantine.Views
     {
         public partial class FormMakeReservation : Form
         {
-            private Context Context = new Context();
-            public string user;
-            public List<models.Menu> menuItems;
-            public List<Plate> plates;
-            public List<Extra> extra;
-            private string hour;
+            InitializeComponent();
+            this.user = user;
+            this.radioButtonLunch.CheckedChanged += new System.EventHandler(this.radioButtonLunch_CheckedChanged);
+            this.radioButtonDinner.CheckedChanged += new System.EventHandler(this.radioButtonDinner_CheckedChanged);
+            listBoxMenus.SelectedIndexChanged += listBoxMenus_SelectedIndexChanged;
+            listBoxExtras.SelectedIndexChanged += listBoxExtras_SelectedIndexChanged;
+            listBoxExtras.SelectionMode = SelectionMode.MultiSimple;
+            changeUserLabel(user);
+            updatelistBoxExtras();
+            updatelistBoxPlates();
+            updateComboBox();
+            updatelistBoxMenus();
+        }
 
             public FormMakeReservation(string user)
             {
