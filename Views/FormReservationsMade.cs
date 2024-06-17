@@ -18,19 +18,14 @@ namespace iCantine.Views
     {
         public string user;
         private models.Context Context = new models.Context();
-        public List<models.Menu> menuItems;
+        public List<models.Menu> menus;
         public List<Plate> plates;
         public List<Extra> extra;
         public FormReservationsMade(string user)
         {
             this.user = user;
             InitializeComponent();
-        }
-
-
-        private void FormReservasEfetuadas_Load(object sender, EventArgs e)
-        {
-            LoadReservations();
+            updateReservation();
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -38,39 +33,22 @@ namespace iCantine.Views
             MainForm mainForm = new MainForm(user);
             FormController.changeForm(mainForm, this);
         }
-
-
-
-        private void LoadReservations()
+        private void updateReservation()
         {
             using (var context = new models.Context())
             {
                 var reservations = context.Reservations
-                                          .Include(r => r.Clients)
-                                          .Include(r => r.Menus)
-                                          .Include(r => r.Plates)
-                                          .Include(r => r.Extras)
+                                          .Include(r => r.Clients) 
+                                          .Include(r => r.Plates) 
+                                          .Include(r => r.Menus) 
                                           .ToList();
 
-                listBoxReserveMade.Items.Clear();
-                foreach (var reservation in reservations)
-                {
-                    listBoxReserveMade.Items.Add(reservation.ToString());
-                }
+                var reservationListItems = reservations.Select(r => $"Client: {r.Clients.Name}, Plate: {r.Plates.Description}".ToList());
+
+                listBoxReservationMade.DataSource = reservationListItems;
             }
         }
 
 
-        private void buttonAddReservaEf_Click(object sender, EventArgs e)
-        {
-            /*if (listBoxReserveMade.SelectedItem == null) return;
-
-            var selectedReservation = (Reservation)listBoxReserveMade.SelectedItem;
-            selectedReservation.Active = false;
-
-            Context.SaveChanges();
-
-            LoadReservations();*/
-        }
     }
 }
