@@ -42,6 +42,7 @@ namespace iCantine.Views
             using (var context = new models.Context())
             {
                 var names = context.Users.OfType<Client>().ToList();
+                comboBoxClient.DataSource = null;
                 comboBoxClient.DataSource = names;
                 comboBoxClient.DisplayMember = "Name";
             }
@@ -349,6 +350,7 @@ namespace iCantine.Views
                 var plates = loadPlatesMenu(menuId);
                 if (plates.Count > 0)
                 {
+                    listBoxPlates.DataSource = null;
                     listBoxPlates.DataSource = plates;
                     listBoxPlates.DisplayMember = "ReservationName";
                 }

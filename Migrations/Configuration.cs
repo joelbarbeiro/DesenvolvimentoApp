@@ -1,4 +1,4 @@
-﻿namespace iCantine.Migrations
+namespace iCantine.Migrations
 {
     using iCantine.models;
     using System;
