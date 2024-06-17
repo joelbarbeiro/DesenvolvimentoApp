@@ -31,6 +31,7 @@ namespace iCantine.models
 
         public Menu()
         {
+            Reservations = new HashSet<Reservation>();
         }
 
         public Menu(DateTime data, int quantAvailable, decimal priceStudent, decimal priceProf)

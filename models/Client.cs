@@ -16,6 +16,7 @@ namespace iCantine.models
         public virtual ICollection<Reservation> Reservations { get; set; }
         public Client()
         {
+            Reservations = new HashSet<Reservation>();
         }
 
         public Client( string name, int nif): base(name, nif) 

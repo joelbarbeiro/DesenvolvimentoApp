@@ -48,6 +48,12 @@
                 new Extra("Pão de Alho", 1, 20),
                 new Extra("Queijo Coalho", 1, 30)
             );
+            context.Tickets.AddOrUpdate(
+                t => t.idTicket,
+                new Ticket(1, 12),
+                new Ticket(2, 5),
+                new Ticket(5, 1)
+                );
         }
     }
 }

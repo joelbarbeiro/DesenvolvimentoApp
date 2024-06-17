@@ -77,6 +77,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\202406171949315_updat8.cs" />
+    <Compile Include="Migrations\202406171949315_updat8.Designer.cs">
+      <DependentUpon>202406171949315_updat8.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="models\CRUDController.cs" />
     <Compile Include="Controllers\FormController.cs" />
@@ -176,6 +180,9 @@
     <Compile Include="Views\FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Migrations\202406171949315_updat8.resx">
+      <DependentUpon>202406171949315_updat8.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\FormEmployee.resx">
       <DependentUpon>FormEmployee.cs</DependentUpon>
     </EmbeddedResource>

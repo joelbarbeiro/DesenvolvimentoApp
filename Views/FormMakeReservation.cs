@@ -261,6 +261,11 @@ namespace iCantine.Views
             {
                 totalCost += relevantTicket.Value;
             }
+            else
+            {
+                relevantTicket.Value = 0;
+                relevantTicket.NumHours = 0;
+            }
 
             labelPrice.Text = totalCost.ToString("C");
             return totalCost;
@@ -382,7 +387,6 @@ namespace iCantine.Views
         {
             using (models.Context context = new models.Context())
             {
-                // Assuming client is the entity you want to attach and is already defined
                 context.Users.Attach(client); // Correctly attach the client entity to the context
 
                 Reservation reservation = new Reservation();
@@ -394,14 +398,11 @@ namespace iCantine.Views
                     reservation.Extras.Add(context.Extras.Attach(extra)); // Attach each extra to context
                 }
 
-                // Assuming reservation.Clients is meant to be a single Client, not a collection
                 reservation.Clients = client; // Directly assign the attached client to the reservation
 
-                // Attach menu to context, assuming reservation.Menus is meant to be a single Menu, not a collection
                 reservation.Menus = menu;
 
-                // Assuming you want to assign a Ticket to the reservation, ensure you have the logic to select the correct Ticket
-                reservation.Tickets = Context.Tickets.Attach(relevantTicket); // Example logic
+                reservation.Tickets = relevantTicket; // Example logic
 
                 context.Reservations.Add(reservation);
                 context.SaveChanges();

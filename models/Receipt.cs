@@ -19,6 +19,8 @@ namespace iCantine.models
 
         public Receipt()
         {
+            Clients = new HashSet<Client>();
+            ItemReceipts = new HashSet<ItemReceipt>();
         }
 
         public Receipt(double total, DateTime date)

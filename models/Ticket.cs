@@ -14,8 +14,10 @@ namespace iCantine.models
         public decimal Value { get; set; }
         public int NumHours { get; set; }
 
+        public virtual ICollection<Reservation> Reservations { get; set; }
         public Ticket()
         {
+            Reservations = new HashSet<Reservation>();
         }
 
         public Ticket(decimal value, int numHours)

@@ -13,10 +13,17 @@ namespace iCantine.models
     {
         public Context Context = new Context();
 
-        public bool saveReceipt(Reservation reservation)
+        public bool saveReceipt(Client client)
         {
-
+            
             return false;
+        }
+        public bool loadReceipt(Client client) 
+        {
+            var queryReservations = Context.Reservations.Where(
+                r =>
+                r.Clients.idUser == client.idUser);
+            return false; 
         }
         public void genReceipt(Reservation reservation)
         {

@@ -23,6 +23,8 @@ namespace iCantine.models
       
         public Extra()
         {
+            Menu = new HashSet<Menu>();
+            Reservations = new HashSet<Reservation>();
         }
 
         public Extra(string description, decimal price, int stock)
