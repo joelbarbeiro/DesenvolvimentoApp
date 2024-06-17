@@ -439,5 +439,107 @@ namespace iCantine.Views
             }
             return true;
         }
+
+        private bool ValidateMenuTime(models.Menu menu, string reservationTime)
+        {
+            string menuTime = menu.Data.ToString("HH:mm");
+            if (menuTime == reservationTime)
+            {
+                return true;
+            }
+
+            MessageBox.Show($"Hora da reserva {reservationTime} não é a mesma do menu : {menuTime}.", "Time Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            loadAvailablePlates();
+            loadAvailableExtras();
+        }
+
+        private void loadAvailablePlates()
+        {
+            using (var context = new models.Context())
+            {
+                var availablePlates = context.Plates.Where(p => p.Stock > 0).ToList();
+                listBoxPlates.DataSource = availablePlates;
+                listBoxPlates.DisplayMember = "ReservationName";
+            }
+        }
+
+        private void loadAvailableExtras()
+        {
+            using (var context = new models.Context())
+            {
+                var availableExtras = context.Extras.Where(e => e.Stock > 0).ToList();
+                listBoxExtras.DataSource = availableExtras;
+                listBoxExtras.DisplayMember = "DisplayName";
+            }
+        }
+
+        private bool UpdateStock(Plate plate, List<Extra> selectedExtras)
+        {
+            using (var context = new models.Context())
+            {
+                var selectedPlate = context.Plates.SingleOrDefault(p => p.idPlate == plate.idPlate);
+                if (selectedPlate != null && selectedPlate.Stock > 0)
+                {
+                    selectedPlate.Stock -= 1;
+                    if (selectedPlate.Stock == 0)
+                    {
+                        selectedPlate.Active = false;
+                    }
+                    else
+                    {
+                        selectedPlate.Active = true;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"Stock do prato não disponível: {selectedPlate?.Description}", "Erro de Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                foreach (var extra in selectedExtras)
+                {
+                    var selectedExtra = context.Extras.SingleOrDefault(e => e.idExtra == extra.idExtra);
+                    if (selectedExtra != null && selectedExtra.Stock > 0)
+                    {
+                        selectedExtra.Stock -= 1;
+                        if (selectedExtra.Stock == 0)
+                        {
+                            selectedExtra.Active = false;
+                        }
+                        else
+                        {
+                            selectedExtra.Active = true;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Stock do extra não disponível: {selectedExtra?.Description}", "Erro de Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
+
+                context.SaveChanges();
+                return true;
+            }
+        }
+
+        private void checkCheckBox(int hour)
+        {
+            if (hour == 12)
+            {
+                radioButtonLunch.Checked = true;
+                radioButtonDinner.Checked = false;
+            }
+            else if (hour == 19)
+            {
+                radioButtonDinner.Checked = true;
+                radioButtonLunch.Checked = false;
+            }
+        }
     }
 }
