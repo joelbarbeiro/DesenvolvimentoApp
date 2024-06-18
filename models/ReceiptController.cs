@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using Org.BouncyCastle.Asn1.Cms;
 
 namespace iCantine.models
 {
@@ -13,17 +15,49 @@ namespace iCantine.models
     {
         public Context Context = new Context();
 
-        public bool saveReceipt(Client client)
+        public bool saveReceipt(Receipt receipt, Client client, Menu menu)
         {
-            
-            return false;
+            try
+            {
+                List<ItemReceipt> items = new List<ItemReceipt>();
+                ItemReceipt itemReceipt;
+                if(client is Student)
+                {
+                    itemReceipt = new ItemReceipt(menu.Plates.ToString(), menu.PriceStudent);
+                }
+                else
+                {
+                    itemReceipt = new ItemReceipt(menu.Plates.ToString(), menu.PriceProf);
+                }
+                items.Add(itemReceipt);
+
+                
+                foreach(var extra in menu.Extras)
+                {
+                    itemReceipt = new ItemReceipt(extra.Description, extra.Price);
+                    items.Add(itemReceipt);
+                }
+
+                receipt.Clients = client;
+                receipt.Menus = menu;
+                receipt.ItemReceipts = items;
+
+                Context.Receipts.Add(receipt);
+                Context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            return true;
         }
-        public bool loadReceipt(Client client) 
+        public List<Reservation> loadReceipt(Client client)
         {
             var queryReservations = Context.Reservations.Where(
                 r =>
                 r.Clients.idUser == client.idUser);
-            return false; 
+            return queryReservations.ToList();
         }
         public void genReceipt(Reservation reservation)
         {

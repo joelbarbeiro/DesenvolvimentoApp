@@ -32,8 +32,6 @@ namespace iCantine.models
             return null;
         }
 
-
-
         public List<Plate> loadPlatesMenu(string type = "Todos")
         {
             List<Plate> plates = new List<Plate>();
@@ -59,21 +57,20 @@ namespace iCantine.models
 
         public bool saveMenu(models.Menu items, List<Plate> plate, List<Extra> extra)
         {
-            items.Plates = plate;
-            items.Extras = extra;
+            try
+            {
+                items.Plates = plate;
+                items.Extras = extra;
 
-            Context.Menus.Add(items);
-            Context.SaveChanges();
+                Context.Menus.Add(items);
+                Context.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
             return true;
-        }
-
-        public List<Menu> loadMenu()
-        {
-            var menus = new List<Menu>();
-
-            menus = Context.Menus.Include(m => m.Plates).Include(m => m.Extras).ToList();
-
-            return menus;
         }
 
         public bool updateMenu(models.Menu menuToUpdate, List<Plate> plate, List<Extra> extra)
@@ -95,11 +92,23 @@ namespace iCantine.models
             var menuToRemove = Context.Menus.SingleOrDefault(m => m.idMenu == itemToRemove.idMenu);
             if (menuToRemove != null)
             {
-                Context.Menus.Remove(menuToRemove);
-                Context.SaveChanges();
-                return true;
+                try
+                {
+                    Context.Menus.Remove(menuToRemove);
+                    Context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Não pode apagar um menu que ja tem reservas feitas!");
+                    return false;
+
+                }
             }
-            return false;
+            else
+            {
+                return false;
+            }
+            return true;
         }
         public List<models.Menu> getMenusOnDate(DateTime date)
         {
