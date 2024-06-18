@@ -22,6 +22,7 @@ namespace iCantine.models
         public virtual string DisplayName => $"Prato: {Description} - Tipo: {Type} - Stock: {Stock}";
         public Plate()
         {
+            Menu = new HashSet<Menu>();
             Reservations = new HashSet<Reservation>();
         }
         public Plate(string description, string type, int stock)

@@ -17,7 +17,7 @@ namespace iCantine.Views
         public List<models.Menu> menuItems;
         public List<Plate> plates = new List<Plate>();
         public List<Extra> extras = new List<Extra>();
-        public Ticket relevantTicket;
+        public Ticket relevantTicket = new Ticket();
         private string hour;
 
         public FormMakeReservation(string user)
@@ -57,7 +57,7 @@ namespace iCantine.Views
                 menu.Data.Month == selectedDate.Month &&
                 menu.Data.Day == selectedDate.Day &&
                 menu.Data.Hour == hour &&
-                menu.Data.Minute == minutes).Include(m => m.Plates).Include(m => m.Extras);
+                menu.Data.Minute == minutes).Include(m => m.Plates.Where(p => p.Active == true)).Include(m => m.Extras.Where(e => e.Active == true));
                 menus = query.ToList();
             }
             if (menus.Count == 0)
@@ -90,7 +90,7 @@ namespace iCantine.Views
                 listBoxMenus.DataSource = menus;
                 listBoxMenus.ValueMember = "DisplayMenu";
                 updateInMenusListBox();
-            } 
+            }
         }
         public void stockControlPlate(Plate plates)
         {
@@ -205,9 +205,9 @@ namespace iCantine.Views
             }
             if (client is Client)
             {
-                if(validateExtrasSelection())
+                if (validateExtrasSelection())
                 {
-                    saveReservations(menu, plate, selectedExtras, client, relevantTicket);
+                    saveReservations(menu, plate, selectedExtras, client);
                     stockControlExtra(selectedExtras);
                     stockControlPlate(plate);
                     MessageBox.Show("Reserva guardada com sucesso");
@@ -317,29 +317,30 @@ namespace iCantine.Views
             return dateToSave;
         }
 
-        public void saveReservations(models.Menu menu, Plate plate, List<Extra> extras, Client client, Ticket relevantTicket)
+        public bool saveReservations(models.Menu menu, Plate plate, List<Extra> extras, Client client)
         {
 
-            Context.Users.Attach(client); // Correctly attach the client entity to the context
+            Context.Users.Attach(client);
 
             Reservation reservation = new Reservation();
-            reservation.Plates = Context.Plates.Attach(plate); // Attach plate to context
-            reservation.Extras = new List<Extra>(); // Initialize the list to avoid direct assignment
+            reservation.Plates = Context.Plates.Attach(plate);
+            reservation.Extras = new List<Extra>();
 
             foreach (var extra in extras)
             {
-                reservation.Extras.Add(Context.Extras.Attach(extra)); // Attach each extra to context
+                reservation.Extras.Add(Context.Extras.Attach(extra));
             }
 
-            reservation.Clients = client; // Directly assign the attached client to the reservation
+            reservation.Clients = client;
 
             reservation.Menus = menu;
 
-            reservation.Tickets = relevantTicket; // Example logic
+            reservation.Tickets = relevantTicket;
 
             Context.Reservations.Add(reservation);
             Context.SaveChanges();
 
+            return true;
         }
 
         private void listBoxExtras_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -359,7 +360,7 @@ namespace iCantine.Views
                     selectedExtras.Add((Extra)item);
                 }
                 addToListBoxReservations(plate, selectedExtras);
-            }   
+            }
         }
         private bool validateExtrasSelection()
         {
@@ -368,7 +369,7 @@ namespace iCantine.Views
                 MessageBox.Show("Só pode selecionar no máximo 3 extras", "Limite de seleção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 listBoxExtras.ClearSelected();
                 return false;
-                
+
             }
             return true;
         }
@@ -410,11 +411,11 @@ namespace iCantine.Views
         private void getHour()
         {
             int currentHour = DateTime.Now.Hour;
-            if(currentHour >= 12 || currentHour < 19)
+            if (currentHour >= 12 || currentHour < 19)
             {
                 radioButtonLunch.Checked = true;
             }
-            if(currentHour >= 19 || currentHour < 0 && currentHour >= 0 || currentHour < 12)
+            if (currentHour >= 19 || currentHour < 0 && currentHour >= 0 || currentHour < 12)
             {
                 radioButtonDinner.Checked = true;
             }

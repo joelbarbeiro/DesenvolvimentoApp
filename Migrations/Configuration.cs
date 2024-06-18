@@ -54,6 +54,10 @@ namespace iCantine.Migrations
                 new Ticket(2, 5),
                 new Ticket(5, 1)
                 );
+            context.Users.AddOrUpdate(
+                u => u.idUser,
+                new Student(1112223, "Antonio", 111222333)
+                );
         }
     }
 }

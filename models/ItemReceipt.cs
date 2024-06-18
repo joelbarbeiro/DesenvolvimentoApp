@@ -12,13 +12,13 @@ namespace iCantine.models
         [Key]
         public int idItemReceipt {  get; set; }
         public string Description { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public virtual Receipt Receipts { get; set; }
         public ItemReceipt()
         {
         }
 
-        public ItemReceipt(string description, double price)
+        public ItemReceipt(string description, decimal price)
         {
             Description = description;
             Price = price;

@@ -14,12 +14,11 @@ namespace iCantine.models
         public double Total { get; set; }
         public DateTime Date { get; set; }
         public virtual Menu Menus { get; set; }
-        public virtual ICollection<Client> Clients { get; set; }
+        public virtual Client Clients { get; set; }
         public virtual ICollection<ItemReceipt> ItemReceipts  { get; set; }
 
         public Receipt()
         {
-            Clients = new HashSet<Client>();
             ItemReceipts = new HashSet<ItemReceipt>();
         }
 

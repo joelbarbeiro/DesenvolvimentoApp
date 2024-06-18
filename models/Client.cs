@@ -12,10 +12,11 @@ namespace iCantine.models
         public decimal Balance { get; set; }
         public virtual string DisplayName => $"{name} (Balance: {Balance:C})";
         public virtual string Name => $"{name}";
-        public Receipt Receipt { get; set; }
+        public virtual ICollection<Receipt> Receipt { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
         public Client()
         {
+            Receipt = new List<Receipt>();
             Reservations = new HashSet<Reservation>();
         }
 
