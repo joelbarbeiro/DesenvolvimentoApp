@@ -30,10 +30,11 @@ namespace iCantine.Views
         {
             this.label1 = new System.Windows.Forms.Label();
             this.listBoxReservationMade = new System.Windows.Forms.ListBox();
-            this.listBoxReserveDone = new System.Windows.Forms.ListBox();
+            this.listBoxReservationDone = new System.Windows.Forms.ListBox();
             this.buttonAddReservaEf = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -54,13 +55,13 @@ namespace iCantine.Views
             this.listBoxReservationMade.Size = new System.Drawing.Size(328, 342);
             this.listBoxReservationMade.TabIndex = 1;
             // 
-            // listBoxReserveDone
+            // listBoxReservationDone
             // 
-            this.listBoxReserveDone.FormattingEnabled = true;
-            this.listBoxReserveDone.Location = new System.Drawing.Point(438, 46);
-            this.listBoxReserveDone.Name = "listBoxReserveDone";
-            this.listBoxReserveDone.Size = new System.Drawing.Size(328, 342);
-            this.listBoxReserveDone.TabIndex = 2;
+            this.listBoxReservationDone.FormattingEnabled = true;
+            this.listBoxReservationDone.Location = new System.Drawing.Point(438, 46);
+            this.listBoxReservationDone.Name = "listBoxReservationDone";
+            this.listBoxReservationDone.Size = new System.Drawing.Size(328, 342);
+            this.listBoxReservationDone.TabIndex = 2;
             // 
             // buttonAddReservaEf
             // 
@@ -71,11 +72,12 @@ namespace iCantine.Views
             this.buttonAddReservaEf.TabIndex = 3;
             this.buttonAddReservaEf.Text = ">";
             this.buttonAddReservaEf.UseVisualStyleBackColor = true;
+            this.buttonAddReservaEf.Click += new System.EventHandler(this.buttonAddReservaEf_Click);
             // 
             // buttonBack
             // 
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBack.Location = new System.Drawing.Point(12, 394);
+            this.buttonBack.Location = new System.Drawing.Point(16, 394);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(90, 44);
             this.buttonBack.TabIndex = 4;
@@ -93,15 +95,27 @@ namespace iCantine.Views
             this.label2.TabIndex = 5;
             this.label2.Text = "Reservas Utilizadas";
             // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDelete.Location = new System.Drawing.Point(676, 394);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(90, 44);
+            this.buttonDelete.TabIndex = 6;
+            this.buttonDelete.Text = "Apagar";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
             // FormReservationsMade
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.buttonAddReservaEf);
-            this.Controls.Add(this.listBoxReserveDone);
+            this.Controls.Add(this.listBoxReservationDone);
             this.Controls.Add(this.listBoxReservationMade);
             this.Controls.Add(this.label1);
             this.Name = "FormReservationsMade";
@@ -115,9 +129,10 @@ namespace iCantine.Views
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBoxReservationMade;
-        private System.Windows.Forms.ListBox listBoxReserveDone;
+        private System.Windows.Forms.ListBox listBoxReservationDone;
         private System.Windows.Forms.Button buttonAddReservaEf;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }
