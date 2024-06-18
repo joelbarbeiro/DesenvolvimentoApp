@@ -26,7 +26,11 @@ namespace iCantine.models
 
         public override string ToString()
         {
-            return base.ToString();
+            string extrasDescription = Extras != null && Extras.Any()
+                ? string.Join(", ", Extras.Select(e => e.Description))
+                : "No extras";
+
+            return $"{Clients.Name}, {Plates.Description}, {extrasDescription}";
         }
     }
 }

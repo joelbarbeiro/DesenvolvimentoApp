@@ -72,7 +72,7 @@ namespace iCantine.Views
                 {
                     foreach (Plate plate in menu.Plates)
                     {
-                        if (plate.Active == true)
+                        if (plate.Active)
                         {
                             plates.Add(plate);
                         }
@@ -80,7 +80,7 @@ namespace iCantine.Views
                     }
                     foreach (Extra extra in menu.Extras)
                     {
-                        if (extra.Active == true)
+                        if (extra.Active)
                         {
                             extras.Add(extra);
                         }
@@ -98,8 +98,9 @@ namespace iCantine.Views
             if (plateUpdate != null)
             {
                 plateUpdate.Stock -= 1;
-                if (plates.Stock <= 0)
+                if (plates.Stock == 0)
                 {
+                    //TODO Extras a ir pa false e 0, mas continuam a aparecer na listbox
                     plateUpdate.Active = false;
                 }
                 Context.SaveChanges();
@@ -113,7 +114,7 @@ namespace iCantine.Views
                 if (extraUpdate != null)
                 {
                     extraUpdate.Stock -= 1;
-                    if (extraItem.Stock <= 0)
+                    if (extraItem.Stock == 0)
                     {
                         extraUpdate.Active = false;
                     }
@@ -210,6 +211,7 @@ namespace iCantine.Views
                     saveReservations(menu, plate, selectedExtras, client);
                     stockControlExtra(selectedExtras);
                     stockControlPlate(plate);
+                    listBoxReservations.Items.Clear();
                     MessageBox.Show("Reserva guardada com sucesso");
                 }
             }
