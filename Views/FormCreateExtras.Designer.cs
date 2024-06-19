@@ -42,6 +42,7 @@ namespace iCantine.Views
             this.labelUsername = new System.Windows.Forms.Label();
             this.stockUpDown = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.priceUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stockUpDown)).BeginInit();
             this.SuspendLayout();
@@ -85,10 +86,10 @@ namespace iCantine.Views
             // 
             // buttonAddExtra
             // 
-            this.buttonAddExtra.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAddExtra.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAddExtra.Location = new System.Drawing.Point(116, 251);
             this.buttonAddExtra.Name = "buttonAddExtra";
-            this.buttonAddExtra.Size = new System.Drawing.Size(132, 23);
+            this.buttonAddExtra.Size = new System.Drawing.Size(132, 34);
             this.buttonAddExtra.TabIndex = 5;
             this.buttonAddExtra.Text = "Adicionar";
             this.buttonAddExtra.UseVisualStyleBackColor = true;
@@ -96,7 +97,7 @@ namespace iCantine.Views
             // 
             // buttonBack
             // 
-            this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBack.Location = new System.Drawing.Point(25, 388);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(95, 50);
@@ -119,6 +120,7 @@ namespace iCantine.Views
             // 
             this.listBoxExtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxExtras.FormattingEnabled = true;
+            this.listBoxExtras.HorizontalScrollbar = true;
             this.listBoxExtras.ItemHeight = 24;
             this.listBoxExtras.Location = new System.Drawing.Point(442, 92);
             this.listBoxExtras.Name = "listBoxExtras";
@@ -127,7 +129,7 @@ namespace iCantine.Views
             // 
             // buttonEdit
             // 
-            this.buttonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonEdit.Location = new System.Drawing.Point(600, 388);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(157, 50);
@@ -138,7 +140,7 @@ namespace iCantine.Views
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDelete.Location = new System.Drawing.Point(442, 388);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(152, 50);
@@ -164,7 +166,7 @@ namespace iCantine.Views
             // 
             this.labelUsername.AutoSize = true;
             this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUsername.Location = new System.Drawing.Point(652, 33);
+            this.labelUsername.Location = new System.Drawing.Point(652, 21);
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(105, 24);
             this.labelUsername.TabIndex = 12;
@@ -193,11 +195,22 @@ namespace iCantine.Views
             this.label5.TabIndex = 14;
             this.label5.Text = "Stock:";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(460, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(140, 24);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Funcionario : ";
+            // 
             // FormCreateExtras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.stockUpDown);
             this.Controls.Add(this.labelUsername);
@@ -237,5 +250,6 @@ namespace iCantine.Views
         private System.Windows.Forms.Label labelUsername;
         private System.Windows.Forms.NumericUpDown stockUpDown;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
