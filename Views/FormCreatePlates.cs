@@ -67,7 +67,7 @@ namespace iCantine.Views
                 using (var context = new models.Context())
                 {
                     var deletePlate = context.Plates.OfType<Plate>().SingleOrDefault(u => u.idPlate == selectedPlate.idPlate);
-                    if (deletePlate != null)
+                    if (deletePlate != null && deletePlate.Menu == null)
                     {
                         context.Plates.Remove(deletePlate);
                         try
@@ -81,6 +81,10 @@ namespace iCantine.Views
                             MessageBox.Show($"Erro ao apagar prato: {ex.Message}");
                             return;
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Não é possivel apagar um prato que pertença a um Menu");
                     }
                 }
             }

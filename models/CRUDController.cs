@@ -204,7 +204,7 @@ namespace iCantine.Controllers
             using (var context = new models.Context())
             {
                 var userToDelete = context.Users.OfType<Client>().SingleOrDefault(u => u.idUser == client.idUser);
-                if (userToDelete != null)
+                if (userToDelete != null && userToDelete.Reservations == null)
                 {
                     context.Users.Remove(userToDelete);
                     try
@@ -214,11 +214,15 @@ namespace iCantine.Controllers
                         return true;
 
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        MessageBox.Show("Erro ao apagar Cliente: " + ex);
+                        MessageBox.Show("Erro ao apagar Cliente: ");
                         return false;
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Não pode eliminar um cliente que ja tem reservas!");
                 }
                 return false;
 

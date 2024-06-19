@@ -49,6 +49,9 @@ namespace iCantine.Views
             this.label6 = new System.Windows.Forms.Label();
             this.labelPrice = new System.Windows.Forms.Label();
             this.buttonAddReserve = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.buttonSearch = new System.Windows.Forms.Button();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -267,11 +270,45 @@ namespace iCantine.Views
             this.buttonAddReserve.UseVisualStyleBackColor = true;
             this.buttonAddReserve.Click += new System.EventHandler(this.buttonAddReserve_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(178, 410);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(89, 18);
+            this.label8.TabIndex = 47;
+            this.label8.Text = "Nome/NIF:";
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSearch.Location = new System.Drawing.Point(428, 399);
+            this.buttonSearch.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(100, 36);
+            this.buttonSearch.TabIndex = 46;
+            this.buttonSearch.Text = "Pesquisar:";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.Location = new System.Drawing.Point(290, 409);
+            this.textBoxSearch.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(122, 20);
+            this.textBoxSearch.TabIndex = 45;
+            // 
             // FormMakeReservation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(879, 450);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.buttonSearch);
+            this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.buttonAddReserve);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.labelPrice);
@@ -323,5 +360,8 @@ namespace iCantine.Views
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label labelPrice;
         private System.Windows.Forms.Button buttonAddReserve;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.TextBox textBoxSearch;
     }
 }

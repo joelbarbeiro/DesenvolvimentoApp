@@ -23,7 +23,6 @@ namespace iCantine.Views
         public List<Extra> extra;
         public string user;
         private MenuController menuController = new MenuController();
-        private string[] plateType;
 
         public FormMenu(string user)
         {

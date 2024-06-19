@@ -18,8 +18,7 @@ namespace iCantine.Views
         public List<Plate> plates = new List<Plate>();
         public List<Extra> extras = new List<Extra>();
         public Ticket relevantTicket = new Ticket();
-        private string hour;
-        private ReceiptController receiptController= new ReceiptController();
+        private ReceiptController receiptController = new ReceiptController();
 
         public FormMakeReservation(string user)
         {
@@ -69,9 +68,9 @@ namespace iCantine.Views
                 }).AsEnumerable()
                     .Select(result =>
                     {
-                        result.Menu.Plates = result.Plates.ToList(); 
-                        result.Menu.Extras = result.Extras.ToList(); 
-                        return result.Menu; 
+                        result.Menu.Plates = result.Plates.ToList();
+                        result.Menu.Extras = result.Extras.ToList();
+                        return result.Menu;
                     });
                 menus = query.ToList();
             }
@@ -153,7 +152,7 @@ namespace iCantine.Views
             {
                 MessageBox.Show("Não tem dinheiro suficiente");
             }
-            
+
         }
 
         private string UpdateHour()
@@ -246,7 +245,7 @@ namespace iCantine.Views
             {
                 MessageBox.Show("Falha ao gravar! Por favor selecione um cliente");
             }
-           
+
         }
 
         private decimal calcTotal()
@@ -466,11 +465,42 @@ namespace iCantine.Views
                 var dbClient = Context.Users.OfType<Client>().FirstOrDefault(c => c.name == client.name);
                 if (dbClient.Balance >= totalCost)
                 {
-                    return true; 
+                    return true;
                 }
             }
-            return false; 
+            return false;
         }
 
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            string userToSearch = textBoxSearch.Text.Trim();
+            bool isNifValid = int.TryParse(textBoxSearch.Text, out int nifToSearch);
+            bool control = false;
+            try
+            {
+                string searchText = textBoxSearch.Text.ToLower();
+
+                for (int i = 0; i <= comboBoxClient.Items.Count; i++)
+                {
+                    Client client = comboBoxClient.Items[i] as Client;
+                    if (client != null && client.Name.ToLower().Contains(searchText) || (isNifValid && client.nif.Equals(nifToSearch)))
+                    {
+                        comboBoxClient.SelectedIndex = i;
+                        control = true;
+                        break;
+                    }
+
+                }
+                if (!control)
+                {
+                    MessageBox.Show("Nenhum cliente com esse Nome/NIF");
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Nenhum cliente com esse Nome/NIF");
+            }
+        }
     }
 }

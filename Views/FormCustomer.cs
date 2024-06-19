@@ -45,12 +45,11 @@ namespace iCantine.Views
         }
         private void buttonRegister_Click(object sender, EventArgs e)
         {
-            int nif;
-            int numStudent;
+
             string name = textBoxName.Text;
             string email = textBoxEmail.Text;
-            int.TryParse(textBoxNIF.Text, out nif);
-            int.TryParse(textBoxNumStudent.Text, out numStudent);
+            int.TryParse(textBoxNIF.Text, out int nif);
+            int.TryParse(textBoxNumStudent.Text, out int numStudent);
 
             if (buttonRegister.Text == "Gravar")
             {
@@ -417,12 +416,14 @@ namespace iCantine.Views
                     if (clients.Count == 0)
                     {
                         MessageBox.Show("Nenhum cliente com esse Nome/NIF");
+                        listBoxClientsUpdate();
+                        textBoxSearch.Text = string.Empty;
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Erro ao procurar cliente: {ex.Message}");
+                MessageBox.Show("Erro ao procurar cliente");
             }
         }
     }

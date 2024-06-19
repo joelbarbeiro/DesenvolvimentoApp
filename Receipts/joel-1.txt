@@ -1,0 +1,19 @@
+
+
+ICantina
+Recibo de marcação de reserva
+Cliente: joel
+NIF: 123111222
+Data: 19/06/2024 19:00:00
+Menu: Prato: Prato: Moqueca de Camarão - Tipo: Peixe - Stock: 10, Prato: Lasanha de Legumes - Tipo: Vegetariano - Stock: 12, Prato: Filete de Salmão - Tipo: Peixe - Stock: 12
+Extras: Feijão Preto - Preço: 1.00€ - Stock: 20, Legumes Cozidos - Preço: 1.00€ - Stock: 30, Vinagrete - Preço: 1.00€ - Stock: 10
+Quantidade: 1
+Reserva: 
+	Moqueca de Camarão - 1.00 C
+	Feijão Preto - 1.00 C
+
+
+Total: 3.00
+
+
+=========================================================================

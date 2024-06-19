@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -227,7 +228,7 @@ namespace iCantine.Views
                 using (var context = new models.Context())
                 {
                     var deleteExtra = context.Extras.OfType<Extra>().SingleOrDefault(u => u.idExtra == selectedExtra.idExtra);
-                    if (deleteExtra != null)
+                    if (deleteExtra != null && deleteExtra.Menu == null)
                     {
                         context.Extras.Remove(deleteExtra);
                         try
@@ -236,10 +237,14 @@ namespace iCantine.Views
                             MessageBox.Show("Extra eliminado com sucesso.");
                             updateListBoxExtra();
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
-                            MessageBox.Show($"Erro ao apagar Extra: {ex.Message}");
+                            MessageBox.Show("Erro ao apagar Extra:");
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Não é possivel apagar um extra que pertença a um Menu");
                     }
                 }
             }

@@ -100,13 +100,20 @@ namespace iCantine.Views
         {
             try
             {
-                context.Tickets.Remove(ticket);
-                context.SaveChanges();
-                MessageBox.Show("Multa eliminada com sucesso");
+                if(ticket != null && ticket.Reservations == null)
+                {
+                    context.Tickets.Remove(ticket);
+                    context.SaveChanges();
+                    MessageBox.Show("Multa eliminada com sucesso");
+                }
+                else
+                {
+                    MessageBox.Show("Não pode eliminar uma multa inserida em reservas!");
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao eliminar multa: " + ex.Message);
+                MessageBox.Show("Erro ao eliminar multa");
             }
         }
         private void updateListBoxTicket()
