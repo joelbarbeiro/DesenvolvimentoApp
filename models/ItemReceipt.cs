@@ -14,6 +14,7 @@ namespace iCantine.models
         public string Description { get; set; }
         public decimal Price { get; set; }
         public virtual Receipt Receipts { get; set; }
+
         public ItemReceipt()
         {
         }
@@ -26,7 +27,7 @@ namespace iCantine.models
 
         public override string ToString()
         {
-            return base.ToString();
+            return Description + " - " + Price + " " + "C";
         }
     }
 }

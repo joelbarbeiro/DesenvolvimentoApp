@@ -11,7 +11,7 @@ namespace iCantine.models
     {
         [Key]
         public int idReceipt { get; set; }
-        public double Total { get; set; }
+        public decimal Total { get; set; }
         public DateTime Date { get; set; }
         public virtual Menu Menus { get; set; }
         public virtual Client Clients { get; set; }
@@ -22,7 +22,7 @@ namespace iCantine.models
             ItemReceipts = new HashSet<ItemReceipt>();
         }
 
-        public Receipt(double total, DateTime date)
+        public Receipt(decimal total, DateTime date)
         {
             Total = total;
             Date = date;

@@ -21,6 +21,7 @@ namespace iCantine.Views
         public List<models.Menu> menus;
         public List<Plate> plates;
         public List<Extra> extra;
+        private ReceiptController receiptController = new ReceiptController();
         public FormReservationsMade(string user)
         {
             this.user = user;
@@ -74,6 +75,8 @@ namespace iCantine.Views
                 Context.SaveChanges();
                 removeSelectedReservation(selectedReservation);
                 updateListBoxDone(selectedReservation);
+                Receipt receipt = receiptController.loadReceipt(Context, selectedReservation.Clients);
+                receiptController.genInvoice(receipt);
             }
         }
 
