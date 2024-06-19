@@ -19,6 +19,7 @@ namespace iCantine.Views
         public List<Extra> extras = new List<Extra>();
         public Ticket relevantTicket = new Ticket();
         private string hour;
+        private ReceiptController receiptController= new ReceiptController();
 
         public FormMakeReservation(string user)
         {
@@ -57,7 +58,21 @@ namespace iCantine.Views
                 menu.Data.Month == selectedDate.Month &&
                 menu.Data.Day == selectedDate.Day &&
                 menu.Data.Hour == hour &&
-                menu.Data.Minute == minutes).Include(m => m.Plates.Where(p => p.Active == true)).Include(m => m.Extras.Where(e => e.Active == true));
+                menu.Data.Minute == minutes &&
+                menu.Plates.Any(p => p.Active))
+
+                .Select(menu => new
+                {
+                    Menu = menu,
+                    Plates = menu.Plates.Where(p => p.Active),
+                    Extras = menu.Extras.Where(e => e.Active)
+                }).AsEnumerable()
+                    .Select(result =>
+                    {
+                        result.Menu.Plates = result.Plates.ToList(); // Materialize filtered Plates
+                        result.Menu.Extras = result.Extras.ToList(); // Materialize filtered Extras
+                        return result.Menu; // Return the Menu entity with filtered Plates and Extras
+                    });
                 menus = query.ToList();
             }
             if (menus.Count == 0)
@@ -211,6 +226,7 @@ namespace iCantine.Views
                     saveReservations(menu, plate, selectedExtras, client);
                     stockControlExtra(selectedExtras);
                     stockControlPlate(plate);
+
                     listBoxReservations.Items.Clear();
                     MessageBox.Show("Reserva guardada com sucesso");
                 }
@@ -321,28 +337,42 @@ namespace iCantine.Views
 
         public bool saveReservations(models.Menu menu, Plate plate, List<Extra> extras, Client client)
         {
-
-            Context.Users.Attach(client);
-
-            Reservation reservation = new Reservation();
-            reservation.Plates = Context.Plates.Attach(plate);
-            reservation.Extras = new List<Extra>();
-
-            foreach (var extra in extras)
+            try
             {
-                reservation.Extras.Add(Context.Extras.Attach(extra));
+                Context.Users.Attach(client);
+
+                Reservation reservation = new Reservation();
+                reservation.Plates = Context.Plates.Attach(plate);
+                reservation.Extras = new List<Extra>();
+
+                foreach (var extra in extras)
+                {
+                    reservation.Extras.Add(Context.Extras.Attach(extra));
+                }
+
+                reservation.Clients = client;
+
+                reservation.Menus = menu;
+
+                reservation.Tickets = relevantTicket;
+
+                Context.Reservations.Add(reservation);
+                Context.SaveChanges();
+
+                Receipt receipt = new Receipt(calcTotal(), menu.Data);
+                receiptController.saveReceipt(Context, receipt, menu, client, plate, extras);
+
+                Receipt receiptList = receiptController.loadReceipt(Context, client);
+                receiptController.genReceipt(receiptList);
+
             }
-
-            reservation.Clients = client;
-
-            reservation.Menus = menu;
-
-            reservation.Tickets = relevantTicket;
-
-            Context.Reservations.Add(reservation);
-            Context.SaveChanges();
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
             return true;
+
         }
 
         private void listBoxExtras_SelectedIndexChanged_1(object sender, EventArgs e)
