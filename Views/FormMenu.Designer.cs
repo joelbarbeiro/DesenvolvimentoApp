@@ -206,6 +206,7 @@ namespace iCantine.Views
             this.textBoxPriceProfessor.Name = "textBoxPriceProfessor";
             this.textBoxPriceProfessor.Size = new System.Drawing.Size(125, 20);
             this.textBoxPriceProfessor.TabIndex = 18;
+            this.textBoxPriceProfessor.Leave += new System.EventHandler(this.textBoxPriceProfessor_Leave);
             // 
             // label8
             // 

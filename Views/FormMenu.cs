@@ -55,7 +55,7 @@ namespace iCantine.Views
             comboBoxPlateType.Items.Clear();
             comboBoxPlateType.Items.Add("Todos");
             comboBoxPlateType.SelectedIndex = 0;
-            foreach(string type in Enum.GetNames(typeof(PlateType.plateType)))
+            foreach (string type in Enum.GetNames(typeof(PlateType.plateType)))
             {
                 comboBoxPlateType.Items.Add(type);
             }
@@ -112,7 +112,7 @@ namespace iCantine.Views
                     buttonCreateMenu.Text = "Adicionar";
                 }
             }
-            else if(buttonCreateMenu.Text == "Adicionar")
+            else if (buttonCreateMenu.Text == "Adicionar")
             {
                 buttonCreateMenu.Text = "Gravar";
             }
@@ -134,7 +134,8 @@ namespace iCantine.Views
                 textBoxPriceProfessor.Text = selectedMenu.PriceProf.ToString();
                 checkCheckBox(getSavedHour(selectedMenu.Data));
 
-            } else if (buttonEditMenu.Text == "Gravar")
+            }
+            else if (buttonEditMenu.Text == "Gravar")
             {
                 List<Plate> selectedPlates = new List<Plate>();
                 List<Extra> selectedExtras = new List<Extra>();
@@ -154,7 +155,7 @@ namespace iCantine.Views
                 selectedMenu.QuantAvailable = quantity;
                 selectedMenu.PriceStudent = studentPrice;
                 selectedMenu.PriceProf = professorPrice;
-                
+
 
                 foreach (var itemPlate in listBoxPlate.SelectedItems)
                 {
@@ -196,7 +197,7 @@ namespace iCantine.Views
             }
             else if (buttonCreateMenu.Text == "Adicionar")
             {
-                
+
                 textBoxQuantity.Text = string.Empty;
                 textBoxQuantity.Enabled = false;
                 textBoxPriceStudent.Text = string.Empty;
@@ -207,7 +208,7 @@ namespace iCantine.Views
                 checkBoxDinner.Checked = false;
             }
         }
-        
+
         private bool validateDataMenu()
         {
             decimal tester = 0;
@@ -218,23 +219,23 @@ namespace iCantine.Views
                 return false;
             }
             decimal.TryParse(textBoxPriceStudent.Text, out tester);
-            if(textBoxPriceStudent.Text == string.Empty || tester <= 0)
+            if (textBoxPriceStudent.Text == string.Empty || tester <= 0)
             {
                 MessageBox.Show("Preço de estudante não foi introduzido");
                 return false;
             }
             decimal.TryParse(textBoxPriceProfessor.Text, out tester);
-            if(textBoxPriceProfessor.Text == string.Empty || tester <= 0)
+            if (textBoxPriceProfessor.Text == string.Empty || tester <= 0)
             {
                 MessageBox.Show("Preço do professor não foi introduzido");
                 return false;
             }
-            if(listBoxPlate.SelectedItems.Count <= 0) 
+            if (listBoxPlate.SelectedItems.Count <= 0)
             {
                 MessageBox.Show("Tem de escolher os pratos do menu!");
                 return false;
             }
-            if(listBoxExtras.SelectedItems.Count <= 0)
+            if (listBoxExtras.SelectedItems.Count <= 0)
             {
                 MessageBox.Show("Tem de escolher od extras do menu!");
                 return false;
@@ -267,19 +268,19 @@ namespace iCantine.Views
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            if(dateTimePicker1.Value < DateTime.Now.AddDays(-1) || dateTimePicker1.Value > DateTime.Now.AddDays(7))
+            if (dateTimePicker1.Value < DateTime.Now.AddDays(-1) || dateTimePicker1.Value > DateTime.Now.AddDays(7))
             {
                 MessageBox.Show("Não pode selecionar um dia num range superior ou inferior a 7 dias.");
             }
             else
-            {    
+            {
                 menuItems = menuController.getMenusOnDate(dateTimePicker1.Value);
                 updateMenuListBox();
             }
         }
         private string isLunch()
         {
-            if(checkBoxLunch.Checked == true)
+            if (checkBoxLunch.Checked == true)
             {
                 return "12:00";
             }
@@ -299,13 +300,13 @@ namespace iCantine.Views
             string[] timeParts = hours[numSaves].Split(':');
             if (timeParts.Length == 2 && int.TryParse(timeParts[0], out int hour) && int.TryParse(timeParts[1], out int minutes))
             {
-                 dateToSave = new DateTime(
-                    day.Year,
-                    day.Month,
-                    day.Day,
-                    hour,
-                    minutes,
-                    0);
+                dateToSave = new DateTime(
+                   day.Year,
+                   day.Month,
+                   day.Day,
+                   hour,
+                   minutes,
+                   0);
             }
             return dateToSave;
 
@@ -324,7 +325,7 @@ namespace iCantine.Views
         {
             string[] hours = new string[2];
             int i = 0;
-            if(checkBoxLunch.Checked == true )
+            if (checkBoxLunch.Checked == true)
             {
                 hours[i] = isLunch();
                 i++;
@@ -346,9 +347,9 @@ namespace iCantine.Views
                     student = student * 1.2m;
                     textBoxPriceProfessor.Text = student.ToString();
                 }
-                
+
             }
-            catch 
+            catch
             {
                 MessageBox.Show("Utilize a virgula em vez do ponto para separar as casas decimais!");
                 textBoxPriceStudent.Text = string.Empty;
@@ -358,7 +359,7 @@ namespace iCantine.Views
 
         private void editButtonState()
         {
-            if (buttonEditMenu.Text == "Editar") 
+            if (buttonEditMenu.Text == "Editar")
             {
                 buttonBack.Enabled = false;
                 buttonCreateMenu.Enabled = false;
@@ -392,7 +393,7 @@ namespace iCantine.Views
         }
         private void checkCheckBox(int hour)
         {
-            if (hour == 12) 
+            if (hour == 12)
             {
                 checkBoxLunch.Checked = true;
                 checkBoxDinner.Checked = false;
@@ -422,38 +423,81 @@ namespace iCantine.Views
                     MessageBox.Show("Erro ao eliminar o menu!");
                 }
             }
+            menuItems.Clear();
+            menuItems = menuController.getMenusOnDate(dateTimePicker1.Value);
             updateMenuListBox();
         }
 
         private void listBoxMenu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedMenu = new models.Menu();
-            selectedMenu = (models.Menu)listBoxMenu.SelectedItem;
-            if (selectedMenu != null && menuItems != null)
+            try
             {
-                listBoxPlate.ClearSelected();
-                listBoxExtras.ClearSelected();
-
-                textBoxQuantity.Text = selectedMenu.QuantAvailable.ToString();
-                textBoxPriceStudent.Text = selectedMenu.PriceStudent.ToString();
-                textBoxPriceProfessor.Text = selectedMenu.PriceProf.ToString();
-
-                checkCheckBox(getSavedHour(selectedMenu.Data));
-
-                if (listBoxPlate.Items.Count > 0)
+                var selectedMenu = new models.Menu();
+                selectedMenu = (models.Menu)listBoxMenu.SelectedItem;
+                if (selectedMenu != null && menuItems != null)
                 {
-                    foreach (var item in selectedMenu.Plates)
+                    listBoxPlate.ClearSelected();
+                    listBoxExtras.ClearSelected();
+
+                    textBoxQuantity.Text = selectedMenu.QuantAvailable.ToString();
+                    textBoxPriceStudent.Text = selectedMenu.PriceStudent.ToString();
+                    textBoxPriceProfessor.Text = selectedMenu.PriceProf.ToString();
+
+                    checkCheckBox(getSavedHour(selectedMenu.Data));
+
+                    if (listBoxPlate.Items.Count > 0 && selectedMenu.Plates != null)
                     {
-                        listBoxPlate.SetSelected(item.idPlate-1, true);
+                        foreach (var item in selectedMenu.Plates)
+                        {
+                            try
+                            {
+                                listBoxPlate.SetSelected(item.idPlate - 1, true);
+                            }
+                            catch
+                            {
+                            }
+                        }
+                    }
+                    if (listBoxExtras.Items.Count > 0 && selectedMenu.Extras != null)
+                    {
+                        foreach (var item in selectedMenu.Extras)
+                        {
+                            try
+                            {
+                                listBoxExtras.SetSelected(item.idExtra - 1, true);
+                            }
+                            catch
+                            {
+
+                            }
+                        }
                     }
                 }
-                if (listBoxExtras.Items.Count > 0)
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void textBoxPriceProfessor_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                decimal.TryParse(textBoxPriceProfessor.Text, out decimal professorPrice);
+                decimal.TryParse(textBoxPriceStudent.Text, out decimal studentPrice);
+                if (professorPrice < (studentPrice * 1.2m))
                 {
-                    foreach (var item in selectedMenu.Extras)
-                    {
-                        listBoxExtras.SetSelected(item.idExtra-1, true);
-                    }
+                    MessageBox.Show("O preco do menu de professor deve ser 20% mais caro que o do aluno!");
+                    textBoxPriceProfessor.Text = (studentPrice * 1.2m).ToString();
+
                 }
+
+            }
+            catch
+            {
+                MessageBox.Show("Utilize a virgula em vez do ponto para separar as casas decimais!");
+                textBoxPriceProfessor.Text = string.Empty;
             }
         }
     }

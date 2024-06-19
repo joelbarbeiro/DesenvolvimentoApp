@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace iCantine.models
 {
@@ -94,13 +95,20 @@ namespace iCantine.models
             {
                 try
                 {
+                    menuToRemove.Plates = null;
+                    foreach (var extra in menuToRemove.Extras)
+                    {
+                        menuToRemove.Extras = null;
+                    }
                     Context.Menus.Remove(menuToRemove);
                     Context.SaveChanges();
                 }
                 catch (Exception )
                 {
-                    MessageBox.Show("N�o pode apagar um menu que ja tem reservas feitas!");
-                    return false;
+               
+                }
+                finally
+                {
 
                 }
             }
