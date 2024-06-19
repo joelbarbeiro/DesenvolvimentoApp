@@ -70,10 +70,12 @@ namespace iCantine.Views
             // 
             // listBoxPlates
             // 
+            this.listBoxPlates.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxPlates.FormattingEnabled = true;
+            this.listBoxPlates.ItemHeight = 16;
             this.listBoxPlates.Location = new System.Drawing.Point(378, 82);
             this.listBoxPlates.Name = "listBoxPlates";
-            this.listBoxPlates.Size = new System.Drawing.Size(384, 290);
+            this.listBoxPlates.Size = new System.Drawing.Size(384, 276);
             this.listBoxPlates.TabIndex = 19;
             // 
             // label4
@@ -213,6 +215,7 @@ namespace iCantine.Views
             this.Controls.Add(this.label5);
             this.Name = "FormCreatePlates";
             this.Text = "  ";
+            this.Load += new System.EventHandler(this.FormCreatePlates_Load);
             ((System.ComponentModel.ISupportInitialize)(this.stockUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

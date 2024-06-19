@@ -90,26 +90,17 @@ namespace iCantine.models
         }
         public bool deleteMenu(models.Menu itemToRemove)
         {
-            var menuToRemove = Context.Menus.Where(m => m.Reservations == null).SingleOrDefault(m => m.idMenu == itemToRemove.idMenu);
-            if (menuToRemove != null)
+            var menuToRemove = Context.Menus.SingleOrDefault(m => m.idMenu == itemToRemove.idMenu);
+            if (menuToRemove != null && menuToRemove.Reservations == null)
             {
                 try
                 {
-                    menuToRemove.Plates = null;
-                    foreach (var extra in menuToRemove.Extras)
-                    {
-                        menuToRemove.Extras = null;
-                    }
                     Context.Menus.Remove(menuToRemove);
                     Context.SaveChanges();
                 }
-                catch (Exception )
+                catch
                 {
                
-                }
-                finally
-                {
-
                 }
             }
             else

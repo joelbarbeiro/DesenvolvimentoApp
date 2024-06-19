@@ -1,0 +1,21 @@
+
+
+ICantina
+Recibo de marcação de reserva
+Cliente: Antonio
+NIF: 111222333
+Data: 19/06/2024 12:00:00
+Menu: Prato: Prato: Feijoada - Tipo: Carne - Stock: 20, Prato: Bacalhau à Brás - Tipo: Peixe - Stock: 15, Prato: Lasanha de Legumes - Tipo: Vegetariano - Stock: 12
+Extras: Batata Frita - Preço: 1,00€ - Stock: 30, Arroz Branco - Preço: 1,00€ - Stock: 20, Feijão Preto - Preço: 1,00€ - Stock: 20, Salada Verde - Preço: 1,00€ - Stock: 30, Legumes Cozidos - Preço: 1,00€ - Stock: 30, Farofa - Preço: 1,00€ - Stock: 10
+Quantidade: 1
+Reserva: 
+	Bacalhau à Brás - 1,00 C
+	Batata Frita - 1,00 C
+	Arroz Branco - 1,00 C
+	Feijão Preto - 1,00 C
+
+
+Total: 5,00
+
+
+=========================================================================

@@ -118,13 +118,13 @@ namespace iCantine.Views
             // 
             // listBoxExtras
             // 
-            this.listBoxExtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxExtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxExtras.FormattingEnabled = true;
             this.listBoxExtras.HorizontalScrollbar = true;
-            this.listBoxExtras.ItemHeight = 24;
+            this.listBoxExtras.ItemHeight = 16;
             this.listBoxExtras.Location = new System.Drawing.Point(442, 92);
             this.listBoxExtras.Name = "listBoxExtras";
-            this.listBoxExtras.Size = new System.Drawing.Size(315, 268);
+            this.listBoxExtras.Size = new System.Drawing.Size(315, 260);
             this.listBoxExtras.TabIndex = 8;
             // 
             // buttonEdit

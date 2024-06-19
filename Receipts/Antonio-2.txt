@@ -1,0 +1,21 @@
+
+
+ICantina
+Recibo de marcação de reserva
+Cliente: Antonio
+NIF: 111222333
+Data: 19/06/2024 12:00:00
+Menu: Prato: Prato: Salada Grega - Tipo: Vegetariano - Stock: 25, Prato: Picanha na Brasa - Tipo: Carne - Stock: 8, Prato: Filete de Salmão - Tipo: Peixe - Stock: 12
+Extras: Salada Verde - Preço: 1,00€ - Stock: 30, Legumes Cozidos - Preço: 1,00€ - Stock: 30, Farofa - Preço: 1,00€ - Stock: 10, Vinagrete - Preço: 1,00€ - Stock: 10, Molho de Pimenta - Preço: 1,00€ - Stock: 10, Pão de Alho - Preço: 1,00€ - Stock: 20, Queijo Coalho - Preço: 1,00€ - Stock: 30
+Quantidade: 1
+Reserva: 
+	Salada Grega - 2,00 C
+	Salada Verde - 1,00 C
+	Vinagrete - 1,00 C
+	Molho de Pimenta - 1,00 C
+
+
+Total: 6,00
+
+
+=========================================================================

@@ -270,8 +270,10 @@ namespace iCantine.Views
                 return;
             }
         }
-        
 
-        
+        private void FormCreatePlates_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
