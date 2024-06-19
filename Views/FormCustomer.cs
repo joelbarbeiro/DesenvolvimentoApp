@@ -67,6 +67,8 @@ namespace iCantine.Views
                         }
                         resetRegAndTxt();
                         setEnableButtons();
+                        radioButtonReset();
+                        textBoxChange();
                         return;
                     }
                     else
@@ -79,6 +81,9 @@ namespace iCantine.Views
                         {
                             MessageBox.Show("Email Inválido");
                             resetRegAndTxt();
+                            setEnableButtons();
+                            radioButtonReset();
+                            textBoxChange();
                             return;
                         }
                         if (verifyNIF())
@@ -89,6 +94,8 @@ namespace iCantine.Views
                         }
                         resetRegAndTxt();
                         setEnableButtons();
+                        radioButtonReset();
+                        textBoxChange();
                         return;
                     }
                 }
@@ -97,6 +104,8 @@ namespace iCantine.Views
                     MessageBox.Show("Não foi possivel registar o utilizador");
                     resetRegAndTxt();
                     setEnableButtons();
+                    radioButtonReset();
+                    textBoxChange();
                     return;
                 }
             }
@@ -109,6 +118,7 @@ namespace iCantine.Views
                 resetButtons();
                 setEnableButtons();
                 textBoxChange();
+                radioButtonReset();
                 return;
             }
             buttonRegister.Text = "Gravar";
@@ -123,6 +133,7 @@ namespace iCantine.Views
                 resetButtons();
                 resetRegAndTxt();
                 textBoxChange();
+                radioButtonReset();
                 return false;
             }
             return true;
@@ -140,6 +151,7 @@ namespace iCantine.Views
                 resetButtons();
                 resetRegAndTxt();
                 textBoxChange();
+                radioButtonReset();
                 return false;
             }
             return true;
@@ -209,7 +221,11 @@ namespace iCantine.Views
                 buttonDelete.Enabled = false;
             }
         }
-
+        public void radioButtonReset()
+        {
+            radioButtonProfessor.Checked = false;
+            radioButtonStudent.Checked = false;
+        }
 
         public void textBoxClear()
         {

@@ -51,6 +51,7 @@ namespace iCantine.Views
             this.checkBoxLunch = new System.Windows.Forms.CheckBox();
             this.listBoxExtras = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -278,11 +279,22 @@ namespace iCantine.Views
             this.label4.TabIndex = 25;
             this.label4.Text = "Extras";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(494, 15);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(140, 24);
+            this.label9.TabIndex = 26;
+            this.label9.Text = "Funcionario : ";
+            // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(837, 367);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.listBoxExtras);
             this.Controls.Add(this.checkBoxDinner);
@@ -338,5 +350,6 @@ namespace iCantine.Views
         private System.Windows.Forms.CheckBox checkBoxLunch;
         private System.Windows.Forms.ListBox listBoxExtras;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label9;
     }
 }
