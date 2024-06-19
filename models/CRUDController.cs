@@ -131,8 +131,6 @@ namespace iCantine.Controllers
             catch (Exception)
             {
                 MessageBox.Show("Registo Não Concluido");
-                //buttonRegister.Text = "Registar";
-                //textBoxClear();
                 return false;
             }
         }

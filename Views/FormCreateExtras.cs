@@ -204,7 +204,7 @@ namespace iCantine.Views
                     dbExtra.Description = selectedExtra.Description;
                     dbExtra.Price = selectedExtra.Price;
                     dbExtra.Stock = selectedExtra.Stock;
-                    dbExtra.Active = stockControl(selectedExtra.Stock); //experimental
+                    dbExtra.Active = stockControl(selectedExtra.Stock);
 
 
                     context.SaveChanges();

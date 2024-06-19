@@ -35,13 +35,15 @@ namespace iCantine.Views
             this.buttonBack = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonDelete = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.labelUsername = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 19);
+            this.label1.Location = new System.Drawing.Point(12, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(176, 24);
             this.label1.TabIndex = 0;
@@ -50,17 +52,17 @@ namespace iCantine.Views
             // listBoxReservationMade
             // 
             this.listBoxReservationMade.FormattingEnabled = true;
-            this.listBoxReservationMade.Location = new System.Drawing.Point(16, 46);
+            this.listBoxReservationMade.Location = new System.Drawing.Point(16, 72);
             this.listBoxReservationMade.Name = "listBoxReservationMade";
-            this.listBoxReservationMade.Size = new System.Drawing.Size(328, 342);
+            this.listBoxReservationMade.Size = new System.Drawing.Size(328, 316);
             this.listBoxReservationMade.TabIndex = 1;
             // 
             // listBoxReservationDone
             // 
             this.listBoxReservationDone.FormattingEnabled = true;
-            this.listBoxReservationDone.Location = new System.Drawing.Point(438, 46);
+            this.listBoxReservationDone.Location = new System.Drawing.Point(438, 72);
             this.listBoxReservationDone.Name = "listBoxReservationDone";
-            this.listBoxReservationDone.Size = new System.Drawing.Size(328, 342);
+            this.listBoxReservationDone.Size = new System.Drawing.Size(328, 316);
             this.listBoxReservationDone.TabIndex = 2;
             // 
             // buttonAddReservaEf
@@ -89,7 +91,7 @@ namespace iCantine.Views
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(434, 19);
+            this.label2.Location = new System.Drawing.Point(434, 45);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(171, 24);
             this.label2.TabIndex = 5;
@@ -106,11 +108,33 @@ namespace iCantine.Views
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(519, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(128, 24);
+            this.label7.TabIndex = 33;
+            this.label7.Text = "Funcionário:";
+            // 
+            // labelUsername
+            // 
+            this.labelUsername.AutoSize = true;
+            this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUsername.Location = new System.Drawing.Point(653, 9);
+            this.labelUsername.Name = "labelUsername";
+            this.labelUsername.Size = new System.Drawing.Size(105, 24);
+            this.labelUsername.TabIndex = 32;
+            this.labelUsername.Text = "Username";
+            // 
             // FormReservationsMade
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.labelUsername);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonBack);
@@ -134,5 +158,7 @@ namespace iCantine.Views
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labelUsername;
     }
 }

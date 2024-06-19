@@ -69,9 +69,9 @@ namespace iCantine.Views
                 }).AsEnumerable()
                     .Select(result =>
                     {
-                        result.Menu.Plates = result.Plates.ToList(); // Materialize filtered Plates
-                        result.Menu.Extras = result.Extras.ToList(); // Materialize filtered Extras
-                        return result.Menu; // Return the Menu entity with filtered Plates and Extras
+                        result.Menu.Plates = result.Plates.ToList(); 
+                        result.Menu.Extras = result.Extras.ToList(); 
+                        return result.Menu; 
                     });
                 menus = query.ToList();
             }

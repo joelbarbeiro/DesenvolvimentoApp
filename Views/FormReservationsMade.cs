@@ -28,6 +28,7 @@ namespace iCantine.Views
             InitializeComponent();
             updateReservation();
             updateInactiveReservations();
+            changeUserLabel(user);
             buttonDelete.Visible = false;
         }
 
@@ -111,7 +112,7 @@ namespace iCantine.Views
             listBoxReservationDone.DataSource = reservationDoneList;
         }
 
-        //Botão do Delete not visible, úsado apenas para testes
+        //Botão do Delete not visible, usado apenas para testes
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             var selectedReservations = listBoxReservationDone.SelectedItems.Cast<Reservation>().ToList();
@@ -128,6 +129,18 @@ namespace iCantine.Views
                 reservationDoneList.Remove(reservation);
             }
             updateListBoxReservationsDone(reservationDoneList);
+        }
+        public void changeUserLabel(string user)
+        {
+            labelUsername.Text = capitalizeFirstLetter(user);
+        }
+
+        public string capitalizeFirstLetter(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return input;
+
+            return char.ToUpper(input[0]) + input.Substring(1);
         }
     }
 }

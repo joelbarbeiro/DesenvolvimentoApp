@@ -210,21 +210,21 @@ namespace iCantine.Views
         
         private bool validateDataMenu()
         {
-            int tester = 0;
-            int.TryParse(textBoxQuantity.Text, out tester);
-            if (textBoxQuantity.Text == string.Empty || tester < 0)
+            decimal tester = 0;
+            decimal.TryParse(textBoxQuantity.Text, out tester);
+            if (textBoxQuantity.Text == string.Empty || tester <= 0)
             {
                 MessageBox.Show("Não introduziu valor na quantidade");
                 return false;
             }
-            int.TryParse(textBoxPriceStudent.Text, out tester);
-            if(textBoxPriceStudent.Text == string.Empty || tester < 0)
+            decimal.TryParse(textBoxPriceStudent.Text, out tester);
+            if(textBoxPriceStudent.Text == string.Empty || tester <= 0)
             {
                 MessageBox.Show("Preço de estudante não foi introduzido");
                 return false;
             }
-            int.TryParse(textBoxPriceProfessor.Text, out tester);
-            if(textBoxPriceProfessor.Text == string.Empty || tester < 0)
+            decimal.TryParse(textBoxPriceProfessor.Text, out tester);
+            if(textBoxPriceProfessor.Text == string.Empty || tester <= 0)
             {
                 MessageBox.Show("Preço do professor não foi introduzido");
                 return false;
@@ -408,7 +408,6 @@ namespace iCantine.Views
         {
             DialogResult result = MessageBox.Show("Tem a certesa que quer eliminar o menu selecionado?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-            // Handle the result
             if (result == DialogResult.OK)
             {
                 var selectedMenu = new models.Menu();
@@ -456,17 +455,6 @@ namespace iCantine.Views
                     }
                 }
             }
-        }
-
-        private void listBoxPlate_SelectedIndexChanged(object sender, ItemCheckEventArgs e)
-        {
-            if (listBoxPlate.SelectedItems.Count > 3)
-            {
-                e.NewValue = CheckState.Unchecked;
-
-                // Optionally, provide feedback to the user
-                MessageBox.Show($"You can only check up to items.");
-            } 
         }
     }
 }

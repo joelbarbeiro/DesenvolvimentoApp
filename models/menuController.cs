@@ -99,7 +99,7 @@ namespace iCantine.models
                 }
                 catch (Exception )
                 {
-                    MessageBox.Show("Não pode apagar um menu que ja tem reservas feitas!");
+                    MessageBox.Show("Nï¿½o pode apagar um menu que ja tem reservas feitas!");
                     return false;
 
                 }
