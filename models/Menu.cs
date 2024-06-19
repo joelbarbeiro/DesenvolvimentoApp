@@ -22,7 +22,7 @@ namespace iCantine.models
         public virtual List<Extra> Extras { get; set; }
         public virtual ICollection<Receipt> Receipt { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
-       
+
         public virtual string DisplayMenu =>
         $"Prato: {string.Join(", ", Plates.Select(p => p.DisplayName))}\n" +
         $"Extras: {string.Join(", ", Extras.Select(e => e.DisplayName))}\n" +
@@ -44,8 +44,8 @@ namespace iCantine.models
 
         public override string ToString()
         {
-            return $"Prato: {string.Join(", ", Plates.Select(p => p.ToString()))}" +
-        $" Extras: {string.Join(", ", Extras.Select(e => e.ToString()))}";
+            return $"Prato: {string.Join(", ", Plates.Select(p => p.DisplayName))}\n" +
+        $"Extras: {string.Join(", ", Extras.Select(e => e.DisplayName))}\n";
         }
     }
 }

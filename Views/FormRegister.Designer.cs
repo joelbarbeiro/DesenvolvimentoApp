@@ -41,10 +41,9 @@ namespace iCantine.Views
             // buttonRegister
             // 
             this.buttonRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRegister.Location = new System.Drawing.Point(76, 326);
-            this.buttonRegister.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonRegister.Location = new System.Drawing.Point(78, 264);
             this.buttonRegister.Name = "buttonRegister";
-            this.buttonRegister.Size = new System.Drawing.Size(141, 49);
+            this.buttonRegister.Size = new System.Drawing.Size(106, 40);
             this.buttonRegister.TabIndex = 7;
             this.buttonRegister.Text = "Registar";
             this.buttonRegister.UseVisualStyleBackColor = true;
@@ -54,8 +53,7 @@ namespace iCantine.Views
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(70, 218);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(62, 189);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(156, 31);
             this.label1.TabIndex = 6;
@@ -63,19 +61,17 @@ namespace iCantine.Views
             // 
             // textBoxUsername
             // 
-            this.textBoxUsername.Location = new System.Drawing.Point(35, 273);
-            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxUsername.Location = new System.Drawing.Point(48, 223);
             this.textBoxUsername.Name = "textBoxUsername";
-            this.textBoxUsername.Size = new System.Drawing.Size(225, 22);
+            this.textBoxUsername.Size = new System.Drawing.Size(170, 20);
             this.textBoxUsername.TabIndex = 4;
             // 
             // buttonBack
             // 
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBack.Location = new System.Drawing.Point(76, 383);
-            this.buttonBack.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonBack.Location = new System.Drawing.Point(78, 310);
             this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(141, 49);
+            this.buttonBack.Size = new System.Drawing.Size(106, 40);
             this.buttonBack.TabIndex = 8;
             this.buttonBack.Text = "Voltar";
             this.buttonBack.UseVisualStyleBackColor = true;
@@ -85,8 +81,7 @@ namespace iCantine.Views
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(98, 29);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(85, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 31);
             this.label2.TabIndex = 9;
@@ -94,18 +89,16 @@ namespace iCantine.Views
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(35, 76);
-            this.textBoxName.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxName.Location = new System.Drawing.Point(48, 43);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(225, 22);
+            this.textBoxName.Size = new System.Drawing.Size(170, 20);
             this.textBoxName.TabIndex = 10;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(113, 120);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(101, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 31);
             this.label3.TabIndex = 11;
@@ -113,17 +106,16 @@ namespace iCantine.Views
             // 
             // textBoxNIF
             // 
-            this.textBoxNIF.Location = new System.Drawing.Point(35, 167);
-            this.textBoxNIF.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxNIF.Location = new System.Drawing.Point(48, 135);
             this.textBoxNIF.Name = "textBoxNIF";
-            this.textBoxNIF.Size = new System.Drawing.Size(225, 22);
+            this.textBoxNIF.Size = new System.Drawing.Size(170, 20);
             this.textBoxNIF.TabIndex = 12;
             // 
             // FormRegister
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 445);
+            this.ClientSize = new System.Drawing.Size(282, 362);
             this.Controls.Add(this.textBoxNIF);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxName);
@@ -132,7 +124,6 @@ namespace iCantine.Views
             this.Controls.Add(this.buttonRegister);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxUsername);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormRegister";
             this.Text = "FormRegister";
             this.ResumeLayout(false);
