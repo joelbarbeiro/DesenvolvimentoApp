@@ -229,6 +229,16 @@ namespace iCantine.Views
                 MessageBox.Show("Preço do professor não foi introduzido");
                 return false;
             }
+            if(listBoxPlate.SelectedItems.Count <= 0) 
+            {
+                MessageBox.Show("Tem de escolher os pratos do menu!");
+                return false;
+            }
+            if(listBoxExtras.SelectedItems.Count <= 0)
+            {
+                MessageBox.Show("Tem de escolher od extras do menu!");
+                return false;
+            }
             return true;
         }
 
