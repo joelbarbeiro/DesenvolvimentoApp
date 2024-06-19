@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class updt12 : DbMigration
+    public partial class update13 : DbMigration
     {
         public override void Up()
         {
@@ -76,11 +76,8 @@
                         studentNumber = c.Int(),
                         username = c.String(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
-                        Receipt_idReceipt = c.Int(),
                     })
-                .PrimaryKey(t => t.idUser)
-                .ForeignKey("dbo.Receipts", t => t.Receipt_idReceipt)
-                .Index(t => t.Receipt_idReceipt);
+                .PrimaryKey(t => t.idUser);
             
             CreateTable(
                 "dbo.Receipts",
@@ -89,10 +86,13 @@
                         idReceipt = c.Int(nullable: false, identity: true),
                         Total = c.Double(nullable: false),
                         Date = c.DateTime(nullable: false),
+                        Clients_idUser = c.Int(),
                         Menus_idMenu = c.Int(),
                     })
                 .PrimaryKey(t => t.idReceipt)
+                .ForeignKey("dbo.Users", t => t.Clients_idUser)
                 .ForeignKey("dbo.Menus", t => t.Menus_idMenu)
+                .Index(t => t.Clients_idUser)
                 .Index(t => t.Menus_idMenu);
             
             CreateTable(
@@ -101,7 +101,7 @@
                     {
                         idItemReceipt = c.Int(nullable: false, identity: true),
                         Description = c.String(),
-                        Price = c.Double(nullable: false),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Receipts_idReceipt = c.Int(),
                     })
                 .PrimaryKey(t => t.idItemReceipt)
@@ -169,7 +169,7 @@
             DropForeignKey("dbo.Reservations", "Clients_idUser", "dbo.Users");
             DropForeignKey("dbo.Receipts", "Menus_idMenu", "dbo.Menus");
             DropForeignKey("dbo.ItemReceipts", "Receipts_idReceipt", "dbo.Receipts");
-            DropForeignKey("dbo.Users", "Receipt_idReceipt", "dbo.Receipts");
+            DropForeignKey("dbo.Receipts", "Clients_idUser", "dbo.Users");
             DropForeignKey("dbo.PlateMenus", "Menu_idMenu", "dbo.Menus");
             DropForeignKey("dbo.PlateMenus", "Plate_idPlate", "dbo.Plates");
             DropForeignKey("dbo.MenuExtras", "Extra_idExtra", "dbo.Extras");
@@ -182,7 +182,7 @@
             DropIndex("dbo.MenuExtras", new[] { "Menu_idMenu" });
             DropIndex("dbo.ItemReceipts", new[] { "Receipts_idReceipt" });
             DropIndex("dbo.Receipts", new[] { "Menus_idMenu" });
-            DropIndex("dbo.Users", new[] { "Receipt_idReceipt" });
+            DropIndex("dbo.Receipts", new[] { "Clients_idUser" });
             DropIndex("dbo.Reservations", new[] { "Tickets_idTicket" });
             DropIndex("dbo.Reservations", new[] { "Plates_idPlate" });
             DropIndex("dbo.Reservations", new[] { "Menus_idMenu" });

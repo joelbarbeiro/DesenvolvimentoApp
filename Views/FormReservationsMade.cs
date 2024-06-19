@@ -27,6 +27,7 @@ namespace iCantine.Views
             InitializeComponent();
             updateReservation();
             updateInactiveReservations();
+            buttonDelete.Visible = false;
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -57,7 +58,7 @@ namespace iCantine.Views
                                   .Include(r => r.Plates)
                                   .Include(r => r.Menus)
                                   .Include(r => r.Extras)
-                                  .Where(r => !r.Active) // Only get inactive reservations
+                                  .Where(r => !r.Active) 
                                   .ToList();
 
             listBoxReservationDone.DataSource = reservations;
@@ -77,11 +78,13 @@ namespace iCantine.Views
             }
         }
 
+
         private void removeSelectedReservation(Reservation selectedReservation)
         {
             var reservationsList = listBoxReservationMade.DataSource as List<Reservation>;
             reservationsList.Remove(selectedReservation);
             updateListBoxReservationsMade(reservationsList);
+   
         }
 
         private void updateListBoxDone(Reservation selectedReservation)
@@ -105,7 +108,8 @@ namespace iCantine.Views
             listBoxReservationDone.DataSource = reservationDoneList;
         }
 
-        private void buttonDelete_Click(object sender, EventArgs e)
+        //Botão do Delete not visible, úsado apenas para testes
+        /*private void buttonDelete_Click(object sender, EventArgs e)
         {
             var selectedReservations = listBoxReservationDone.SelectedItems.Cast<Reservation>().ToList();
             foreach (var reservation in selectedReservations)
@@ -120,8 +124,7 @@ namespace iCantine.Views
             {
                 reservationDoneList.Remove(reservation);
             }
-
             updateListBoxReservationsDone(reservationDoneList);
-        }
+        }*/
     }
 }

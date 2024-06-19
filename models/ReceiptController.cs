@@ -15,7 +15,7 @@ namespace iCantine.models
     {
         public Context Context = new Context();
 
-        public bool saveReceipt(Receipt receipt, Client client, Menu menu)
+        public bool saveReceipt(Receipt receipt, Client client, Menu menu, Plate plate, List<Extra> extras)
         {
             try
             {
@@ -41,6 +41,8 @@ namespace iCantine.models
                 receipt.Clients = client;
                 receipt.Menus = menu;
                 receipt.ItemReceipts = items;
+
+                Context.Receipts.Attach(receipt);
 
                 Context.Receipts.Add(receipt);
                 Context.SaveChanges();

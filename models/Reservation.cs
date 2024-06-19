@@ -21,7 +21,9 @@ namespace iCantine.models
 
         public Reservation()
         {
+            Active = true;
         }
+
 
 
         public override string ToString()

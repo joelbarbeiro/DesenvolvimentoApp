@@ -19,6 +19,7 @@ namespace iCantine.Views
         public List<Extra> extras = new List<Extra>();
         public Ticket relevantTicket = new Ticket();
         private string hour;
+        ReceiptController receiptController = new ReceiptController();
 
         public FormMakeReservation(string user)
         {
@@ -57,7 +58,21 @@ namespace iCantine.Views
                 menu.Data.Month == selectedDate.Month &&
                 menu.Data.Day == selectedDate.Day &&
                 menu.Data.Hour == hour &&
-                menu.Data.Minute == minutes).Include(m => m.Plates.Where(p => p.Active == true)).Include(m => m.Extras.Where(e => e.Active == true));
+                menu.Data.Minute == minutes &&
+                menu.Plates.Any(p => p.Active))
+
+                .Select(menu => new
+                {
+                    Menu = menu,
+                    Plates = menu.Plates.Where(p => p.Active),
+                    Extras = menu.Extras.Where(e => e.Active)
+                }).AsEnumerable()
+                    .Select(result =>
+                    {
+                        result.Menu.Plates = result.Plates.ToList(); // Materialize filtered Plates
+                        result.Menu.Extras = result.Extras.ToList(); // Materialize filtered Extras
+                        return result.Menu; // Return the Menu entity with filtered Plates and Extras
+                    });
                 menus = query.ToList();
             }
             if (menus.Count == 0)
@@ -100,7 +115,6 @@ namespace iCantine.Views
                 plateUpdate.Stock -= 1;
                 if (plates.Stock == 0)
                 {
-                    //TODO Extras a ir pa false e 0, mas continuam a aparecer na listbox
                     plateUpdate.Active = false;
                 }
                 Context.SaveChanges();
@@ -125,9 +139,21 @@ namespace iCantine.Views
 
         private void buttonReserve_Click(object sender, EventArgs e)
         {
-            UpdateClientBalance();
-            saveReservationData();
-            updatelistBoxMenus();
+            decimal totalCost = calcTotal();
+            Client client = (Client)comboBoxClient.SelectedItem;
+
+            if (isBalanceSufficient(totalCost, client))
+            {
+                saveReservationData();
+                UpdateClientBalance();
+                updatelistBoxMenus();
+                MessageBox.Show($"Reserva feita com sucesso. Custo total: {totalCost:C}. O seu montante é: {client.Balance:C}");
+            }
+            else
+            {
+                MessageBox.Show("Não tem dinheiro suficiente");
+            }
+            
         }
 
         private string UpdateHour()
@@ -219,6 +245,7 @@ namespace iCantine.Views
             {
                 MessageBox.Show("Falha ao gravar! Por favor selecione um cliente");
             }
+           
         }
 
         private decimal calcTotal()
@@ -271,12 +298,6 @@ namespace iCantine.Views
                 {
                     dbClient.Balance -= totalCost;
                     Context.SaveChanges();
-                    MessageBox.Show($"Reserva feita com sucesso. Custo total: {totalCost:C}. O seu montante é: {dbClient.Balance:C}");
-                }
-                else
-                {
-                    MessageBox.Show("Não tem dinheiro suficiente");
-                    return;
                 }
             }
             else
@@ -321,26 +342,39 @@ namespace iCantine.Views
 
         public bool saveReservations(models.Menu menu, Plate plate, List<Extra> extras, Client client)
         {
-
-            Context.Users.Attach(client);
-
-            Reservation reservation = new Reservation();
-            reservation.Plates = Context.Plates.Attach(plate);
-            reservation.Extras = new List<Extra>();
-
-            foreach (var extra in extras)
+            try
             {
-                reservation.Extras.Add(Context.Extras.Attach(extra));
+                Context.Users.Attach(client);
+
+                Reservation reservation = new Reservation();
+                reservation.Plates = Context.Plates.Attach(plate);
+                reservation.Extras = new List<Extra>();
+
+                foreach (var extra in extras)
+                {
+                    reservation.Extras.Add(Context.Extras.Attach(extra));
+                }
+
+                reservation.Clients = client;
+
+                reservation.Menus = menu;
+
+                reservation.Tickets = relevantTicket;
+
+                Context.Reservations.Add(reservation);
+                Context.SaveChanges();
+
+                /*Receipt receipt = new Receipt(calcTotal(), menu.Data);
+                receiptController.saveReceipt(receipt, client, menu, plate, extras);
+
+                List<Receipt> receiptList = receiptController.loadReceipt(client);
+                receiptController.genReceipt(receipt)*/
             }
-
-            reservation.Clients = client;
-
-            reservation.Menus = menu;
-
-            reservation.Tickets = relevantTicket;
-
-            Context.Reservations.Add(reservation);
-            Context.SaveChanges();
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
 
             return true;
         }
@@ -421,6 +455,19 @@ namespace iCantine.Views
             {
                 radioButtonDinner.Checked = true;
             }
+        }
+
+        private bool isBalanceSufficient(decimal totalCost, Client client)
+        {
+            if (client is Client)
+            {
+                var dbClient = Context.Users.OfType<Client>().FirstOrDefault(c => c.name == client.name);
+                if (dbClient.Balance >= totalCost)
+                {
+                    return true; 
+                }
+            }
+            return false; 
         }
 
     }
