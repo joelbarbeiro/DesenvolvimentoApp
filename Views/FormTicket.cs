@@ -42,16 +42,30 @@ namespace iCantine.Views
                 decimal value = numericUpDownValue.Value;
                 int numHours = 0;
                 int.TryParse(numericUpDownHours.Text, out numHours);
-                models.Ticket ticket = new models.Ticket(value, numHours);
-                context.Tickets.Add(ticket);
-                context.SaveChanges();
-                MessageBox.Show("Ticket guardado com sucesso");
-                numericUpDownHours.Value = 0;
-                numericUpDownValue.Value = 0;
+                if (numHours > 0)
+                {
+                    if (value > 0)
+                    {
+                        models.Ticket ticket = new models.Ticket(value, numHours);
+                        context.Tickets.Add(ticket);
+                        context.SaveChanges();
+                        MessageBox.Show("Valores da multa guardados com sucesso");
+                        numericUpDownHours.Value = 0;
+                        numericUpDownValue.Value = 0;
+                    }
+                    else
+                    {
+                        MessageBox.Show("O valor da multa não pode ser 0!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("O numero de horas não pode ser 0!");
+                }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Erro ao guardar ticket: " + ex.Message);
+                MessageBox.Show("Erro ao guardar os valores da multa: ");
             }
         }
         private void editTicket(Ticket ticket)

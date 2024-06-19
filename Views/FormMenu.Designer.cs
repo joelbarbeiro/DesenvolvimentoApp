@@ -73,6 +73,7 @@ namespace iCantine.Views
             this.listBoxPlate.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxPlate.Size = new System.Drawing.Size(125, 199);
             this.listBoxPlate.TabIndex = 2;
+            this.listBoxPlate.SelectedIndexChanged += new System.EventHandler(this.listBoxPlate_SelectedIndexChanged);
             // 
             // label2
             // 

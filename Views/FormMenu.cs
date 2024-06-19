@@ -23,6 +23,7 @@ namespace iCantine.Views
         public List<Extra> extra;
         public string user;
         private MenuController menuController = new MenuController();
+        private string[] plateType;
 
         public FormMenu(string user)
         {
@@ -498,6 +499,32 @@ namespace iCantine.Views
             {
                 MessageBox.Show("Utilize a virgula em vez do ponto para separar as casas decimais!");
                 textBoxPriceProfessor.Text = string.Empty;
+            }
+        }
+
+        private void listBoxPlate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Plate> selectedPlates = new List<Plate>();
+            foreach (Plate itemPlate in listBoxPlate.SelectedItems)
+            {
+                selectedPlates.Add(itemPlate);
+            }
+            switch(selectedPlates.Count)
+            {
+                case 2:
+                    if (selectedPlates[0].Type == selectedPlates[1].Type)
+                    {
+                        MessageBox.Show("Os pratos dos menus devem ser de tipos diferentes");
+                        listBoxPlate.ClearSelected();
+                    }
+                    break;
+                case 3:
+                    if (selectedPlates[0].Type == selectedPlates[1].Type || selectedPlates[1].Type == selectedPlates[2].Type || selectedPlates[0].Type == selectedPlates[2].Type)
+                    {
+                        MessageBox.Show("Os pratos dos menus devem ser de tipos diferentes");
+                        listBoxPlate.ClearSelected();
+                    }
+                    break;
             }
         }
     }

@@ -90,7 +90,7 @@ namespace iCantine.models
         }
         public bool deleteMenu(models.Menu itemToRemove)
         {
-            var menuToRemove = Context.Menus.SingleOrDefault(m => m.idMenu == itemToRemove.idMenu);
+            var menuToRemove = Context.Menus.Where(m => m.Reservations == null).SingleOrDefault(m => m.idMenu == itemToRemove.idMenu);
             if (menuToRemove != null)
             {
                 try
@@ -114,6 +114,7 @@ namespace iCantine.models
             }
             else
             {
+                MessageBox.Show("Não pode eliminar um menu que ja tem reservas!");
                 return false;
             }
             return true;

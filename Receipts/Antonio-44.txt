@@ -1,0 +1,19 @@
+
+
+ICantina
+Recibo de marcação de reserva
+Cliente: Antonio
+NIF: 111222333
+Data: 19/06/2024 19:00:00
+Menu: Prato: Prato: Strogonoff de Frango - Tipo: Carne - Stock: 8, Prato: Picanha na Brasa - Tipo: Carne - Stock: 8
+Extras: Legumes Cozidos - Preço: 1,00€ - Stock: 26
+Quantidade: 0
+Reserva: 
+	Strogonoff de Frango - 0,00 C
+	Legumes Cozidos - 1,00 C
+
+
+Total: 2,00
+
+
+=========================================================================
