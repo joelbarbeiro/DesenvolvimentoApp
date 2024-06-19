@@ -109,7 +109,7 @@ namespace iCantine.Views
         }
 
         //Botão do Delete not visible, úsado apenas para testes
-        /*private void buttonDelete_Click(object sender, EventArgs e)
+        private void buttonDelete_Click(object sender, EventArgs e)
         {
             var selectedReservations = listBoxReservationDone.SelectedItems.Cast<Reservation>().ToList();
             foreach (var reservation in selectedReservations)
@@ -125,6 +125,6 @@ namespace iCantine.Views
                 reservationDoneList.Remove(reservation);
             }
             updateListBoxReservationsDone(reservationDoneList);
-        }*/
+        }
     }
 }
