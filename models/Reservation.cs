@@ -24,8 +24,6 @@ namespace iCantine.models
             Active = true;
         }
 
-
-
         public override string ToString()
         {
             string extrasDescription = Extras != null && Extras.Any()

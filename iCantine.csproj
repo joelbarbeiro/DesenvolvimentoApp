@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -77,9 +77,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202406182037035_update13.cs" />
-    <Compile Include="Migrations\202406182037035_update13.Designer.cs">
-      <DependentUpon>202406182037035_update13.cs</DependentUpon>
+    <Compile Include="Migrations\202406182034078_initial_update13.cs" />
+    <Compile Include="Migrations\202406182034078_initial_update13.Designer.cs">
+      <DependentUpon>202406182034078_initial_update13.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="models\CRUDController.cs" />
@@ -180,8 +180,8 @@
     <Compile Include="Views\FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\202406182037035_update13.resx">
-      <DependentUpon>202406182037035_update13.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202406182034078_initial_update13.resx">
+      <DependentUpon>202406182034078_initial_update13.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormEmployee.resx">
       <DependentUpon>FormEmployee.cs</DependentUpon>

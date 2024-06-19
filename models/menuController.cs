@@ -97,7 +97,7 @@ namespace iCantine.models
                     Context.Menus.Remove(menuToRemove);
                     Context.SaveChanges();
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
                     MessageBox.Show("Não pode apagar um menu que ja tem reservas feitas!");
                     return false;

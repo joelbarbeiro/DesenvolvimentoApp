@@ -1,4 +1,4 @@
-﻿using iTextSharp.text.pdf;
+using iTextSharp.text.pdf;
 using iTextSharp.text;
 using System;
 using System.Collections.Generic;
@@ -8,101 +8,103 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Org.BouncyCastle.Asn1.Cms;
+using System.Data.Entity;
+using iCantine.models;
+using static iTextSharp.text.pdf.events.IndexEvents;
 
 namespace iCantine.models
 {
     internal class ReceiptController
     {
-        public Context Context = new Context();
+        public ReceiptController()
+        {
+        }
 
-        public bool saveReceipt(Receipt receipt, Client client, Menu menu, Plate plate, List<Extra> extras)
+        public bool saveReceipt(Context context, Receipt receipt, Menu menu, Client client, Plate plate, List<Extra> extras)
         {
             try
             {
                 List<ItemReceipt> items = new List<ItemReceipt>();
-                ItemReceipt itemReceipt;
-                if(client is Student)
+                ItemReceipt itemReceipt = new ItemReceipt();
+
+
+                if (client is Student)
                 {
-                    itemReceipt = new ItemReceipt(menu.Plates.ToString(), menu.PriceStudent);
+                    itemReceipt = new ItemReceipt(plate.Description.ToString(), menu.PriceStudent);
                 }
                 else
                 {
-                    itemReceipt = new ItemReceipt(menu.Plates.ToString(), menu.PriceProf);
+                    itemReceipt = new ItemReceipt(plate.Description.ToString(), menu.PriceProf);
                 }
                 items.Add(itemReceipt);
 
-                
-                foreach(var extra in menu.Extras)
+
+                foreach (var extra in extras)
                 {
                     itemReceipt = new ItemReceipt(extra.Description, extra.Price);
                     items.Add(itemReceipt);
                 }
 
+
                 receipt.Clients = client;
                 receipt.Menus = menu;
                 receipt.ItemReceipts = items;
 
-                Context.Receipts.Attach(receipt);
-
-                Context.Receipts.Add(receipt);
-                Context.SaveChanges();
+                context.Receipts.Add(receipt);
+                context.SaveChanges();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Save receipt " + ex.Message);
                 return false;
             }
             return true;
         }
-        public List<Reservation> loadReceipt(Client client)
+
+        public Receipt loadReceipt(Context context, Client client)
         {
-            var queryReservations = Context.Reservations.Where(
-                r =>
-                r.Clients.idUser == client.idUser);
-            return queryReservations.ToList();
+            var queryReceipts = context.Receipts.Where(
+            r =>
+            r.Clients.idUser == client.idUser).Include(r => r.ItemReceipts)
+             .OrderByDescending(r => r.idReceipt)
+             .FirstOrDefault();
+            return (Receipt)queryReceipts;
         }
-        public void genReceipt(Reservation reservation)
+
+        public void genReceipt(Receipt receipt)
         {
-            string filePath = @"../../";
-            string fileName = reservation.Menus.Data.ToString() + "-" + reservation.Clients.name.ToString();
-            string path = filePath + fileName + ".txt";
+            string path = @"../../Receipts/" + receipt.Clients.name.ToString() + "-" + receipt.idReceipt + ".txt";
 
-            if (!File.Exists(path))
+            using (StreamWriter sw = File.AppendText(path))
             {
-                File.Create(path);
-            }
+                sw.WriteLine("");
+                sw.WriteLine("");
+                sw.WriteLine("ICantina");
+                sw.WriteLine("Recibo de marcação de reserva");
+                sw.WriteLine("Cliente: " + receipt.Clients.name);
+                sw.WriteLine("NIF: " + receipt.Clients.nif);
+                sw.WriteLine("Data: " + receipt.Menus.Data.ToString());
+                sw.WriteLine("Menu: " + receipt.Menus.DisplayMenu);
+                sw.WriteLine("Reserva: ");
 
-            using (StreamWriter reciept = File.AppendText(path))
-            {
-                reciept.WriteLine("ICantina");
-                reciept.WriteLine("Recibo de marcação de reserva");
-                reciept.WriteLine("Cliente: " + reservation.Clients.name);
-                reciept.WriteLine("NIF: " + reservation.Clients.nif);
-                reciept.WriteLine("Data: " + reservation.Menus.Data.ToString());
-                reciept.WriteLine("Reserva");
-                reciept.WriteLine("Prato: " + reservation.Plates.Description);
-                reciept.WriteLine("Extras: ");
-                foreach (var item in reservation.Extras)
+                foreach (var item in receipt.ItemReceipts)
                 {
-                    reciept.WriteLine("\t" + item.Description);
+                    sw.WriteLine("\t" + item.ToString());
                 }
-                if (reservation.Clients is Student)
-                {
-                    reciept.WriteLine("Preço : " + reservation.Menus.PriceStudent);
-                }
-                else
-                {
-                    reciept.WriteLine("Preço : " + reservation.Menus.PriceStudent);
-                }
+                sw.WriteLine("");
+                sw.WriteLine("");
+                sw.WriteLine("Total: " + receipt.Total);
+                sw.WriteLine("");
+                sw.WriteLine("");
+                sw.WriteLine("=========================================================================");
 
-                reciept.Close();
+
+                sw.Close();
             }
         }
-        public void generateInvoice(Reservation reservation)
+        public void genInvoice(Receipt receipt)
         {
-            string filePath = @"../../";
-            string fileName = reservation.Menus.Data.ToString() + "-" + reservation.Clients.name.ToString();
-            string path = filePath + fileName + ".txt";
+            string path = @"../../Invoices/" + receipt.Clients.name.ToString() + "-" + receipt.idReceipt + ".pdf";
 
             Document document = new Document();
 
@@ -113,24 +115,23 @@ namespace iCantine.models
                 document.Open();
                 document.Add(new Paragraph("ICantina"));
                 document.Add(new Paragraph("Recibo de marcação de reserva"));
-                document.Add(new Paragraph("Cliente: " + reservation.Clients.name));
-                document.Add(new Paragraph("NIF: " + reservation.Clients.nif));
-                document.Add(new Paragraph("Data: " + reservation.Menus.Data.ToString()));
-                document.Add(new Paragraph("Reserva"));
-                document.Add(new Paragraph("Prato: " + reservation.Plates.Description));
-                document.Add(new Paragraph("Extras: "));
-                foreach (var item in reservation.Extras)
+                document.Add(new Paragraph("Cliente: " + receipt.Clients.name));
+                document.Add(new Paragraph("NIF: " + receipt.Clients.nif));
+                document.Add(new Paragraph("Data: " + receipt.Menus.Data.ToString()));
+                document.Add(new Paragraph(""));
+                document.Add(new Paragraph("Menu: " + receipt.Menus.DisplayMenu));
+                document.Add(new Paragraph("Reserva: "));
+                foreach (var item in receipt.ItemReceipts)
                 {
                     document.Add(new Paragraph("\t" + item.Description));
                 }
-                if (reservation.Clients is Student)
-                {
-                    document.Add(new Paragraph("Preço : " + reservation.Menus.PriceStudent));
-                }
-                else
-                {
-                    document.Add(new Paragraph("Preço : " + reservation.Menus.PriceStudent));
-                }
+                document.Add(new Paragraph(""));
+                document.Add(new Paragraph(""));
+                document.Add(new Paragraph("Total: " + receipt.Total));
+                document.Add(new Paragraph(""));
+                document.Add(new Paragraph(""));
+                document.Add(new Paragraph("========================================================================="));
+
             }
             catch (DocumentException de)
             {

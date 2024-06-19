@@ -7,15 +7,6 @@ namespace iCantine.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-<<<<<<<< HEAD:Migrations/202406182037035_update13.Designer.cs
-    public sealed partial class update13 : IMigrationMetadata
-    {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(update13));
-        
-        string IMigrationMetadata.Id
-        {
-            get { return "202406182037035_update13"; }
-========
 <<<<<<<< HEAD:Migrations/202406182034078_initial_update13.Designer.cs
     public sealed partial class initial_update13 : IMigrationMetadata
     {
@@ -33,7 +24,6 @@ namespace iCantine.Migrations
         {
             get { return "202406182120290_updt"; }
 >>>>>>>> 76d03a9afd178144af8a8934c89681952e040fc3:Migrations/202406182120290_updt.Designer.cs
->>>>>>>> 41fe2f9caa27631d973740cfa1a87931f3b5bd0e:Migrations/202406182034078_initial_update13.Designer.cs
         }
         
         string IMigrationMetadata.Source

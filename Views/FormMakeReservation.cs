@@ -19,7 +19,7 @@ namespace iCantine.Views
         public List<Extra> extras = new List<Extra>();
         public Ticket relevantTicket = new Ticket();
         private string hour;
-        ReceiptController receiptController = new ReceiptController();
+        private ReceiptController receiptController= new ReceiptController();
 
         public FormMakeReservation(string user)
         {
@@ -237,6 +237,7 @@ namespace iCantine.Views
                     saveReservations(menu, plate, selectedExtras, client);
                     stockControlExtra(selectedExtras);
                     stockControlPlate(plate);
+
                     listBoxReservations.Items.Clear();
                     MessageBox.Show("Reserva guardada com sucesso");
                 }
@@ -364,19 +365,20 @@ namespace iCantine.Views
                 Context.Reservations.Add(reservation);
                 Context.SaveChanges();
 
-                /*Receipt receipt = new Receipt(calcTotal(), menu.Data);
-                receiptController.saveReceipt(receipt, client, menu, plate, extras);
+                Receipt receipt = new Receipt(calcTotal(), menu.Data);
+                receiptController.saveReceipt(Context, receipt, menu, client, plate, extras);
 
-                List<Receipt> receiptList = receiptController.loadReceipt(client);
-                receiptController.genReceipt(receipt)*/
+                Receipt receiptList = receiptController.loadReceipt(Context, client);
+                receiptController.genReceipt(receiptList);
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;
             }
-
             return true;
+
         }
 
         private void listBoxExtras_SelectedIndexChanged_1(object sender, EventArgs e)

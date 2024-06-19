@@ -1,0 +1,20 @@
+
+
+ICantina
+Recibo de marcação de reserva
+Cliente: Antonio
+NIF: 111222333
+Data: 19/06/2024 19:00:00
+Menu: Prato: Prato: Bacalhau à Brás - Tipo: Peixe - Stock: 6, Prato: Moqueca de Camarão - Tipo: Peixe - Stock: 8
+Extras: Feijão Preto - Preço: 1,00€ - Stock: 5, Legumes Cozidos - Preço: 1,00€ - Stock: 26, Molho de Pimenta - Preço: 1,00€ - Stock: 2, Queijo Coalho - Preço: 1,00€ - Stock: 22
+Quantidade: 10
+Reserva: 
+	Bacalhau à Brás - 4,00 C
+	Molho de Pimenta - 1,00 C
+	Queijo Coalho - 1,00 C
+
+
+Total: 6,00
+
+
+=========================================================================

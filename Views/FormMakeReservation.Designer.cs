@@ -74,6 +74,7 @@ namespace iCantine.Views
             // listBoxExtras
             // 
             this.listBoxExtras.FormattingEnabled = true;
+            this.listBoxExtras.HorizontalScrollbar = true;
             this.listBoxExtras.Location = new System.Drawing.Point(435, 75);
             this.listBoxExtras.Name = "listBoxExtras";
             this.listBoxExtras.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
@@ -164,6 +165,7 @@ namespace iCantine.Views
             // listBoxPlates
             // 
             this.listBoxPlates.FormattingEnabled = true;
+            this.listBoxPlates.HorizontalScrollbar = true;
             this.listBoxPlates.Location = new System.Drawing.Point(262, 75);
             this.listBoxPlates.Name = "listBoxPlates";
             this.listBoxPlates.Size = new System.Drawing.Size(167, 303);
@@ -193,6 +195,7 @@ namespace iCantine.Views
             // listBoxMenus
             // 
             this.listBoxMenus.FormattingEnabled = true;
+            this.listBoxMenus.HorizontalScrollbar = true;
             this.listBoxMenus.Location = new System.Drawing.Point(102, 75);
             this.listBoxMenus.Name = "listBoxMenus";
             this.listBoxMenus.Size = new System.Drawing.Size(154, 303);

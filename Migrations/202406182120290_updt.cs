@@ -3,15 +3,11 @@
     using System;
     using System.Data.Entity.Migrations;
     
-<<<<<<<< HEAD:Migrations/202406182037035_update13.cs
-    public partial class update13 : DbMigration
-========
 <<<<<<<< HEAD:Migrations/202406182034078_initial_update13.cs
     public partial class initial_update13 : DbMigration
 ========
     public partial class updt : DbMigration
 >>>>>>>> 76d03a9afd178144af8a8934c89681952e040fc3:Migrations/202406182120290_updt.cs
->>>>>>>> 41fe2f9caa27631d973740cfa1a87931f3b5bd0e:Migrations/202406182034078_initial_update13.cs
     {
         public override void Up()
         {

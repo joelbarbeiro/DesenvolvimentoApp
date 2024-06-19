@@ -100,9 +100,9 @@ namespace iCantine.Views
             // buttonAdd
             // 
             this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd.Location = new System.Drawing.Point(121, 223);
+            this.buttonAdd.Location = new System.Drawing.Point(135, 223);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(132, 23);
+            this.buttonAdd.Size = new System.Drawing.Size(118, 31);
             this.buttonAdd.TabIndex = 16;
             this.buttonAdd.Text = "Adicionar";
             this.buttonAdd.UseVisualStyleBackColor = true;
