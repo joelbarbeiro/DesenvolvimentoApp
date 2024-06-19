@@ -88,11 +88,11 @@
             // 
             // buttonBack
             // 
-            this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBack.Location = new System.Drawing.Point(9, 393);
+            this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBack.Location = new System.Drawing.Point(19, 376);
             this.buttonBack.Margin = new System.Windows.Forms.Padding(2);
             this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(72, 32);
+            this.buttonBack.Size = new System.Drawing.Size(89, 44);
             this.buttonBack.TabIndex = 39;
             this.buttonBack.Text = "Atrás";
             this.buttonBack.UseVisualStyleBackColor = true;
@@ -102,7 +102,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(348, 81);
+            this.label1.Location = new System.Drawing.Point(330, 81);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 24);
             this.label1.TabIndex = 40;
@@ -112,7 +112,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 81);
+            this.label2.Location = new System.Drawing.Point(12, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(126, 24);
             this.label2.TabIndex = 41;
@@ -154,11 +154,11 @@
             // 
             // buttonAddTicket
             // 
-            this.buttonAddTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddTicket.Location = new System.Drawing.Point(43, 280);
+            this.buttonAddTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAddTicket.Location = new System.Drawing.Point(36, 281);
             this.buttonAddTicket.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddTicket.Name = "buttonAddTicket";
-            this.buttonAddTicket.Size = new System.Drawing.Size(72, 32);
+            this.buttonAddTicket.Size = new System.Drawing.Size(89, 44);
             this.buttonAddTicket.TabIndex = 46;
             this.buttonAddTicket.Text = "Gravar";
             this.buttonAddTicket.UseVisualStyleBackColor = true;
@@ -166,11 +166,11 @@
             // 
             // buttonDeleteTicket
             // 
-            this.buttonDeleteTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDeleteTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDeleteTicket.Location = new System.Drawing.Point(273, 331);
             this.buttonDeleteTicket.Margin = new System.Windows.Forms.Padding(2);
             this.buttonDeleteTicket.Name = "buttonDeleteTicket";
-            this.buttonDeleteTicket.Size = new System.Drawing.Size(72, 32);
+            this.buttonDeleteTicket.Size = new System.Drawing.Size(89, 44);
             this.buttonDeleteTicket.TabIndex = 47;
             this.buttonDeleteTicket.Text = "Apagar";
             this.buttonDeleteTicket.UseVisualStyleBackColor = true;
@@ -178,11 +178,11 @@
             // 
             // buttonEditTicket
             // 
-            this.buttonEditTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEditTicket.Location = new System.Drawing.Point(384, 331);
+            this.buttonEditTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEditTicket.Location = new System.Drawing.Point(377, 331);
             this.buttonEditTicket.Margin = new System.Windows.Forms.Padding(2);
             this.buttonEditTicket.Name = "buttonEditTicket";
-            this.buttonEditTicket.Size = new System.Drawing.Size(72, 32);
+            this.buttonEditTicket.Size = new System.Drawing.Size(89, 44);
             this.buttonEditTicket.TabIndex = 48;
             this.buttonEditTicket.Text = "Editar";
             this.buttonEditTicket.UseVisualStyleBackColor = true;

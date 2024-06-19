@@ -61,9 +61,10 @@ namespace iCantine.Views
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 18);
+            this.label1.Location = new System.Drawing.Point(7, 42);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 29);
+            this.label1.Size = new System.Drawing.Size(91, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Clientes:";
             // 
@@ -78,10 +79,16 @@ namespace iCantine.Views
             this.groupBox1.Controls.Add(this.textBoxName);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.labelNumStudent);
+            this.groupBox1.Controls.Add(this.buttonRegister);
             this.groupBox1.Controls.Add(this.textBoxNumStudent);
-            this.groupBox1.Location = new System.Drawing.Point(367, 67);
+            this.groupBox1.Controls.Add(this.buttonDelete);
+            this.groupBox1.Controls.Add(this.buttonEdit);
+            this.groupBox1.Controls.Add(this.buttonBalance);
+            this.groupBox1.Location = new System.Drawing.Point(396, 93);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(370, 250);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(438, 294);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             // 
@@ -89,9 +96,10 @@ namespace iCantine.Views
             // 
             this.radioButtonProfessor.AutoSize = true;
             this.radioButtonProfessor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonProfessor.Location = new System.Drawing.Point(217, 21);
+            this.radioButtonProfessor.Location = new System.Drawing.Point(240, 3);
+            this.radioButtonProfessor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButtonProfessor.Name = "radioButtonProfessor";
-            this.radioButtonProfessor.Size = new System.Drawing.Size(100, 24);
+            this.radioButtonProfessor.Size = new System.Drawing.Size(86, 21);
             this.radioButtonProfessor.TabIndex = 21;
             this.radioButtonProfessor.TabStop = true;
             this.radioButtonProfessor.Text = "Docente";
@@ -102,9 +110,10 @@ namespace iCantine.Views
             // 
             this.radioButtonStudent.AutoSize = true;
             this.radioButtonStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonStudent.Location = new System.Drawing.Point(6, 21);
+            this.radioButtonStudent.Location = new System.Drawing.Point(81, 3);
+            this.radioButtonStudent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButtonStudent.Name = "radioButtonStudent";
-            this.radioButtonStudent.Size = new System.Drawing.Size(114, 24);
+            this.radioButtonStudent.Size = new System.Drawing.Size(99, 21);
             this.radioButtonStudent.TabIndex = 20;
             this.radioButtonStudent.TabStop = true;
             this.radioButtonStudent.Text = "Estudante";
@@ -115,9 +124,10 @@ namespace iCantine.Views
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(90, 102);
+            this.label3.Location = new System.Drawing.Point(145, 69);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 20);
+            this.label3.Size = new System.Drawing.Size(37, 17);
             this.label3.TabIndex = 19;
             this.label3.Text = "NIF:";
             // 
@@ -125,43 +135,48 @@ namespace iCantine.Views
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(90, 198);
+            this.label2.Location = new System.Drawing.Point(145, 147);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 20);
+            this.label2.Size = new System.Drawing.Size(58, 17);
             this.label2.TabIndex = 13;
             this.label2.Text = "E-mail:";
             // 
             // textBoxNIF
             // 
-            this.textBoxNIF.Location = new System.Drawing.Point(94, 125);
+            this.textBoxNIF.Location = new System.Drawing.Point(148, 88);
+            this.textBoxNIF.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxNIF.Name = "textBoxNIF";
             this.textBoxNIF.ReadOnly = true;
-            this.textBoxNIF.Size = new System.Drawing.Size(173, 22);
+            this.textBoxNIF.Size = new System.Drawing.Size(131, 20);
             this.textBoxNIF.TabIndex = 18;
             // 
             // textBoxEmail
             // 
-            this.textBoxEmail.Location = new System.Drawing.Point(94, 221);
+            this.textBoxEmail.Location = new System.Drawing.Point(147, 166);
+            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.ReadOnly = true;
-            this.textBoxEmail.Size = new System.Drawing.Size(173, 22);
+            this.textBoxEmail.Size = new System.Drawing.Size(131, 20);
             this.textBoxEmail.TabIndex = 15;
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(94, 77);
+            this.textBoxName.Location = new System.Drawing.Point(147, 49);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.ReadOnly = true;
-            this.textBoxName.Size = new System.Drawing.Size(173, 22);
+            this.textBoxName.Size = new System.Drawing.Size(131, 20);
             this.textBoxName.TabIndex = 17;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(90, 54);
+            this.label4.Location = new System.Drawing.Point(145, 30);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 20);
+            this.label4.Size = new System.Drawing.Size(54, 17);
             this.label4.TabIndex = 16;
             this.label4.Text = "Nome:";
             // 
@@ -169,26 +184,29 @@ namespace iCantine.Views
             // 
             this.labelNumStudent.AutoSize = true;
             this.labelNumStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNumStudent.Location = new System.Drawing.Point(90, 150);
+            this.labelNumStudent.Location = new System.Drawing.Point(145, 108);
+            this.labelNumStudent.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelNumStudent.Name = "labelNumStudent";
-            this.labelNumStudent.Size = new System.Drawing.Size(194, 20);
+            this.labelNumStudent.Size = new System.Drawing.Size(169, 17);
             this.labelNumStudent.TabIndex = 12;
             this.labelNumStudent.Text = "Número de estudante:";
             // 
             // textBoxNumStudent
             // 
-            this.textBoxNumStudent.Location = new System.Drawing.Point(94, 173);
+            this.textBoxNumStudent.Location = new System.Drawing.Point(147, 127);
+            this.textBoxNumStudent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxNumStudent.Name = "textBoxNumStudent";
             this.textBoxNumStudent.ReadOnly = true;
-            this.textBoxNumStudent.Size = new System.Drawing.Size(173, 22);
+            this.textBoxNumStudent.Size = new System.Drawing.Size(131, 20);
             this.textBoxNumStudent.TabIndex = 14;
             // 
             // buttonBack
             // 
-            this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBack.Location = new System.Drawing.Point(17, 399);
+            this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBack.Location = new System.Drawing.Point(12, 442);
+            this.buttonBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(96, 39);
+            this.buttonBack.Size = new System.Drawing.Size(116, 39);
             this.buttonBack.TabIndex = 11;
             this.buttonBack.Text = "Atrás";
             this.buttonBack.UseVisualStyleBackColor = true;
@@ -197,9 +215,10 @@ namespace iCantine.Views
             // buttonBalance
             // 
             this.buttonBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBalance.Location = new System.Drawing.Point(461, 349);
+            this.buttonBalance.Location = new System.Drawing.Point(109, 222);
+            this.buttonBalance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonBalance.Name = "buttonBalance";
-            this.buttonBalance.Size = new System.Drawing.Size(96, 39);
+            this.buttonBalance.Size = new System.Drawing.Size(99, 42);
             this.buttonBalance.TabIndex = 12;
             this.buttonBalance.Text = "Carregar";
             this.buttonBalance.UseVisualStyleBackColor = true;
@@ -208,9 +227,10 @@ namespace iCantine.Views
             // buttonEdit
             // 
             this.buttonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEdit.Location = new System.Drawing.Point(561, 349);
+            this.buttonEdit.Location = new System.Drawing.Point(212, 222);
+            this.buttonEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(96, 39);
+            this.buttonEdit.Size = new System.Drawing.Size(99, 42);
             this.buttonEdit.TabIndex = 13;
             this.buttonEdit.Text = "Editar";
             this.buttonEdit.UseVisualStyleBackColor = true;
@@ -219,9 +239,10 @@ namespace iCantine.Views
             // buttonDelete
             // 
             this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDelete.Location = new System.Drawing.Point(663, 349);
+            this.buttonDelete.Location = new System.Drawing.Point(315, 222);
+            this.buttonDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(96, 39);
+            this.buttonDelete.Size = new System.Drawing.Size(99, 42);
             this.buttonDelete.TabIndex = 14;
             this.buttonDelete.Text = "Apagar";
             this.buttonDelete.UseVisualStyleBackColor = true;
@@ -230,9 +251,10 @@ namespace iCantine.Views
             // buttonRegister
             // 
             this.buttonRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRegister.Location = new System.Drawing.Point(359, 349);
+            this.buttonRegister.Location = new System.Drawing.Point(8, 222);
+            this.buttonRegister.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonRegister.Name = "buttonRegister";
-            this.buttonRegister.Size = new System.Drawing.Size(96, 39);
+            this.buttonRegister.Size = new System.Drawing.Size(97, 42);
             this.buttonRegister.TabIndex = 15;
             this.buttonRegister.Text = "Registar ";
             this.buttonRegister.UseVisualStyleBackColor = true;
@@ -242,9 +264,10 @@ namespace iCantine.Views
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(323, 16);
+            this.label5.Location = new System.Drawing.Point(242, 13);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(158, 29);
+            this.label5.Size = new System.Drawing.Size(128, 24);
             this.label5.TabIndex = 18;
             this.label5.Text = "Funcionario:";
             // 
@@ -252,18 +275,19 @@ namespace iCantine.Views
             // 
             this.listBoxClients.FormattingEnabled = true;
             this.listBoxClients.HorizontalScrollbar = true;
-            this.listBoxClients.ItemHeight = 16;
-            this.listBoxClients.Location = new System.Drawing.Point(17, 82);
+            this.listBoxClients.Location = new System.Drawing.Point(11, 111);
+            this.listBoxClients.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listBoxClients.Name = "listBoxClients";
-            this.listBoxClients.Size = new System.Drawing.Size(330, 244);
+            this.listBoxClients.Size = new System.Drawing.Size(311, 225);
             this.listBoxClients.TabIndex = 19;
             // 
             // comboBoxFilters
             // 
             this.comboBoxFilters.FormattingEnabled = true;
-            this.comboBoxFilters.Location = new System.Drawing.Point(17, 357);
+            this.comboBoxFilters.Location = new System.Drawing.Point(12, 408);
+            this.comboBoxFilters.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxFilters.Name = "comboBoxFilters";
-            this.comboBoxFilters.Size = new System.Drawing.Size(211, 24);
+            this.comboBoxFilters.Size = new System.Drawing.Size(159, 21);
             this.comboBoxFilters.TabIndex = 20;
             this.comboBoxFilters.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilters_SelectedIndexChanged);
             // 
@@ -271,19 +295,19 @@ namespace iCantine.Views
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(12, 329);
+            this.label6.Location = new System.Drawing.Point(8, 385);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(74, 25);
+            this.label6.Size = new System.Drawing.Size(61, 20);
             this.label6.TabIndex = 21;
             this.label6.Text = "Filtrar:";
             // 
             // buttonEmployee
             // 
             this.buttonEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEmployee.Location = new System.Drawing.Point(663, 16);
-            this.buttonEmployee.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonEmployee.Location = new System.Drawing.Point(592, 6);
             this.buttonEmployee.Name = "buttonEmployee";
-            this.buttonEmployee.Size = new System.Drawing.Size(128, 29);
+            this.buttonEmployee.Size = new System.Drawing.Size(134, 43);
             this.buttonEmployee.TabIndex = 27;
             this.buttonEmployee.Text = "Funcionário";
             this.buttonEmployee.UseVisualStyleBackColor = true;
@@ -293,26 +317,27 @@ namespace iCantine.Views
             // 
             this.labelEmployee.AutoSize = true;
             this.labelEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEmployee.Location = new System.Drawing.Point(500, 18);
-            this.labelEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelEmployee.Location = new System.Drawing.Point(423, 13);
             this.labelEmployee.Name = "labelEmployee";
-            this.labelEmployee.Size = new System.Drawing.Size(132, 29);
+            this.labelEmployee.Size = new System.Drawing.Size(105, 24);
             this.labelEmployee.TabIndex = 34;
             this.labelEmployee.Text = "Username";
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Location = new System.Drawing.Point(92, 50);
+            this.textBoxSearch.Location = new System.Drawing.Point(129, 77);
+            this.textBoxSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(162, 22);
+            this.textBoxSearch.Size = new System.Drawing.Size(122, 20);
             this.textBoxSearch.TabIndex = 35;
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSearch.Location = new System.Drawing.Point(260, 50);
+            this.buttonSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSearch.Location = new System.Drawing.Point(255, 67);
+            this.buttonSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(89, 23);
+            this.buttonSearch.Size = new System.Drawing.Size(100, 36);
             this.buttonSearch.TabIndex = 36;
             this.buttonSearch.Text = "Pesquisar:";
             this.buttonSearch.UseVisualStyleBackColor = true;
@@ -321,18 +346,19 @@ namespace iCantine.Views
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(12, 51);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(11, 77);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(80, 18);
+            this.label7.Size = new System.Drawing.Size(89, 18);
             this.label7.TabIndex = 37;
             this.label7.Text = "Nome/NIF:";
             // 
             // FormCustomer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(846, 450);
+            this.ClientSize = new System.Drawing.Size(875, 507);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.buttonSearch);
             this.Controls.Add(this.textBoxSearch);
@@ -342,13 +368,10 @@ namespace iCantine.Views
             this.Controls.Add(this.comboBoxFilters);
             this.Controls.Add(this.listBoxClients);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.buttonRegister);
-            this.Controls.Add(this.buttonDelete);
-            this.Controls.Add(this.buttonEdit);
-            this.Controls.Add(this.buttonBalance);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormCustomer";
             this.Text = "FormCustomer";
             this.groupBox1.ResumeLayout(false);

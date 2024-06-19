@@ -75,7 +75,7 @@ namespace iCantine.Views
                     while (numSaves < checkHours())
                     {
                         string[] hours = getHours();
-                        DateTime day = dateTimePicker1.Value.ToUniversalTime();
+                        DateTime day = dateTimePicker1.Value;
                         DateTime dateToSave = convertTimeFromString(day, hours, numSaves);
 
                         foreach (var itemPlate in listBoxPlate.SelectedItems)

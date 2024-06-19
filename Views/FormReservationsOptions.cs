@@ -37,5 +37,11 @@ namespace iCantine.models
             FormReservationsMade formReservations = new FormReservationsMade(user);
             FormController.changeForm(formReservations, this);
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm(user);
+            FormController.changeForm(mainForm,this);
+        }
     }
 }

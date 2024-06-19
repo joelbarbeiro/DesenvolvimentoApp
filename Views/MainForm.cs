@@ -19,12 +19,13 @@ namespace iCantine
     public partial class MainForm : Form
     {
         public string user;
+        private models.Context context = new models.Context();
         public MainForm(string user)
         {
             InitializeComponent();
             this.user = user;
             changeUserLabel(user);
-            UpdateWeekRange();
+            updateWeekRange();
             updateLunchList();
             updateDinnerList();
         }
@@ -40,7 +41,7 @@ namespace iCantine
             return char.ToUpper(input[0]) + input.Substring(1);
         }
 
-        private void UpdateWeekRange()
+        private List<DateTime> updateWeekRange()
         {
 
             DateTime startDate = dateTimePicker1.Value;
@@ -57,65 +58,97 @@ namespace iCantine
                 }
                 addedDays++;
             }
-            labelSelectedWeek.Text = $"Semana de: {selectedDates.First().ToShortDateString()} at� {selectedDates.Last().ToShortDateString()}";
+            labelSelectedWeek.Text = $"Semana de: {selectedDates.First().ToShortDateString()} até {selectedDates.Last().ToShortDateString()}";
+            return selectedDates;
         }
         public List<models.Menu> getLunchMenu(DateTime selectedDate)
         {
-            using (var context = new models.Context())
+            var query = context.Menus.Where(
+            menu =>
+            menu.Data.Year == selectedDate.Year &&
+            menu.Data.Month == selectedDate.Month &&
+            menu.Data.Day == selectedDate.Day &&
+            menu.Data.Hour == 12 &&
+            menu.Plates.Any(p => p.Active))
+            .Select(menu => new
             {
-                var query = context.Menus.Where(
-                    menu =>
-                    menu.Data.Year == selectedDate.Year &&
-                    menu.Data.Month == selectedDate.Month &&
-                    menu.Data.Day == selectedDate.Day &&
-                    menu.Data.Hour == 12
-                    ).Include(m => m.Plates).Include(m => m.Extras);
-                    ;
-                return query.ToList();
-            }
+                Menu = menu,
+                Plates = menu.Plates.Where(p => p.Active),
+                Extras = menu.Extras.Where(e => e.Active)
+            }).AsEnumerable()
+                .Select(result =>
+                {
+                    result.Menu.Plates = result.Plates.ToList();
+                    result.Menu.Extras = result.Extras.ToList();
+                    return result.Menu;
+                });
+            return query.ToList();
         }
+
         public List<models.Menu> getDinnerMenu(DateTime selectedDate)
         {
-            using (var context = new models.Context())
+            var query = context.Menus.Where(
+            menu =>
+            menu.Data.Year == selectedDate.Year &&
+            menu.Data.Month == selectedDate.Month &&
+            menu.Data.Day == selectedDate.Day &&
+            menu.Data.Hour == 19 &&
+            menu.Plates.Any(p => p.Active))
+            .Select(menu => new
             {
-                var query = context.Menus.Where(
-                    menu =>
-                    menu.Data.Year == selectedDate.Year &&
-                    menu.Data.Month == selectedDate.Month &&
-                    menu.Data.Day == selectedDate.Day &&
-                    menu.Data.Hour == 19
-                    ).Include(m => m.Plates).Include(m => m.Extras);
-                ;
-                return query.ToList();
-            }
+                Menu = menu,
+                Plates = menu.Plates.Where(p => p.Active),
+                Extras = menu.Extras.Where(e => e.Active)
+            }).AsEnumerable()
+                .Select(result =>
+                {
+                    result.Menu.Plates = result.Plates.ToList();
+                    result.Menu.Extras = result.Extras.ToList();
+                    return result.Menu;
+                });
+
+            return query.ToList();
         }
 
         private void updateLunchList()
         {
             try
             {
+                List<DateTime> selectedDates = updateWeekRange();
+
                 DateTime today = DateTime.Today;
-                int daysToMonday = ((int)DayOfWeek.Monday - (int)today.DayOfWeek + 7) % 7;
-                DateTime monday = today.AddDays(daysToMonday);
 
-                listBoxMondayLunch.DataSource = null;
-                listBoxMondayLunch.DataSource = getLunchMenu(monday);
-
-                listBoxTuesdayLunch.DataSource = null;
-                listBoxTuesdayLunch.DataSource = getLunchMenu(monday.AddDays(1));
-
-                listBoxWednesdayLunch.DataSource = null;
-                listBoxWednesdayLunch.DataSource = getLunchMenu(monday.AddDays(2));
-
-                listBoxThursdayLunch.DataSource = null;
-                listBoxThursdayLunch.DataSource = getLunchMenu(monday.AddDays(3));
-
-                listBoxFridayLunch.DataSource = null;
-                listBoxFridayLunch.DataSource = getLunchMenu(monday.AddDays(4));
+                foreach (DateTime date in selectedDates)
+                {
+                        switch (date.DayOfWeek)
+                        {
+                            case DayOfWeek.Monday:
+                                listBoxMondayLunch.DataSource = null;
+                                listBoxMondayLunch.DataSource = getLunchMenu(date);
+                                break;
+                            case DayOfWeek.Tuesday:
+                                listBoxTuesdayLunch.DataSource = null;
+                                listBoxTuesdayLunch.DataSource = getLunchMenu(date);
+                                break;
+                            case DayOfWeek.Wednesday:
+                                listBoxWednesdayLunch.DataSource = null;
+                                listBoxWednesdayLunch.DataSource = getLunchMenu(date);
+                                break;
+                            case DayOfWeek.Thursday:
+                                listBoxThursdayLunch.DataSource = null;
+                                listBoxThursdayLunch.DataSource = getLunchMenu(date);
+                                break;
+                            case DayOfWeek.Friday:
+                                listBoxFridayLunch.DataSource = null;
+                                listBoxFridayLunch.DataSource = getLunchMenu(date);
+                                break;
+                        }
+                    }
+                
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Nenhum menu nesta semana");
+                MessageBox.Show("Nenhum menu almoço nesta semana");
                 listBoxMondayLunch.DataSource = null;
                 listBoxTuesdayLunch.DataSource = null;
                 listBoxWednesdayLunch.DataSource = null;
@@ -127,28 +160,41 @@ namespace iCantine
         {
             try
             {
+                List<DateTime> selectedDates = updateWeekRange();
+
                 DateTime today = DateTime.Today;
-                int daysToMonday = ((int)DayOfWeek.Monday - (int)today.DayOfWeek + 7) % 7;
-                DateTime monday = today.AddDays(daysToMonday);
 
-                listBoxMondayDinner.DataSource = null;
-                listBoxMondayDinner.DataSource = getDinnerMenu(monday);
-
-                listBoxTuesdayDinner.DataSource = null;
-                listBoxTuesdayDinner.DataSource = getDinnerMenu(monday.AddDays(1));
-
-                listBoxWednesdayDinner.DataSource = null;
-                listBoxWednesdayDinner.DataSource = getDinnerMenu(monday.AddDays(2));
-
-                listBoxThursdayDinner.DataSource = null;
-                listBoxThursdayDinner.DataSource = getDinnerMenu(monday.AddDays(3));
-
-                listBoxFridayDinner.DataSource = null;
-                listBoxFridayDinner.DataSource = getDinnerMenu(monday.AddDays(4));
+                foreach (DateTime date in selectedDates)
+                {
+                        switch (date.DayOfWeek)
+                        {
+                            case DayOfWeek.Monday:
+                                listBoxMondayDinner.DataSource = null;
+                                listBoxMondayDinner.DataSource = getDinnerMenu(date);
+                                break;
+                            case DayOfWeek.Tuesday:
+                                listBoxTuesdayDinner.DataSource = null;
+                                listBoxTuesdayDinner.DataSource = getDinnerMenu(date);
+                                break;
+                            case DayOfWeek.Wednesday:
+                                listBoxWednesdayDinner.DataSource = null;
+                                listBoxWednesdayDinner.DataSource = getDinnerMenu(date);
+                                break;
+                            case DayOfWeek.Thursday:
+                                listBoxThursdayDinner.DataSource = null;
+                                listBoxThursdayDinner.DataSource = getDinnerMenu(date);
+                                break;
+                            case DayOfWeek.Friday:
+                                listBoxFridayDinner.DataSource = null;
+                                listBoxFridayDinner.DataSource = getDinnerMenu(date);
+                                break;
+                        }
+                    }
+                
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Nenhum menu nesta semana");
+                MessageBox.Show("Nenhum menu jantar nesta semana");
                 listBoxMondayDinner.DataSource = null;
                 listBoxTuesdayDinner.DataSource = null;
                 listBoxWednesdayDinner.DataSource = null;
@@ -211,7 +257,8 @@ namespace iCantine
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            UpdateWeekRange();
+            updateWeekRange();
         }
+
     }
 }
